@@ -10,6 +10,7 @@ public class MovementSettings
 public abstract class Character : MonoBehaviour
 {
     public MovementSettings MovementSettings;
+    public Weapon _weapon;
     private Rigidbody _rigidbody;
     private Mover _mover;
     protected IInput _input;
@@ -25,15 +26,19 @@ public abstract class Character : MonoBehaviour
     protected virtual void Update()
     {
         _input.Read();
+        if (_input.AttackInput)
+        {
+            _weapon.Shoot();
+        }
+
+        if (_input.ReloadInput)
+        {
+            _weapon.Reload();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
         _mover.Move(_input.MovementInput);
-    }
-
-    private void Shoot()
-    {
-        
     }
 }
