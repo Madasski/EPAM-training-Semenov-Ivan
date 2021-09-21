@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: MovementSettings.Speed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1932652733190449839, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
+      propertyPath: MovementSettings.Speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2066363755738656911, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
       propertyPath: m_Name
       value: Model
@@ -149,6 +153,14 @@ PrefabInstance:
     - target: {fileID: 4855759895210810383, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855759895210810383, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740947394552950256, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8931983242176911707, guid: 1cd187d01b1562248ad60376c911dc60, type: 3}
       propertyPath: m_RootOrder
@@ -380,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 764783097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3

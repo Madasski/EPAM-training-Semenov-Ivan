@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerInput
+public class PlayerInput : IInput
 {
     private Vector2 _movementInput;
 

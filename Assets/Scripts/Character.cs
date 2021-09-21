@@ -7,25 +7,33 @@ public class MovementSettings
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     public MovementSettings MovementSettings;
     private Rigidbody _rigidbody;
     private Mover _mover;
-    private PlayerInput _input;
+    protected IInput _input;
 
     public Rigidbody Rigidbody => _rigidbody;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _mover = new Mover(this);
-        _input = new PlayerInput();
     }
 
-    private void FixedUpdate()
+    protected virtual void Update()
     {
         _input.Read();
+    }
+
+    protected virtual void FixedUpdate()
+    {
         _mover.Move(_input.MovementInput);
+    }
+
+    private void Shoot()
+    {
+        
     }
 }
