@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+  DamageOnHit: 46
 --- !u!54 &28371595838252896
 Rigidbody:
   m_ObjectHideFlags: 0
