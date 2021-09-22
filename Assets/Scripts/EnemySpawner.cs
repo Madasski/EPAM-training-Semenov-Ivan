@@ -2,6 +2,7 @@
 
 public class EnemySpawner : MonoBehaviour
 {
+    public PlayerCharacter Player;
     public EnemyCharacter EnemyToSpawn;
     public float DelayBetweenSpawns;
     public Collider LevelBoundsCollider;
@@ -38,5 +39,6 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn(EnemyCharacter gameObjectToSpawn, Vector3 spawnPosition)
     {
         var spawnedObject = Instantiate(gameObjectToSpawn, spawnPosition, Quaternion.identity);
+        spawnedObject.Player = Player;
     }
 }

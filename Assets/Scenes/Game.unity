@@ -350,6 +350,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &728962347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476539164, guid: 3d557c73608a8f3428cd2b676ae2df01, type: 3}
+  m_PrefabInstance: {fileID: 223384973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dafb15958204edc89c23cee47c6cba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764783097
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c55dcaec49645d8abf37e6277ac2c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 728962347}
   EnemyToSpawn: {fileID: -3036971728685028161, guid: 7d9925102c0936943be9654d01615319, type: 3}
   DelayBetweenSpawns: 1
   LevelBoundsCollider: {fileID: 1302022633}

@@ -28,6 +28,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void Update()
     {
         _input.Read();
+        if(_weapon==null) return;
         if (_input.AttackInput)
         {
             _weapon.Shoot();
