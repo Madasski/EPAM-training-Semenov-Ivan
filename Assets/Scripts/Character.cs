@@ -1,6 +1,8 @@
+using System;
+using Game.Weapons;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class MovementSettings
 {
     public float Speed;
