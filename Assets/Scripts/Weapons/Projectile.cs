@@ -5,10 +5,19 @@ namespace Game.Weapons
     public class Projectile: MonoBehaviour
     {
         public float Speed;
-        
-        private void Update()
+
+        private Rigidbody _rigidbody;
+
+        private void Awake()
         {
-            transform.position += transform.forward*Time.deltaTime*Speed;
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            // transform.position += transform.forward*Time.deltaTime*Speed;
+            var targetPosition = _rigidbody.position + transform.forward * Time.deltaTime * Speed;
+            _rigidbody.MovePosition(targetPosition);
         }
     }
 }

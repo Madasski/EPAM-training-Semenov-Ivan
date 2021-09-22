@@ -11,7 +11,8 @@
 
         public void Move(Vector2 moveInput)
         {
-            var targetPosition = _character.Rigidbody.position + new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.MovementSettings.Speed;
-            _character.Rigidbody.MovePosition(targetPosition);
+            // var targetPosition = _character.Rigidbody.position + new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.MovementSettings.Speed;
+            // _character.Rigidbody.MovePosition(targetPosition);
+            _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y)*Time.deltaTime*_character.MovementSettings.Speed;
         }
     }
