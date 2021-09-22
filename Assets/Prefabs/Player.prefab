@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSettings:
-    Speed: 250
+    Speed: 400
   _weapon: {fileID: 0}
 --- !u!1001 &8879954472243453477
 PrefabInstance:
