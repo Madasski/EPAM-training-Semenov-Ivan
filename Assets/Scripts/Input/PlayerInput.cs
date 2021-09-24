@@ -25,7 +25,7 @@ public class PlayerInput : IInput
     public void Read()
     {
         _movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        _attackInput = Input.GetButtonDown("Fire1");
+        _attackInput = Input.GetButtonDown("Fire1") || Input.GetButton("Fire1");
         _reloadInput = Input.GetKeyDown(KeyCode.R);
     }
 }
