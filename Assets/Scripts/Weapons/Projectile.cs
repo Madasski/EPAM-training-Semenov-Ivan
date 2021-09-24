@@ -23,7 +23,6 @@ namespace Game.Weapons
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name);
             Damage(other);
             Destroy(gameObject);
         }

@@ -22,7 +22,6 @@ public class AIInput : IInput
         }
     }
 
-
     public AIInput(EnemyCharacter enemyCharacter)
     {
         _enemyCharacter = enemyCharacter;

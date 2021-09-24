@@ -9,8 +9,6 @@ namespace Game.Weapons
 
         protected override void Use()
         {
-            Debug.Log("knife punch");
-
             var hits = Physics.OverlapBox(DamageCollider.bounds.center, DamageCollider.bounds.extents / 2f);
             foreach (var hit in hits)
             {
