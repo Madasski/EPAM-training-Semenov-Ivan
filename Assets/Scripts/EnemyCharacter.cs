@@ -4,8 +4,10 @@ public class EnemyCharacter : Character
 {
     public PlayerCharacter Player;
     public float DetectionRange;
+    public float AttackRange;
 
-    public bool IsPlayerInRange => Vector3.Distance(transform.position, Player.transform.position) <= DetectionRange;
+    public bool IsPlayerInDetectionRange => Vector3.Distance(transform.position, Player.transform.position) <= DetectionRange;
+    public bool IsPlayerInAttackRange => Vector3.Distance(transform.position, Player.transform.position) <= AttackRange;
 
     protected override void Awake()
     {
