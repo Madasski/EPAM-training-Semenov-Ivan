@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1476539163
+--- !u!114 &-3036971728685028161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,24 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6803865935509792740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb920f4680c4ef79f111cf179fc63ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1476539164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6803865935509792740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafb15958204edc89c23cee47c6cba9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f5de049ba504d9b8c882606764d8927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSettings:
-    Speed: 400
+    Speed: 250
   _weapon: {fileID: 0}
+  Player: {fileID: 0}
+  DetectionRange: 5
+  AttackRange: 0
 --- !u!1001 &8879954472243453477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36,8 +27,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1132304330785990937, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: MaxHealth
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 492031601163387234, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
     - target: {fileID: 2143721139876527253, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -84,8 +79,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2690865105415403969, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: EvilRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 4050731264781961542, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
+    - target: {fileID: 7321520513350258984, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
+    - target: {fileID: 8314184055255896105, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
+    - target: {fileID: 8898150430999870028, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
+    - target: {fileID: 9119004948791537371, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
 --- !u!1 &6803865935509792740 stripped

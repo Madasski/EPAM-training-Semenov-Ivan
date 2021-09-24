@@ -2,40 +2,24 @@ using UnityEngine;
 
 namespace Game.Weapons
 {
-    public class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour
     {
-        public Projectile ProjectilePrefab;
-        public Transform ShootingPoint;
-        public int MagazineSize;
-        public float fireRatePerSecond;
+        public float FireRate;
 
-        private int _ammoLeft;
-        private float timeSinceLastShot = 999f;
+        protected float _timeSinceLastUse = 999f;
 
-        private void Awake()
+        protected virtual void Update()
         {
-            _ammoLeft = MagazineSize;
+            _timeSinceLastUse += Time.deltaTime;
         }
 
-        private void Update()
+        public virtual void TryUse()
         {
-            timeSinceLastShot += Time.deltaTime;
+            if (_timeSinceLastUse <= FireRate) return;
+            Use();
+            _timeSinceLastUse = 0f;
         }
 
-        public void Shoot()
-        {
-            if (timeSinceLastShot <= fireRatePerSecond) return;
-            if (_ammoLeft <= 0) return;
-
-            timeSinceLastShot = 0f;
-
-            var projectile = Instantiate(ProjectilePrefab, ShootingPoint.position, transform.rotation);
-            _ammoLeft--;
-        }
-
-        public void Reload()
-        {
-            _ammoLeft = MagazineSize;
-        }
+        protected abstract void Use();
     }
 }

@@ -12,7 +12,10 @@ public class MovementSettings
 public abstract class Character : MonoBehaviour
 {
     public MovementSettings MovementSettings;
-    public Weapon _weapon;
+    public Weapon InitialWeapon;
+    public Transform WeaponPosition;
+
+    private Weapon _weapon;
     private Rigidbody _rigidbody;
     private Mover _mover;
     protected IInput _input;
@@ -23,20 +26,31 @@ public abstract class Character : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _mover = new Mover(this);
+
+        if (InitialWeapon != null)
+        {
+            _weapon = Instantiate(InitialWeapon, WeaponPosition.position, WeaponPosition.rotation);
+            _weapon.transform.parent = transform;
+        }
     }
 
     protected virtual void Update()
     {
         _input.Read();
-        if(_weapon==null) return;
-        if (_input.AttackInput)
+        if (_weapon == null) return;
+
+        if (_input.UseInput)
         {
-            _weapon.Shoot();
+            _weapon.TryUse();
         }
 
+        var fireArm = _weapon as FireArm;
+        
+        if (fireArm == null) return;
+        
         if (_input.ReloadInput)
         {
-            _weapon.Reload();
+            fireArm.Reload();
         }
     }
 

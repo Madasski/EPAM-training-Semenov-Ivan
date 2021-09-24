@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSettings:
     Speed: 250
-  _weapon: {fileID: 0}
+  initialWeapon: {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
   Player: {fileID: 0}
   DetectionRange: 5
+  AttackRange: 0
 --- !u!1001 &8879954472243453477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2690865105415403969, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 4050731264781961542, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: m_Materials.Array.data[0]

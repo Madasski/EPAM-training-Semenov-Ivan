@@ -7,7 +7,7 @@ public class AIInput : IInput
     private bool _attackInput;
 
     public bool ReloadInput { get; }
-    public bool AttackInput => _attackInput;
+    public bool UseInput => _attackInput;
 
     public Vector2 MovementInput
     {
