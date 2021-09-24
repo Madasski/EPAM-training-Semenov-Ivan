@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSettings:
     Speed: 250
-  _weapon: {fileID: 0}
+  InitialWeapon: {fileID: 0}
+  WeaponPosition: {fileID: 4004194563112808790}
   Player: {fileID: 0}
   DetectionRange: 5
-  AttackRange: 0
+  AttackRange: 1
 --- !u!1001 &8879954472243453477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,5 +107,10 @@ PrefabInstance:
 --- !u!1 &6803865935509792740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2690865105415403969, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+  m_PrefabInstance: {fileID: 8879954472243453477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4004194563112808790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5524278702694068083, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
   m_PrefabInstance: {fileID: 8879954472243453477}
   m_PrefabAsset: {fileID: 0}

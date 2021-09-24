@@ -39,7 +39,7 @@ public abstract class Character : MonoBehaviour
         _input.Read();
         if (_weapon == null) return;
 
-        if (_input.UseInput)
+        if (_input.UseWeaponInput)
         {
             _weapon.TryUse();
         }

@@ -4,10 +4,10 @@ public class AIInput : IInput
 {
     private EnemyCharacter _enemyCharacter;
     private Vector2 _movementInput;
-    private bool _attackInput;
+    private bool _useWeaponInput;
 
     public bool ReloadInput { get; }
-    public bool UseInput => _attackInput;
+    public bool UseWeaponInput => _useWeaponInput;
 
     public Vector2 MovementInput
     {
@@ -30,7 +30,7 @@ public class AIInput : IInput
 
     public void Read()
     {
-        _attackInput = _enemyCharacter.IsPlayerInAttackRange;
+        _useWeaponInput = _enemyCharacter.IsPlayerInAttackRange;
 
         if (_enemyCharacter.IsPlayerInDetectionRange)
         {

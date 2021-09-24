@@ -19,7 +19,7 @@ public class PlayerInput : IInput
         }
     }
 
-    public bool UseInput => _attackInput;
+    public bool UseWeaponInput => _attackInput;
     public bool ReloadInput => _reloadInput;
 
     public void Read()

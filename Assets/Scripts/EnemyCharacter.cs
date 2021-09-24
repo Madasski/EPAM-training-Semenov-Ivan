@@ -6,8 +6,23 @@ public class EnemyCharacter : Character
     public float DetectionRange;
     public float AttackRange;
 
-    public bool IsPlayerInDetectionRange => Vector3.Distance(transform.position, Player.transform.position) <= DetectionRange;
-    public bool IsPlayerInAttackRange => Vector3.Distance(transform.position, Player.transform.position) <= AttackRange;
+    public bool IsPlayerInDetectionRange
+    {
+        get
+        {
+            if (!Player) return false;
+            return Vector3.Distance(transform.position, Player.transform.position) <= DetectionRange;
+        }
+    }
+
+    public bool IsPlayerInAttackRange
+    {
+        get
+        {
+            if (!Player) return false;
+            return Vector3.Distance(transform.position, Player.transform.position) <= AttackRange;
+        }
+    }
 
     protected override void Awake()
     {
