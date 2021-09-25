@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSettings:
     Speed: 250
-  InitialWeapon: {fileID: 0}
+  InitialWeapon: {fileID: 524911538746153119, guid: 8dbdce9971460304da6fc3c83ccbb69d, type: 3}
   WeaponPosition: {fileID: 4004194563112808790}
+  LookTarget: {fileID: 0}
   Player: {fileID: 0}
-  DetectionRange: 5
-  AttackRange: 1
+  DetectionRange: 7
+  AttackRange: 4
 --- !u!1001 &8879954472243453477
 PrefabInstance:
   m_ObjectHideFlags: 0

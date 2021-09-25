@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public PlayerCharacter Player;
-    public EnemyCharacter EnemyToSpawn;
+    public List<EnemyCharacter> EnemiesToSpawn;
     public float DelayBetweenSpawns;
     public Collider LevelBoundsCollider;
 
@@ -21,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
         if (_timeSinceLastSpawn >= DelayBetweenSpawns)
         {
             var randomPosition = GenerateRandomPositionInsideLevelBounds();
-            Spawn(EnemyToSpawn, randomPosition);
+            var randomEnemy = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
+            Spawn(randomEnemy, randomPosition);
             _timeSinceLastSpawn = 0f;
         }
     }

@@ -1282,6 +1282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 177788737}
-  EnemyToSpawn: {fileID: -3036971728685028161, guid: 7d9925102c0936943be9654d01615319, type: 3}
+  EnemiesToSpawn:
+  - {fileID: -3036971728685028161, guid: 4abaa08b3fd40b64188e2cc4dd93796a, type: 3}
+  - {fileID: -3036971728685028161, guid: 7d9925102c0936943be9654d01615319, type: 3}
   DelayBetweenSpawns: 1
   LevelBoundsCollider: {fileID: 1302022633}

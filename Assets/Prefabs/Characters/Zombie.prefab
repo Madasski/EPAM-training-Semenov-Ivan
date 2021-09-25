@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSettings:
     Speed: 250
-  InitialWeapon: {fileID: 0}
+  InitialWeapon: {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
   WeaponPosition: {fileID: 4004194563112808790}
+  LookTarget: {fileID: 0}
   Player: {fileID: 0}
   DetectionRange: 5
   AttackRange: 1
