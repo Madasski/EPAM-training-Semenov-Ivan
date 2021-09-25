@@ -59,6 +59,6 @@ public abstract class Character : MonoBehaviour
     {
         _mover.Move(_input.MovementInput);
         if (!LookTarget) return;
-        _mover.RotateAt(LookTarget.position);
+        _mover.RotateAtTransform(LookTarget);
     }
 }
