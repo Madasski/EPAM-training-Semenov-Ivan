@@ -12,7 +12,6 @@ namespace Game.Weapons
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            
         }
 
         private void FixedUpdate()
@@ -23,6 +22,7 @@ namespace Game.Weapons
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.isTrigger) return;
             Damage(other);
             Destroy(gameObject);
         }

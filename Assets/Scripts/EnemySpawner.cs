@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn(EnemyCharacter gameObjectToSpawn, Vector3 spawnPosition)
     {
         var spawnedObject = Instantiate(gameObjectToSpawn, spawnPosition, Quaternion.identity);
-        spawnedObject.Player = Player;
+        if (Player)
+            spawnedObject.Player = Player;
     }
 }

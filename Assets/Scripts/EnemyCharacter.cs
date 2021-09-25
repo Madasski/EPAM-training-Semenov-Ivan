@@ -32,7 +32,8 @@ public class EnemyCharacter : Character
 
     private void Start()
     {
-        LookTarget = Player.transform;
+        if (Player)
+            LookTarget = Player.transform;
     }
 
     protected override void Update()
