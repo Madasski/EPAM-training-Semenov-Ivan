@@ -14,6 +14,7 @@ public abstract class Character : MonoBehaviour
     public MovementSettings MovementSettings;
     public Weapon InitialWeapon;
     public Transform WeaponPosition;
+    public Transform LookTarget;
 
     private Weapon _weapon;
     private Rigidbody _rigidbody;
@@ -45,9 +46,9 @@ public abstract class Character : MonoBehaviour
         }
 
         var fireArm = _weapon as FireArm;
-        
+
         if (fireArm == null) return;
-        
+
         if (_input.ReloadInput)
         {
             fireArm.Reload();
@@ -57,5 +58,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         _mover.Move(_input.MovementInput);
+        if (!LookTarget) return;
+        _mover.RotateAt(LookTarget.position);
     }
 }

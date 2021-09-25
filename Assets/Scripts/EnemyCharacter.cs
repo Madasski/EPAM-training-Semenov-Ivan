@@ -30,6 +30,11 @@ public class EnemyCharacter : Character
         _input = new AIInput(this);
     }
 
+    private void Start()
+    {
+        LookTarget = Player.transform;
+    }
+
     protected override void Update()
     {
         base.Update();

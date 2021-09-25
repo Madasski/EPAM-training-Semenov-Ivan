@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0266471862c74c419913239210e424c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0.3
+  FireRate: 0
   ProjectilePrefab: {fileID: 2960075580870249777, guid: 6054a92306b87054b96b5648776f1996, type: 3}
   ShootingPoint: {fileID: 4148521218554557147}
-  MagazineSize: 25
+  MagazineSize: 9999
 --- !u!1 &8395785845924756884
 GameObject:
   m_ObjectHideFlags: 0
