@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Madasski.Core;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -14,6 +15,10 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         _levelBounds = LevelBoundsCollider.bounds;
+        foreach (var enemyCharacter in EnemiesToSpawn)
+        {
+            ObjectPool.AddObjectToPool(enemyCharacter);
+        }
     }
 
     private void Update()
@@ -40,7 +45,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(EnemyCharacter gameObjectToSpawn, Vector3 spawnPosition)
     {
-        var spawnedObject = Instantiate(gameObjectToSpawn, spawnPosition, Quaternion.identity);
+        var spawnedObject = ObjectPool.GetObject(gameObjectToSpawn);
+        spawnedObject.gameObject.SetActive(true);
+        spawnedObject.transform.position = spawnPosition;
         if (Player)
             spawnedObject.Player = Player;
     }
