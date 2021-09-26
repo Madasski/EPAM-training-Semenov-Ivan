@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
         _levelBounds = LevelBoundsCollider.bounds;
         foreach (var enemyCharacter in EnemiesToSpawn)
         {
-            ObjectPool.AddObjectToPool(enemyCharacter);
+            ObjectPool.Instance.AddObjectToPool(enemyCharacter);
         }
     }
 
@@ -45,8 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(EnemyCharacter gameObjectToSpawn, Vector3 spawnPosition)
     {
-        var spawnedObject = ObjectPool.GetObject(gameObjectToSpawn);
-        spawnedObject.gameObject.SetActive(true);
+        var spawnedObject = ObjectPool.Instance.GetObject(gameObjectToSpawn);
         spawnedObject.transform.position = spawnPosition;
         if (Player)
             spawnedObject.Player = Player;
