@@ -62,8 +62,8 @@ namespace Madasski.Core
                 }
                 else
                 {
-                    //todo: instantiate objects in pool then return one
-                    return null;
+                    var obj = Instantiate(gameObjectToGet);
+                    return obj;
                 }
             }
             else

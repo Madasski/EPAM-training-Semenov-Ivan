@@ -14,9 +14,7 @@ namespace Game.Weapons
         protected void Awake()
         {
             _ammoLeft = MagazineSize;
-            Debug.Log("1");
             ObjectPool.Instance.AddObjectToPool(ProjectilePrefab);
-            Debug.Log("2");
         }
 
         protected override void Update()
