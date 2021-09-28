@@ -45,7 +45,7 @@ public abstract class Character : MonoBehaviour
             _weapon.TryUse();
         }
 
-        var fireArm = _weapon as FireArm;
+        var fireArm = _weapon as Firearm;
 
         if (fireArm == null) return;
 

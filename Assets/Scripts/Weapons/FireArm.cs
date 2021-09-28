@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Weapons
 {
-    public class FireArm : Weapon
+    public class Firearm : Weapon
     {
         public Projectile ProjectilePrefab;
         public Transform ShootingPoint;
