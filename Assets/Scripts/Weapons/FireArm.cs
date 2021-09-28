@@ -14,7 +14,7 @@ namespace Game.Weapons
         protected void Awake()
         {
             _ammoLeft = MagazineSize;
-            ObjectPool.Instance.AddObjectToPool(ProjectilePrefab);
+            ObjectPool.Instance.CreatePool(ProjectilePrefab);
         }
 
         protected override void Update()
@@ -26,7 +26,7 @@ namespace Game.Weapons
         {
             if (_ammoLeft <= 0) return;
             // var projectile = Instantiate(ProjectilePrefab, ShootingPoint.position, transform.rotation);
-            var projectile = ObjectPool.Instance.GetObject(ProjectilePrefab);
+            var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab);
             projectile.transform.position = ShootingPoint.position;
             projectile.transform.rotation = transform.rotation;
             _ammoLeft--;

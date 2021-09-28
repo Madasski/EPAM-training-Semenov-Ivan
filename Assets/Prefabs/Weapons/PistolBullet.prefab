@@ -75,8 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fbf7419c4248c7b2359569e6ac356c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 934755830934870033}
   Speed: 10
   DamageOnHit: 46
+  Lifespan: 1
 --- !u!1001 &181575633724494630
 PrefabInstance:
   m_ObjectHideFlags: 0

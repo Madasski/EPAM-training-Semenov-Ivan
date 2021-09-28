@@ -5,7 +5,8 @@ namespace Madasski.Core
 {
     public class ObjectPool : MonoBehaviour
     {
-        public static Dictionary<MonoBehaviour, Queue<GameObject>> _pools = new Dictionary<MonoBehaviour, Queue<GameObject>>();
+        private static Dictionary<GameObject, Queue<GameObject>> _pools = new Dictionary<GameObject, Queue<GameObject>>();
+        private static Dictionary<GameObject, GameObject> _spawnedObjects = new Dictionary<GameObject, GameObject>();
 
         private static ObjectPool _instance;
 
@@ -30,16 +31,20 @@ namespace Madasski.Core
             }
         }
 
-        // public void AddObjectToPool<T>(T gameObject) where T: MonoBehaviour
-        public void AddObjectToPool(MonoBehaviour gameObject)
+        public void CreatePool<T>(T prefab) where T : MonoBehaviour => CreatePool(prefab.gameObject);
+
+        public void CreatePool(GameObject gameObject)
         {
-            if (_pools.ContainsKey(gameObject)) return;
+            if (gameObject == null || _pools.ContainsKey(gameObject))
+            {
+                return;
+            }
 
             Queue<GameObject> objectsQueue = new Queue<GameObject>();
             var poolGameObject = new GameObject(gameObject.name + " pool");
             poolGameObject.transform.parent = _instance.transform;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var obj = Instantiate(gameObject).gameObject;
                 obj.SetActive(false);
@@ -50,27 +55,50 @@ namespace Madasski.Core
             _pools.Add(gameObject, objectsQueue);
         }
 
-        public T GetObject<T>(T gameObjectToGet) where T : MonoBehaviour
+        public T Spawn<T>(T prefab) where T : MonoBehaviour => Spawn(prefab.gameObject).GetComponent<T>();
+
+        public GameObject Spawn(GameObject prefab)
         {
-            if (_pools.ContainsKey(gameObjectToGet))
+            if (_pools.ContainsKey(prefab))
             {
-                if (_pools[gameObjectToGet].Count > 0)
+                GameObject obj;
+                if (_pools[prefab].Count > 0)
                 {
-                    var obj = _pools[gameObjectToGet].Dequeue().GetComponent<T>();
-                    obj.gameObject.SetActive(true);
-                    return obj;
+                    obj = _pools[prefab].Dequeue();
+                    obj.SetActive(true);
                 }
                 else
                 {
-                    var obj = Instantiate(gameObjectToGet);
-                    return obj;
+                    obj = Instantiate(prefab);
                 }
+
+                _spawnedObjects.Add(obj, prefab);
+                return obj;
             }
             else
             {
-                //todo: instantiate objects in pool then return one
-                return null;
+                CreatePool(prefab);
+                return Spawn(prefab);
             }
+        }
+
+        public void ReturnObjectToPool<T>(T gameObjectToReturn) where T : MonoBehaviour => ReturnObjectToPool(gameObjectToReturn.gameObject);
+
+        public void ReturnObjectToPool(GameObject gameObjectToReturn)
+        {
+            if (_spawnedObjects.TryGetValue(gameObjectToReturn, out var prefab))
+            {
+                ReturnObjectToPool(gameObjectToReturn, prefab);
+            }
+        }
+
+        public void ReturnObjectToPool(GameObject gameObjectToReturn, GameObject prefab)
+        {
+            _spawnedObjects.Remove(gameObjectToReturn);
+            if (gameObjectToReturn == null) return;
+
+            _pools[prefab].Enqueue(gameObjectToReturn);
+            gameObjectToReturn.SetActive(false);
         }
     }
 }
