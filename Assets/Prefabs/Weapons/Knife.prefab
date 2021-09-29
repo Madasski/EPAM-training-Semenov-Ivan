@@ -48,7 +48,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: c82488bd4e1ea60488df7e9425078a36, type: 3}
   FireRate: 0.2
   DamageCollider: {fileID: 5188973468263579265}
-  HitDamage: 50
+  HitDamage: 5
 --- !u!1 &9201820378724014193
 GameObject:
   m_ObjectHideFlags: 0

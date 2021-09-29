@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    private PlayerCharacter _playerCharacter;
     public AmmoDisplayUI AmmoDisplayUI;
+    public HealthDisplayUI HealthDisplayUI;
+
+    private PlayerCharacter _playerCharacter;
 
     private void OnEnable()
     {
@@ -12,6 +14,7 @@ public class HUD : MonoBehaviour
         {
             _playerCharacter.WeaponManager.OnWeaponChange += OnChangeWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
+            _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
         }
     }
 
@@ -21,6 +24,7 @@ public class HUD : MonoBehaviour
         {
             _playerCharacter.WeaponManager.OnWeaponChange -= OnChangeWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
+            _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
         }
     }
 
@@ -43,10 +47,16 @@ public class HUD : MonoBehaviour
         AmmoDisplayUI.UpdateAmmoCounter(ammoLeft);
     }
 
+    private void OnPlayerHealthChange(int newHealth)
+    {
+        HealthDisplayUI.UpdateHealth(newHealth);
+    }
+
     public void SetPlayer(PlayerCharacter playerCharacter)
     {
         _playerCharacter = playerCharacter;
         _playerCharacter.WeaponManager.OnWeaponChange += OnChangeWeapon;
         _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
+        _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
     }
 }

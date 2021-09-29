@@ -22,6 +22,7 @@ public abstract class Character : MonoBehaviour
 
     public Rigidbody Rigidbody => _rigidbody;
     public WeaponManager WeaponManager => _weaponManager;
+    public Health Health => _health;
 
     protected virtual void Awake()
     {

@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 934755830934870033}
   Speed: 10
-  DamageOnHit: 46
+  DamageOnHit: 2
   Lifespan: 1
 --- !u!1001 &181575633724494630
 PrefabInstance:
