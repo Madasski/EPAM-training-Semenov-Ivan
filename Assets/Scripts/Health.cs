@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
+    public event Action OnHealthReachedZero;
+        
     public int MaxHealth;
 
     private int _currentHealth;
@@ -15,6 +18,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         _currentHealth -= damage;
         if (_currentHealth <= 0)
-            Destroy(gameObject);
+            OnHealthReachedZero?.Invoke();
     }
+
 }

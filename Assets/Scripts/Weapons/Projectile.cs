@@ -1,4 +1,5 @@
-﻿using Madasski.Core;
+﻿using System;
+using Madasski.Core;
 using UnityEngine;
 
 namespace Game.Weapons
@@ -9,7 +10,7 @@ namespace Game.Weapons
         public float Speed;
         public int DamageOnHit;
         public float Lifespan = 1f;
-        
+
         private Rigidbody _rigidbody;
         private float _lifespan;
 
