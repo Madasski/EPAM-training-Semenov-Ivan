@@ -21,11 +21,16 @@ public class LevelLoader : MonoBehaviour
         var playerCamera = Instantiate(Camera);
         playerCamera.SetTarget(player.transform);
 
+        var enemySpawner = Instantiate(EnemySpawner);
+        enemySpawner.Player = player;
+
         var ui = Instantiate(UI);
         ui.GetComponentInChildren<HUD>().SetPlayer(player);
+
+        enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
+
         player.LookTarget = ui.GetComponentInChildren<CrosshairUI>().transform;
 
         Instantiate(Level);
-        Instantiate(EnemySpawner).Player = player;
     }
 }

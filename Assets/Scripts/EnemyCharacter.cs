@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyCharacter : Character
 {
+    public event Action<EnemyCharacter> OnDie;
+    
     public PlayerCharacter Player;
     public float DetectionRange;
     public float AttackRange;
@@ -34,6 +36,7 @@ public class EnemyCharacter : Character
 
     protected override void Die()
     {
+        OnDie?.Invoke(this);
         ObjectPool.Instance.ReturnObjectToPool(this);
     }
 
