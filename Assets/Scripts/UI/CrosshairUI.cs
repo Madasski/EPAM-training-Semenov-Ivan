@@ -9,7 +9,7 @@ namespace UI
         private void Awake()
         {
             _crosshair = GetComponent<RectTransform>();
-            Cursor.visible = false;
+            // Cursor.visible = false;
         }
 
         private void Update()

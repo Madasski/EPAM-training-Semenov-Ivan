@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Madasski.Core;
+using UnityEngine;
 
 namespace Game.Weapons
 {
-    public class FireArm : Weapon
+    public class Firearm : Weapon
     {
         public Projectile ProjectilePrefab;
         public Transform ShootingPoint;
@@ -13,6 +14,7 @@ namespace Game.Weapons
         protected void Awake()
         {
             _ammoLeft = MagazineSize;
+            ObjectPool.Instance.CreatePool(ProjectilePrefab);
         }
 
         protected override void Update()
@@ -23,7 +25,10 @@ namespace Game.Weapons
         protected override void Use()
         {
             if (_ammoLeft <= 0) return;
-            var projectile = Instantiate(ProjectilePrefab, ShootingPoint.position, transform.rotation);
+            // var projectile = Instantiate(ProjectilePrefab, ShootingPoint.position, transform.rotation);
+            var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab);
+            projectile.transform.position = ShootingPoint.position;
+            projectile.transform.rotation = transform.rotation;
             _ammoLeft--;
         }
 

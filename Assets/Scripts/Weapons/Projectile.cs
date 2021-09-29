@@ -1,17 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using Madasski.Core;
+using UnityEngine;
 
 namespace Game.Weapons
 {
     public class Projectile : MonoBehaviour
     {
+        public GameObject Prefab;
         public float Speed;
         public int DamageOnHit;
+        public float Lifespan = 1f;
 
         private Rigidbody _rigidbody;
+        private float _lifespan;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void OnEnable()
+        {
+            _lifespan = Lifespan;
+        }
+
+        private void Update()
+        {
+            _lifespan -= Time.deltaTime;
+            if (_lifespan <= 0) Die();
+        }
+
+        private void Die()
+        {
+            ObjectPool.Instance.ReturnObjectToPool(this);
         }
 
         private void FixedUpdate()
@@ -24,7 +45,7 @@ namespace Game.Weapons
         {
             if (other.isTrigger) return;
             Damage(other);
-            Destroy(gameObject);
+            Die();
         }
 
         private void Damage(Collider other)
