@@ -12,4 +12,9 @@ public class PlayerCharacter : Character
     {
         base.Update();
     }
+
+    protected override void Die()
+    {
+        Destroy(gameObject);
+    }
 }

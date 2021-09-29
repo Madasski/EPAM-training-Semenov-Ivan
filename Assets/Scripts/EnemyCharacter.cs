@@ -8,8 +8,6 @@ public class EnemyCharacter : Character
     public float DetectionRange;
     public float AttackRange;
 
-    private Health _health;
-
     public bool IsPlayerInDetectionRange
     {
         get
@@ -32,11 +30,9 @@ public class EnemyCharacter : Character
     {
         base.Awake();
         _input = new AIInput(this);
-        _health = GetComponent<Health>();
-        _health.OnHealthReachedZero += Die;
     }
 
-    private void Die()
+    protected override void Die()
     {
         ObjectPool.Instance.ReturnObjectToPool(this);
     }

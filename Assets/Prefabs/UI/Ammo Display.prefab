@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5518785467178146354}
   - component: {fileID: 5518785467178146355}
   m_Layer: 5
-  m_Name: Ammo left
+  m_Name: Ammo amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,9 +67,9 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 45
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 200
     m_Alignment: 4
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponIcon: {fileID: 5518785469272445329}
-  AmmoLeftText: {fileID: 5518785467178146355}
+  AmmoText: {fileID: 5518785467178146355}
 --- !u!1 &5518785469272445343
 GameObject:
   m_ObjectHideFlags: 0

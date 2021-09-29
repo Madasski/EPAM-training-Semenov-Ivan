@@ -4,6 +4,7 @@ namespace Game.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
+        public Sprite Icon;
         public float FireRate;
 
         protected float _timeSinceLastUse = 999f;

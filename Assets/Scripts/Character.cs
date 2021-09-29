@@ -17,15 +17,29 @@ public abstract class Character : MonoBehaviour
     private Rigidbody _rigidbody;
     private Mover _mover;
     private WeaponManager _weaponManager;
+    private Health _health;
     protected IInput _input;
 
     public Rigidbody Rigidbody => _rigidbody;
+    public WeaponManager WeaponManager => _weaponManager;
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _mover = new Mover(this);
         _weaponManager = GetComponent<WeaponManager>();
+
+        _health = GetComponent<Health>();
+    }
+
+    private void OnEnable()
+    {
+        _health.OnHealthReachedZero += Die;
+    }
+
+    private void OnDisable()
+    {
+        _health.OnHealthReachedZero -= Die;
     }
 
     protected virtual void Update()
@@ -41,6 +55,11 @@ public abstract class Character : MonoBehaviour
         {
             _weaponManager.ReloadCurrentWeapon();
         }
+
+        if (_input.ChangeWeaponInput != 0)
+        {
+            _weaponManager.ChangeWeapon(_input.ChangeWeaponInput);
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -49,4 +68,6 @@ public abstract class Character : MonoBehaviour
         if (!LookTarget) return;
         _mover.RotateAtTransform(LookTarget);
     }
+
+    protected abstract void Die();
 }

@@ -20,7 +20,7 @@ namespace Madasski.Core
 
                     if (_instance == null)
                     {
-                        Debug.LogError("There is no instance of ObjectPool in the scene... creating new");
+                        Debug.Log("There is no instance of ObjectPool in the scene... creating new");
                         var objectPool = new GameObject();
                         _instance = objectPool.AddComponent<ObjectPool>();
                         objectPool.name = "ObjectPool";

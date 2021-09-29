@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d598f403a9d149b48ba93ff5fba29282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: c82488bd4e1ea60488df7e9425078a36, type: 3}
   FireRate: 0.2
   DamageCollider: {fileID: 5188973468263579265}
   HitDamage: 50

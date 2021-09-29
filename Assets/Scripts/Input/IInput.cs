@@ -4,6 +4,8 @@ public interface IInput
 {
     public Vector2 MovementInput { get; }
     public bool UseWeaponInput { get; }
-    bool ReloadInput { get; }
-    void Read();
+    public bool ReloadInput { get; }
+    public int ChangeWeaponInput { get; }
+
+    public void Read();
 }
