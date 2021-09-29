@@ -324,22 +324,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 4953316077834935624, guid: d1ff26ef16d3cf944b2a48a28065813a, type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953316077834935624, guid: d1ff26ef16d3cf944b2a48a28065813a, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953316077834935624, guid: d1ff26ef16d3cf944b2a48a28065813a, type: 3}
-      propertyPath: m_FillOrigin
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953316077834935624, guid: d1ff26ef16d3cf944b2a48a28065813a, type: 3}
-      propertyPath: m_FillClockwise
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8430497436233228424, guid: d1ff26ef16d3cf944b2a48a28065813a, type: 3}
       propertyPath: m_Text
       value: 100

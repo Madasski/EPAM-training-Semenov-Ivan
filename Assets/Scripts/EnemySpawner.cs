@@ -23,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if(!Player) return;
+        
         _timeSinceLastSpawn += Time.deltaTime;
         if (_timeSinceLastSpawn >= DelayBetweenSpawns)
         {
