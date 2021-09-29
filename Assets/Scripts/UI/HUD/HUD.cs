@@ -7,7 +7,7 @@ public class HUD : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerCharacter.
+        // PlayerCharacter.
     }
 
     private void OnDisable()
