@@ -70,13 +70,13 @@ public class HealthBarUI : MonoBehaviour
         while (!Mathf.Approximately(targetPercent, currentPercent))
         {
             currentPercent = BackRightSprite.fillAmount + BackMiddleSprite.fillAmount + BackLeftSprite.fillAmount;
-            percentToDraw = Mathf.Lerp(currentPercent, targetPercent, .05f);
+            percentToDraw = Mathf.MoveTowards(currentPercent, targetPercent, .02f);
             
             BackRightSprite.fillAmount = percentToDraw - 2f;
             BackMiddleSprite.fillAmount = percentToDraw - 1f;
             BackLeftSprite.fillAmount = percentToDraw;
 
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
     }
 }
