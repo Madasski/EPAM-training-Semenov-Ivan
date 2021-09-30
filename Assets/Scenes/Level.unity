@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 6249176473408670277, guid: c41da5f5cc8887e4e9d64dadbcff342b, type: 3}
   Level: {fileID: 400592974345905348, guid: 1bc88498bfa73754486800818c2ca7c7, type: 3}
-  Player: {fileID: 1476539164, guid: 3d557c73608a8f3428cd2b676ae2df01, type: 3}
+  Player: {fileID: 2813740614080801262, guid: 3d557c73608a8f3428cd2b676ae2df01, type: 3}
   EnemySpawner: {fileID: 8199084557806380365, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
   Camera: {fileID: 3427989875252466812, guid: 5d80f94a1c66e63488bae58f4bae5f63, type: 3}
 --- !u!4 &22142539
