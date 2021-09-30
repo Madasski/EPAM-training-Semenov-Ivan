@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4f42afe8c04b08b56116db41261082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftSprite: {fileID: 1587178846502220314}
+  MiddleSprite: {fileID: 7196168018277769246}
+  RightSprite: {fileID: 5049574982503693878}
 --- !u!1 &1598134279891691758
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,10 +127,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 7366512985688535559, guid: 179777fc274d8aa4ca40f9f78376ad4d, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -312,10 +315,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -899393075627252243, guid: 179777fc274d8aa4ca40f9f78376ad4d, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0

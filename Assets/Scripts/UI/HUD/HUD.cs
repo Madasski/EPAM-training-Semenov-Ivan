@@ -47,9 +47,9 @@ public class HUD : MonoBehaviour
         AmmoDisplayUI.UpdateAmmoCounter(ammoLeft);
     }
 
-    private void OnPlayerHealthChange(int newHealth)
+    private void OnPlayerHealthChange(int newHealth, int maxHealth)
     {
-        HealthDisplayUI.UpdateHealth(newHealth);
+        HealthDisplayUI.UpdateHealth(newHealth, maxHealth);
     }
 
     public void SetPlayer(PlayerCharacter playerCharacter)

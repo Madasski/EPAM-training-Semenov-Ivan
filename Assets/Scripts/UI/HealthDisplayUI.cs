@@ -7,9 +7,9 @@ public class HealthDisplayUI : MonoBehaviour
     public Image RadialHealthBar;
 
 
-    public void UpdateHealth(int newHealth)
+    public void UpdateHealth(int newHealth, int maxHealth)
     {
         HealthPointsText.text = newHealth.ToString();
-        RadialHealthBar.fillAmount = (float) newHealth / 100f;
+        RadialHealthBar.fillAmount = (float) newHealth / (float) maxHealth;
     }
 }
