@@ -1,7 +1,7 @@
 using UI;
 using UnityEngine;
 
-public class LevelLoader : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     public GameObject UI;
     public GameObject Level;
