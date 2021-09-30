@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSettings:
     Speed: 250
-  InitialWeapon: {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
-  WeaponPosition: {fileID: 4004194563112808790}
   LookTarget: {fileID: 0}
   Player: {fileID: 0}
   DetectionRange: 7
@@ -35,6 +33,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 74e231a157feec34db6790cd7c74af18, type: 2}
+    - target: {fileID: 1794136349478750141, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: Weapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794136349478750141, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
+      propertyPath: Weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 524911538746153119, guid: 8dbdce9971460304da6fc3c83ccbb69d, type: 3}
     - target: {fileID: 2143721139876527253, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -108,10 +114,5 @@ PrefabInstance:
 --- !u!1 &6803865935509792740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2690865105415403969, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
-  m_PrefabInstance: {fileID: 8879954472243453477}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4004194563112808790 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5524278702694068083, guid: 8fa35e1be8945624c8d5084ec4c5b10d, type: 3}
   m_PrefabInstance: {fileID: 8879954472243453477}
   m_PrefabAsset: {fileID: 0}

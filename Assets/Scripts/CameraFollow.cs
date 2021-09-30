@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
+    private Transform _target;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _smoothTime;
 
@@ -13,5 +13,10 @@ public class CameraFollow : MonoBehaviour
         if(!_target) return;
         var targetPosition = _target.position + _offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }

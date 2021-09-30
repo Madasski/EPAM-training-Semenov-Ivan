@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Madasski.Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public event Action<EnemyCharacter> OnEnemySpawned;
+
     public PlayerCharacter Player;
     public List<EnemyCharacter> EnemiesToSpawn;
     public float DelayBetweenSpawns;
@@ -23,6 +27,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (!Player) return;
+
         _timeSinceLastSpawn += Time.deltaTime;
         if (_timeSinceLastSpawn >= DelayBetweenSpawns)
         {
@@ -49,5 +55,6 @@ public class EnemySpawner : MonoBehaviour
         spawnedObject.transform.position = spawnPosition;
         if (Player)
             spawnedObject.Player = Player;
+        OnEnemySpawned?.Invoke(spawnedObject);
     }
 }

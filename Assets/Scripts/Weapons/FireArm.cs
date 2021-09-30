@@ -11,6 +11,8 @@ namespace Game.Weapons
 
         private int _ammoLeft;
 
+        public int AmmoLeft => _ammoLeft;
+
         protected void Awake()
         {
             _ammoLeft = MagazineSize;
