@@ -15,6 +15,7 @@ public class PlayerCharacter : Character
 
     protected override void Die()
     {
+        base.Die();
         Destroy(gameObject);
     }
 }

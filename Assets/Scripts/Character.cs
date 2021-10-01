@@ -11,6 +11,8 @@ public class MovementSettings
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Character : MonoBehaviour
 {
+    public event Action<Character> OnDie;
+
     public MovementSettings MovementSettings;
     public Transform LookTarget;
 
@@ -70,5 +72,8 @@ public abstract class Character : MonoBehaviour
         _mover.RotateAtTransform(LookTarget);
     }
 
-    protected abstract void Die();
+    protected virtual void Die()
+    {
+        OnDie?.Invoke(this);
+    }
 }

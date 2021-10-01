@@ -10,11 +10,16 @@ public class EnemyHealthBarManager : MonoBehaviour
 
     public void DrawHealthBarForEnemy(EnemyCharacter enemyCharacter)
     {
-        var healthBar = Instantiate(HealthBarPrefab,transform);
+        var healthBar = Instantiate(HealthBarPrefab, transform);
         healthBar.SetTarget(enemyCharacter.Health);
 
         enemyCharacter.OnDie += RemoveHealthBar;
         _healthBarUis.Add(enemyCharacter, healthBar);
+    }
+
+    private void RemoveHealthBar(Character character)
+    {
+        if (character is EnemyCharacter enemyCharacter) RemoveHealthBar(enemyCharacter);
     }
 
     private void RemoveHealthBar(EnemyCharacter enemyCharacter)
