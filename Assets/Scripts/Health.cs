@@ -10,7 +10,7 @@ public class Health : MonoBehaviour, IDamageable
 
     private int _currentHealth;
 
-    private void Awake()
+    private void OnEnable()
     {
         _currentHealth = MaxHealth;
     }
