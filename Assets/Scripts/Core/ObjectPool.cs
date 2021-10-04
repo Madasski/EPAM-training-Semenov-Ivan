@@ -5,8 +5,8 @@ namespace Madasski.Core
 {
     public class ObjectPool : MonoBehaviour
     {
-        private static Dictionary<GameObject, Queue<GameObject>> _pools = new Dictionary<GameObject, Queue<GameObject>>();
-        private static Dictionary<GameObject, GameObject> _spawnedObjects = new Dictionary<GameObject, GameObject>();
+        private static Dictionary<GameObject, Queue<GameObject>> _pools;
+        private static Dictionary<GameObject, GameObject> _spawnedObjects;
 
         private static ObjectPool _instance;
 
@@ -21,6 +21,8 @@ namespace Madasski.Core
                     if (_instance == null)
                     {
                         Debug.Log("There is no instance of ObjectPool in the scene... creating new");
+                        _pools=new Dictionary<GameObject, Queue<GameObject>>();
+                        _spawnedObjects = new Dictionary<GameObject, GameObject>();
                         var objectPool = new GameObject();
                         _instance = objectPool.AddComponent<ObjectPool>();
                         objectPool.name = "ObjectPool";
