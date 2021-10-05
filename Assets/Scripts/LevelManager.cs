@@ -38,7 +38,8 @@ public class LevelManager : MonoBehaviour
 
         enemySpawner.Player = player;
         enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
-        enemySpawner.OnEnemySpawned += spawnedCharacter => spawnedCharacter.OnDie += deadCharacter => player.GainExperience(((EnemyCharacter) deadCharacter).experienceForKill);
+        // enemySpawner.OnEnemySpawned += spawnedCharacter => spawnedCharacter.OnDie += deadCharacter => player.GainExperience(((EnemyCharacter) deadCharacter).experienceForKill);
+        enemySpawner.OnEnemySpawned += spawnedCharacter => spawnedCharacter.OnDie += deadCharacter => player.ExperienceManager.GainExperience(((EnemyCharacter) deadCharacter).experienceForKill);
 
         OnLevelEnd += ui.GetComponentInChildren<GameUI>().ShowLevelEndScreen;
     }

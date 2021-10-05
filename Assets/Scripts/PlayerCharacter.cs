@@ -2,17 +2,23 @@
 
 public class PlayerCharacter : Character
 {
-    public int CurrentLevel;
-    private ExperienceManager _experienceManager;
+    private ExperienceManager _experienceManager = new ExperienceManager();
+
+    public ExperienceManager ExperienceManager => _experienceManager;
 
     protected override void Awake()
     {
         base.Awake();
-        
+
         _input = new PlayerInput();
-        _experienceManager=new ExperienceManager();
-        
-        CurrentLevel = 1;
+        _experienceManager = new ExperienceManager();
+        _experienceManager.LevelGained += OnLevelUp;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        _experienceManager.LevelGained -= OnLevelUp;
     }
 
     protected override void Update()
@@ -26,8 +32,10 @@ public class PlayerCharacter : Character
         Destroy(gameObject);
     }
 
-    public void GainExperience(int amount)
+    private void OnLevelUp()
     {
-        _experienceManager.GainExperience(amount);
+        Debug.Log("Level up");
+        Health.Restore();
+        Debug.Log("Health restored");
     }
 }

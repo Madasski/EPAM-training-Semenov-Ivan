@@ -41,7 +41,7 @@ public abstract class Character : MonoBehaviour
         OnDie = delegate(Character character) { };
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _health.OnHealthReachedZero -= Die;
         OnDie = delegate(Character character) { };

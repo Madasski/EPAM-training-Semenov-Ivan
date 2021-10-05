@@ -4,7 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour, IDamageable
 {
     public event Action OnHealthReachedZero;
-    public event Action<int,int> OnHealthChange;
+    public event Action<int, int> OnHealthChange;
 
     public int MaxHealth;
 
@@ -19,9 +19,15 @@ public class Health : MonoBehaviour, IDamageable
     {
         _currentHealth -= damage;
         if (_currentHealth < 0) _currentHealth = 0;
-        
-        OnHealthChange?.Invoke(_currentHealth,MaxHealth);
+
+        OnHealthChange?.Invoke(_currentHealth, MaxHealth);
         if (_currentHealth <= 0)
             OnHealthReachedZero?.Invoke();
+    }
+
+    public void Restore()
+    {
+        _currentHealth = MaxHealth;
+        OnHealthChange?.Invoke(_currentHealth, MaxHealth);
     }
 }
