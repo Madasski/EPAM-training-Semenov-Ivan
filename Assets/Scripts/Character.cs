@@ -38,11 +38,13 @@ public abstract class Character : MonoBehaviour
     private void OnEnable()
     {
         _health.OnHealthReachedZero += Die;
+        OnDie = delegate(Character character) { };
     }
 
     private void OnDisable()
     {
         _health.OnHealthReachedZero -= Die;
+        OnDie = delegate(Character character) { };
     }
 
     protected virtual void Update()
