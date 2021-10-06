@@ -3,11 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelEndScreenUI : MonoBehaviour
 {
-    public string MenuSceneName;
-
     public void GoToMenu()
     {
-        SceneManager.LoadScene(MenuSceneName);
+        SceneManager.LoadScene(Scenes.MainMenu);
     }
 
     public void RestartLevel()
