@@ -5,8 +5,9 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public event Action OnLevelEnd;
+    public event Action OnLevelPausePress;
 
-    public GameObject UI;
+    public GameUI UI;
     public GameObject Level;
     public PlayerCharacter Player;
     public EnemySpawner EnemySpawner;
@@ -15,6 +16,14 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         Init();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnLevelPausePress?.Invoke();
+        }
     }
 
     private void Init()
@@ -29,7 +38,8 @@ public class LevelManager : MonoBehaviour
 
         var ui = Instantiate(UI);
         ui.GetComponentInChildren<HUD>().SetPlayer(player);
-        OnLevelEnd += ui.GetComponentInChildren<GameUI>().ShowLevelEndScreen;
+        OnLevelEnd += ui.ShowLevelEndScreen;
+        OnLevelPausePress += ui.TogglePauseScreen;
 
         enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
 

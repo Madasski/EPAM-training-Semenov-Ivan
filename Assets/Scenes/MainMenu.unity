@@ -820,6 +820,18 @@ PrefabInstance:
       propertyPath: m_Text
       value: NEW GAME
       objectReference: {fileID: 0}
+    - target: {fileID: 4953016521584492328, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953016521584492328, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953016521584492328, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
+      propertyPath: m_FontData.m_AlignByGeometry
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5610533348861724202, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
