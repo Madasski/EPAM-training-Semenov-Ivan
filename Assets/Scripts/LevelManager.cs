@@ -5,43 +5,48 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public event Action OnLevelEnd;
+    public event Action OnLevelPausePress;
 
-    public GameObject UI;
+    public GameUI UI;
     public GameObject Level;
     public PlayerCharacter Player;
     public EnemySpawner EnemySpawner;
     public CameraFollow Camera;
-
-    private GameProgression _gameProgression;
 
     private void Awake()
     {
         Init();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnLevelPausePress?.Invoke();
+        }
+    }
+
     private void Init()
     {
-        Instantiate(Level);
         var player = Instantiate(Player);
-        var playerCamera = Instantiate(Camera);
-        var enemySpawner = Instantiate(EnemySpawner);
-        var ui = Instantiate(UI);
-        _gameProgression = new GameProgression();
 
-        ui.GetComponentInChildren<HUD>().SetPlayer(player);
+        var playerCamera = Instantiate(Camera);
         playerCamera.SetTarget(player.transform);
 
-        _gameProgression.SetPlayer(player);
+        var enemySpawner = Instantiate(EnemySpawner);
+        enemySpawner.Player = player;
+
+        var ui = Instantiate(UI);
+        ui.GetComponentInChildren<HUD>().SetPlayer(player);
+        OnLevelEnd += ui.ShowLevelEndScreen;
+        OnLevelPausePress += ui.TogglePauseScreen;
+
+        enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
 
         player.LookTarget = ui.GetComponentInChildren<CrosshairUI>().transform;
         player.OnDie += EndLevel;
 
-        enemySpawner.Player = player;
-        enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
-        // enemySpawner.OnEnemySpawned += spawnedCharacter => spawnedCharacter.OnDie += deadCharacter => player.GainExperience(((EnemyCharacter) deadCharacter).experienceForKill);
-        enemySpawner.OnEnemySpawned += spawnedCharacter => spawnedCharacter.OnDie += deadCharacter => player.ExperienceManager.GainExperience(((EnemyCharacter) deadCharacter).experienceForKill);
-
-        OnLevelEnd += ui.GetComponentInChildren<GameUI>().ShowLevelEndScreen;
+        Instantiate(Level);
     }
 
     private void EndLevel(Character player)
