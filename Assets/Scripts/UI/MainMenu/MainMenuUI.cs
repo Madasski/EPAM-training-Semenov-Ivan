@@ -1,10 +1,24 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public void NewGame()
+    public GameObject MenuScreen;
+    public GameObject SettingsScreen;
+
+    private void Awake()
     {
-        SceneManager.LoadScene(Scenes.NewGame);
+        ShowMenu();
+    }
+
+    public void ShowMenu()
+    {
+        MenuScreen.SetActive(true);
+        SettingsScreen.SetActive(false);
+    }
+
+    public void ShowSettings()
+    {
+        MenuScreen.SetActive(false);
+        SettingsScreen.SetActive(true);
     }
 }
