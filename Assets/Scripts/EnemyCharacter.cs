@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyCharacter : Character
 {
-    
     public PlayerCharacter Player;
     public float DetectionRange;
     public float AttackRange;
+    public int experienceForKill;
 
     public bool IsPlayerInDetectionRange
     {
