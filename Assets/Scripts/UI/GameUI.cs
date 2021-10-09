@@ -18,7 +18,6 @@ public class GameUI : MonoBehaviour
 
     public void TogglePauseScreen()
     {
-        Debug.Log(PauseScreen.IsPaused);
         if (PauseScreen.IsPaused)
         {
             HidePauseScreen();
