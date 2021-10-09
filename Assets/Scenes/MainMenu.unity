@@ -504,6 +504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3227933244467936167, guid: 2f814ff3e36680744a50d93451dd5eeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8163207247985088641, guid: 2f814ff3e36680744a50d93451dd5eeb, type: 3}
       propertyPath: m_Name
       value: MainMenuUI
@@ -602,6 +606,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8163207247985088645, guid: 2f814ff3e36680744a50d93451dd5eeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949706375923320896, guid: 2f814ff3e36680744a50d93451dd5eeb, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
