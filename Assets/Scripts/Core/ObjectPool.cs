@@ -21,7 +21,7 @@ namespace Madasski.Core
                     if (_instance == null)
                     {
                         Debug.Log("There is no instance of ObjectPool in the scene... creating new");
-                        _pools=new Dictionary<GameObject, Queue<GameObject>>();
+                        _pools = new Dictionary<GameObject, Queue<GameObject>>();
                         _spawnedObjects = new Dictionary<GameObject, GameObject>();
                         var objectPool = new GameObject();
                         _instance = objectPool.AddComponent<ObjectPool>();
@@ -61,27 +61,24 @@ namespace Madasski.Core
 
         public GameObject Spawn(GameObject prefab)
         {
-            if (_pools.ContainsKey(prefab))
+            if (!_pools.ContainsKey(prefab))
             {
-                GameObject obj;
-                if (_pools[prefab].Count > 0)
-                {
-                    obj = _pools[prefab].Dequeue();
-                    obj.SetActive(true);
-                }
-                else
-                {
-                    obj = Instantiate(prefab);
-                }
+                CreatePool(prefab);
+            }
 
-                _spawnedObjects.Add(obj, prefab);
-                return obj;
+            GameObject obj;
+            if (_pools[prefab].Count > 0)
+            {
+                obj = _pools[prefab].Dequeue();
+                obj.SetActive(true);
             }
             else
             {
-                CreatePool(prefab);
-                return Spawn(prefab);
+                obj = Instantiate(prefab);
             }
+
+            _spawnedObjects.Add(obj, prefab);
+            return obj;
         }
 
         public void ReturnObjectToPool<T>(T gameObjectToReturn) where T : MonoBehaviour => ReturnObjectToPool(gameObjectToReturn.gameObject);
