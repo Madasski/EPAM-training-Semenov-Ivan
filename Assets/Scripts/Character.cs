@@ -35,7 +35,7 @@ public abstract class Character : MonoBehaviour
         _health = GetComponent<Health>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _health.OnHealthReachedZero += Die;
         OnDie = delegate(Character character) { };

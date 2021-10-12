@@ -8,11 +8,11 @@ public class EnemySpawner : MonoBehaviour
 {
     public event Action<EnemyCharacter> OnEnemySpawned;
 
-    public PlayerCharacter Player;
     public List<EnemyCharacter> EnemiesToSpawn;
     public float DelayBetweenSpawns;
     public Collider LevelBoundsCollider;
 
+    private PlayerCharacter _player;
     private float _timeSinceLastSpawn = 0f;
     private Bounds _levelBounds;
 
@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!Player) return;
+        if (!_player) return;
 
         _timeSinceLastSpawn += Time.deltaTime;
         if (_timeSinceLastSpawn >= DelayBetweenSpawns)
@@ -37,6 +37,11 @@ public class EnemySpawner : MonoBehaviour
             Spawn(randomEnemy, randomPosition);
             _timeSinceLastSpawn = 0f;
         }
+    }
+
+    public void SetPlayer(PlayerCharacter playerCharacter)
+    {
+        _player = playerCharacter;
     }
 
     private Vector3 GenerateRandomPositionInsideLevelBounds()
@@ -53,8 +58,8 @@ public class EnemySpawner : MonoBehaviour
     {
         var spawnedObject = ObjectPool.Instance.Spawn(gameObjectToSpawn);
         spawnedObject.transform.position = spawnPosition;
-        if (Player)
-            spawnedObject.Player = Player;
+        if (_player)
+            spawnedObject.SetPlayer(_player);
         OnEnemySpawned?.Invoke(spawnedObject);
     }
 }

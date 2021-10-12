@@ -12,6 +12,11 @@ public class PlayerCharacter : Character
 
         _input = new PlayerInput();
         _experienceManager = new ExperienceManager();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         _experienceManager.LevelGained += OnLevelUp;
     }
 
