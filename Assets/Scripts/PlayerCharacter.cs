@@ -4,7 +4,7 @@ public class PlayerCharacter : Character
 {
     private ExperienceManager _experienceManager = new ExperienceManager();
 
-    public ExperienceManager ExperienceManager => _experienceManager;
+    // public ExperienceManager ExperienceManager => _experienceManager;
 
     protected override void Awake()
     {

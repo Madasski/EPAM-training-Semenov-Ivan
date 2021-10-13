@@ -1,11 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 public class ExperienceManager
 {
     public event Action LevelGained;
-    
-    private const int ExperiencePerLevel = 25;
+
+    private const int ExperiencePerLevel = 12;
     private int _experience = 0;
     private int _level = 1;
 
