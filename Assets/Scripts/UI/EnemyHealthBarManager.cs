@@ -13,7 +13,7 @@ public class EnemyHealthBarManager : MonoBehaviour
         var healthBar = Instantiate(HealthBarPrefab, transform);
         healthBar.SetTarget(enemyCharacter.Health);
 
-        enemyCharacter.OnDie += RemoveHealthBar;
+        enemyCharacter.Died += RemoveHealthBar;
         _healthBarUis.Add(enemyCharacter, healthBar);
     }
 
@@ -24,7 +24,7 @@ public class EnemyHealthBarManager : MonoBehaviour
 
     private void RemoveHealthBar(EnemyCharacter enemyCharacter)
     {
-        enemyCharacter.OnDie -= RemoveHealthBar;
+        enemyCharacter.Died -= RemoveHealthBar;
         if (_healthBarUis.TryGetValue(enemyCharacter, out var healthBar))
         {
             _healthBarUis.Remove(enemyCharacter);

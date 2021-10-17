@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public event Action<EnemyCharacter> OnEnemySpawned;
+    public event Action<EnemyCharacter> EnemySpawned;
+    public event Action<EnemyCharacter> EnemyDied;
 
     public List<EnemyCharacter> EnemiesToSpawn;
     public float DelayBetweenSpawns;
@@ -60,6 +61,12 @@ public class EnemySpawner : MonoBehaviour
         spawnedObject.transform.position = spawnPosition;
         if (_player)
             spawnedObject.SetPlayer(_player);
-        OnEnemySpawned?.Invoke(spawnedObject);
+        spawnedObject.Died += OnEnemyDied;
+        EnemySpawned?.Invoke(spawnedObject);
+    }
+
+    private void OnEnemyDied(Character character)
+    {
+        EnemyDied?.Invoke(character as EnemyCharacter);
     }
 }

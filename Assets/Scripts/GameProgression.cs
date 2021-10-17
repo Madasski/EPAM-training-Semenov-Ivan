@@ -14,7 +14,7 @@ public class GameProgression
         if(_player == null) return;
         
         Debug.Log("Add exp to player");
-        character.OnDie -= AddExperienceToPlayer;
+        character.Died -= AddExperienceToPlayer;
         // _player.GainExperience();
     }
 }

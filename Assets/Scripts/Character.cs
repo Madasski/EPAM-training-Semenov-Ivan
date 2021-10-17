@@ -11,7 +11,7 @@ public class MovementSettings
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Character : MonoBehaviour
 {
-    public event Action<Character> OnDie;
+    public event Action<Character> Died;
 
     public MovementSettings MovementSettings;
     public Transform LookTarget;
@@ -38,13 +38,13 @@ public abstract class Character : MonoBehaviour
     protected virtual void OnEnable()
     {
         _health.OnHealthReachedZero += Die;
-        OnDie = delegate(Character character) { };
+        Died = delegate(Character character) { };
     }
 
     protected virtual void OnDisable()
     {
         _health.OnHealthReachedZero -= Die;
-        OnDie = delegate(Character character) { };
+        Died = delegate(Character character) { };
     }
 
     protected virtual void Update()
@@ -76,6 +76,6 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Die()
     {
-        OnDie?.Invoke(this);
+        Died?.Invoke(this);
     }
 }
