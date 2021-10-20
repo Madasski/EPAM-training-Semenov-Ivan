@@ -43,12 +43,14 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        _stats.HealthUpgraded += _health.SetMaxHealth;
         _health.OnHealthReachedZero += Die;
         Died = delegate(Character character) { };
     }
 
     protected virtual void OnDisable()
     {
+        _stats.HealthUpgraded -= _health.SetMaxHealth;
         _health.OnHealthReachedZero -= Die;
         Died = delegate(Character character) { };
     }

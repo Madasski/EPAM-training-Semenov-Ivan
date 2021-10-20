@@ -1,20 +1,17 @@
+using Core;
 using UnityEngine;
 
-public class PauseScreen : MonoBehaviour
+public class PauseScreen : MonoBehaviour, IScreen
 {
-    public bool IsPaused;
-    
     public void Show()
     {
-        IsPaused = true;
-        Time.timeScale = 0;
+        PauseManager.Pause();
         gameObject.SetActive(true);
     }
 
     public void Hide()
     {
-        IsPaused = false;
-        Time.timeScale = 1f;
+        PauseManager.Resume();
         gameObject.SetActive(false);
     }
 }

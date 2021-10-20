@@ -4972,7 +4972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879dfa8359741ee8401283d231c5e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 60
 --- !u!114 &6066105947459298068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,7 +5001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialStats:
     Speed: 180
-    Health: 100
+    Health: 15
     Power: 0
   LookTarget: {fileID: 0}
   DetectionRange: 5

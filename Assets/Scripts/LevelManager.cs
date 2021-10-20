@@ -1,4 +1,5 @@
 using System;
+using Core;
 using Madasski;
 using UI;
 using UnityEngine;
@@ -41,14 +42,16 @@ public class LevelManager : MonoBehaviour
         _enemySpawner = Instantiate(EnemySpawnerPrefab);
         _ui = Instantiate(UIPrefab);
         Instantiate(LevelPrefab);
-        _gameFlow=new GameFlow(_player,_enemySpawner);
-        
+        _gameFlow = new GameFlow(_player, _enemySpawner);
+
         _cameraFollow.SetTarget(_player.transform);
         _enemySpawner.SetPlayer(_player);
 
         _ui.GetComponentInChildren<HUD>().SetPlayer(_player);
+        _ui.LevelUpScreen.PlayerCharacter = _player;
         OnLevelEnd += _ui.ShowLevelEndScreen;
         OnLevelPausePress += _ui.TogglePauseScreen;
+        _player.ExperienceManager.LevelGained += _ui.ShowLevelUpScreen;
 
         _enemySpawner.EnemySpawned += _ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
 

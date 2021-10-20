@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialStats:
     Speed: 180
-    Health: 100
+    Health: 15
     Power: 0
   LookTarget: {fileID: 0}
   DetectionRange: 7

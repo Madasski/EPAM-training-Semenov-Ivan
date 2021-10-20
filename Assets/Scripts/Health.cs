@@ -17,6 +17,7 @@ public class Health : MonoBehaviour, IDamageable
     public void SetMaxHealth(float maxHealth)
     {
         _maxHealth = maxHealth;
+        Restore();
     }
 
     public void TakeDamage(float damage)
