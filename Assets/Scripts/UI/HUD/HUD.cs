@@ -12,7 +12,7 @@ public class HUD : MonoBehaviour
     {
         if (_playerCharacter)
         {
-            _playerCharacter.WeaponManager.OnWeaponChange += OnChangeWeapon;
+            _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
         }
@@ -22,13 +22,13 @@ public class HUD : MonoBehaviour
     {
         if (_playerCharacter)
         {
-            _playerCharacter.WeaponManager.OnWeaponChange -= OnChangeWeapon;
+            _playerCharacter.WeaponManager.WeaponChanged -= ChangedWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
         }
     }
 
-    private void OnChangeWeapon(Weapon newWeapon)
+    private void ChangedWeapon(Weapon newWeapon)
     {
         AmmoDisplayUI.WeaponIcon.sprite = newWeapon.Icon;
 
@@ -47,7 +47,7 @@ public class HUD : MonoBehaviour
         AmmoDisplayUI.UpdateAmmoCounter(ammoLeft);
     }
 
-    private void OnPlayerHealthChange(int newHealth, int maxHealth)
+    private void OnPlayerHealthChange(float newHealth, float maxHealth)
     {
         HealthDisplayUI.UpdateHealth(newHealth, maxHealth);
     }
@@ -55,7 +55,7 @@ public class HUD : MonoBehaviour
     public void SetPlayer(PlayerCharacter playerCharacter)
     {
         _playerCharacter = playerCharacter;
-        _playerCharacter.WeaponManager.OnWeaponChange += OnChangeWeapon;
+        _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
         _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
         _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
     }

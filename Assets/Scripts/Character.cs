@@ -1,38 +1,44 @@
 using System;
 using Game.Weapons;
+using Madasski;
 using UnityEngine;
 
-[Serializable]
-public class MovementSettings
-{
-    public float Speed;
-}
+// [Serializable]
+// public class MovementSettings
+// {
+//     public float Speed;
+// }
 
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Character : MonoBehaviour
 {
     public event Action<Character> Died;
 
-    public MovementSettings MovementSettings;
+    // public MovementSettings MovementSettings;
+    public CharacterStats InitialStats;
     public Transform LookTarget;
 
+    protected IInput _input;
     private Rigidbody _rigidbody;
     private Mover _mover;
     private WeaponManager _weaponManager;
     private Health _health;
-    protected IInput _input;
+    private CharacterStats _stats;
 
     public Rigidbody Rigidbody => _rigidbody;
     public WeaponManager WeaponManager => _weaponManager;
     public Health Health => _health;
+    public CharacterStats Stats => _stats;
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _mover = new Mover(this);
         _weaponManager = GetComponent<WeaponManager>();
-
         _health = GetComponent<Health>();
+        _mover = new Mover(this);
+        _stats = InitialStats;
+
+        _health.SetMaxHealth(_stats.Health);
     }
 
     protected virtual void OnEnable()
@@ -53,7 +59,7 @@ public abstract class Character : MonoBehaviour
 
         if (_input.UseWeaponInput)
         {
-            _weaponManager.UseCurrentWeapon();
+            _weaponManager.UseCurrentWeapon(_stats.Power);
         }
 
         if (_input.ReloadInput)

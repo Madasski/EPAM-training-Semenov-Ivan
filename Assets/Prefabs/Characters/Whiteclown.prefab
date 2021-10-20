@@ -64,8 +64,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.54218656, y: 1.9793204, z: 0.45301569}
-  m_Center: {x: -0.0068577826, y: 0.9894144, z: -0.0028871298}
+  m_Size: {x: 0.92394555, y: 1.9793204, z: 0.45301569}
+  m_Center: {x: 0.021858573, y: 0.9894144, z: -0.0028871298}
 --- !u!114 &1212595356723910055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879dfa8359741ee8401283d231c5e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 40
 --- !u!114 &8681589579322508541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,8 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5de049ba504d9b8c882606764d8927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSettings:
-    Speed: 250
+  InitialStats:
+    Speed: 180
+    Health: 100
+    Power: 0
   LookTarget: {fileID: 0}
   DetectionRange: 7
   AttackRange: 4

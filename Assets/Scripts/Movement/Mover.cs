@@ -11,7 +11,7 @@ public class Mover
 
     public void Move(Vector2 moveInput)
     {
-        _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.MovementSettings.Speed;
+        _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.Stats.Speed;
     }
 
     public void RotateAtTransform(Transform transform)

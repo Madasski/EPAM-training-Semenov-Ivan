@@ -16,7 +16,7 @@ public class ParticleSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnParticles(int i, int f)
+    private void SpawnParticles(float i, float f)
     {
         ParticleSystem.Play();
     }

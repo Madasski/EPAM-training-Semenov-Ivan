@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dafb15958204edc89c23cee47c6cba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSettings:
-    Speed: 400
+  InitialStats:
+    Speed: 250
+    Health: 100
+    Power: 0
   LookTarget: {fileID: 0}
 --- !u!1001 &2573043436354844966
 PrefabInstance:

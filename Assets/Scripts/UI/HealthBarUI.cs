@@ -49,7 +49,7 @@ public class HealthBarUI : MonoBehaviour
         }
     }
 
-    private void ChangeHealth(int newHealth, int maxHealth)
+    private void ChangeHealth(float newHealth, float maxHealth)
     {
         var percent = (float) newHealth / (float) maxHealth * 3f;
 
