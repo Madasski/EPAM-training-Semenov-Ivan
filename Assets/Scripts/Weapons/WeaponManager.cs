@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public event Action<Weapon> OnWeaponChange;
+    public event Action<Weapon> WeaponChanged;
     public event Action<int> OnAmmoLeftChange;
 
     public Transform WeaponPosition;
@@ -15,15 +15,12 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        if (Weapons.Count > 0)
-        {
-            ChangeWeapon(1);
-        }
+        ChangeWeapon(1);
     }
 
-    public void UseCurrentWeapon()
+    public void UseCurrentWeapon(float power)
     {
-        _currentWeapon.TryUse();
+        _currentWeapon.TryUse(power);
         if (_currentWeapon is Firearm firearm)
         {
             OnAmmoLeftChange?.Invoke(firearm.AmmoLeft);
@@ -49,6 +46,6 @@ public class WeaponManager : MonoBehaviour
         _currentWeapon = Instantiate(newWeaponPrefab, WeaponPosition.position, WeaponPosition.rotation);
         _currentWeapon.transform.parent = transform;
 
-        OnWeaponChange?.Invoke(_currentWeapon);
+        WeaponChanged?.Invoke(_currentWeapon);
     }
 }

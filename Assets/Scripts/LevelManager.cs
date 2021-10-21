@@ -1,17 +1,26 @@
 using System;
+using Core;
+using Madasski;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
     public event Action OnLevelEnd;
     public event Action OnLevelPausePress;
 
-    public GameUI UI;
-    public GameObject Level;
-    public PlayerCharacter Player;
-    public EnemySpawner EnemySpawner;
-    public CameraFollow Camera;
+    public GameUI UIPrefab;
+    public GameObject LevelPrefab;
+    public PlayerCharacter PlayerPrefab;
+    public EnemySpawner EnemySpawnerPrefab;
+    public CameraFollow CameraPrefab;
+
+    private GameUI _ui;
+    private PlayerCharacter _player;
+    private EnemySpawner _enemySpawner;
+    private CameraFollow _cameraFollow;
+    private GameFlow _gameFlow;
 
     private void Awake()
     {
@@ -28,25 +37,26 @@ public class LevelManager : MonoBehaviour
 
     private void Init()
     {
-        var player = Instantiate(Player);
+        _player = Instantiate(PlayerPrefab);
+        _cameraFollow = Instantiate(CameraPrefab);
+        _enemySpawner = Instantiate(EnemySpawnerPrefab);
+        _ui = Instantiate(UIPrefab);
+        Instantiate(LevelPrefab);
+        _gameFlow = new GameFlow(_player, _enemySpawner);
 
-        var playerCamera = Instantiate(Camera);
-        playerCamera.SetTarget(player.transform);
+        _cameraFollow.SetTarget(_player.transform);
+        _enemySpawner.SetPlayer(_player);
 
-        var enemySpawner = Instantiate(EnemySpawner);
-        enemySpawner.Player = player;
+        _ui.GetComponentInChildren<HUD>().SetPlayer(_player);
+        _ui.LevelUpScreen.PlayerCharacter = _player;
+        OnLevelEnd += _ui.ShowLevelEndScreen;
+        OnLevelPausePress += _ui.TogglePauseScreen;
+        _player.ExperienceManager.LevelGained += _ui.ShowLevelUpScreen;
 
-        var ui = Instantiate(UI);
-        ui.GetComponentInChildren<HUD>().SetPlayer(player);
-        OnLevelEnd += ui.ShowLevelEndScreen;
-        OnLevelPausePress += ui.TogglePauseScreen;
+        _enemySpawner.EnemySpawned += _ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
 
-        enemySpawner.OnEnemySpawned += ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
-
-        player.LookTarget = ui.GetComponentInChildren<CrosshairUI>().transform;
-        player.OnDie += EndLevel;
-
-        Instantiate(Level);
+        _player.LookTarget = _ui.GetComponentInChildren<CrosshairUI>().transform;
+        _player.Died += EndLevel;
     }
 
     private void EndLevel(Character player)

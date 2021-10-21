@@ -14,13 +14,13 @@ namespace Game.Weapons
             _timeSinceLastUse += Time.deltaTime;
         }
 
-        public virtual void TryUse()
+        public void TryUse(float additionalDamage =0)
         {
             if (_timeSinceLastUse <= FireRate) return;
-            Use();
+            Use(additionalDamage);
             _timeSinceLastUse = 0f;
         }
 
-        protected abstract void Use();
+        protected abstract void Use(float additionalDamage=0);
     }
 }

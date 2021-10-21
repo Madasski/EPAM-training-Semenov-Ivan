@@ -1,20 +1,22 @@
-﻿using System;
-using Madasski.Core;
+﻿using Madasski.Core;
 using UnityEngine;
 
 public class EnemyCharacter : Character
 {
-    public PlayerCharacter Player;
     public float DetectionRange;
     public float AttackRange;
     public int experienceForKill;
+
+    private PlayerCharacter _player;
+
+    public PlayerCharacter Player => _player;
 
     public bool IsPlayerInDetectionRange
     {
         get
         {
-            if (!Player) return false;
-            return Vector3.Distance(transform.position, Player.transform.position) <= DetectionRange;
+            if (!_player) return false;
+            return Vector3.Distance(transform.position, _player.transform.position) <= DetectionRange;
         }
     }
 
@@ -22,8 +24,8 @@ public class EnemyCharacter : Character
     {
         get
         {
-            if (!Player) return false;
-            return Vector3.Distance(transform.position, Player.transform.position) <= AttackRange;
+            if (!_player) return false;
+            return Vector3.Distance(transform.position, _player.transform.position) <= AttackRange;
         }
     }
 
@@ -31,6 +33,11 @@ public class EnemyCharacter : Character
     {
         base.Awake();
         _input = new AIInput(this);
+    }
+
+    public void SetPlayer(PlayerCharacter playerCharacter)
+    {
+        _player = playerCharacter;
     }
 
     protected override void Die()
@@ -41,8 +48,8 @@ public class EnemyCharacter : Character
 
     private void Start()
     {
-        if (Player)
-            LookTarget = Player.transform;
+        if (_player)
+            LookTarget = _player.transform;
     }
 
     protected override void Update()

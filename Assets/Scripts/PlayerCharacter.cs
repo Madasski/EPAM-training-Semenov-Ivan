@@ -12,13 +12,18 @@ public class PlayerCharacter : Character
 
         _input = new PlayerInput();
         _experienceManager = new ExperienceManager();
-        _experienceManager.LevelGained += OnLevelUp;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        // _experienceManager.LevelGained += OnLevelUp;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        _experienceManager.LevelGained -= OnLevelUp;
+        // _experienceManager.LevelGained -= OnLevelUp;
     }
 
     protected override void Update()
@@ -32,10 +37,10 @@ public class PlayerCharacter : Character
         Destroy(gameObject);
     }
 
-    private void OnLevelUp()
-    {
-        Debug.Log("Level up");
-        Health.Restore();
-        Debug.Log("Health restored");
-    }
+    // private void OnLevelUp()
+    // {
+    //     Debug.Log("Level up");
+    //     Health.Restore();
+    //     Debug.Log("Health restored");
+    // }
 }

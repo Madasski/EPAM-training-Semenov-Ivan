@@ -5,6 +5,7 @@ public class GameUI : MonoBehaviour
     public GameObject EndLevelScreen;
     public PauseScreen PauseScreen;
     public GameObject HUD;
+    public LevelUpScreen LevelUpScreen;
 
     public void ShowLevelEndScreen()
     {
@@ -18,7 +19,7 @@ public class GameUI : MonoBehaviour
 
     public void TogglePauseScreen()
     {
-        if (PauseScreen.IsPaused)
+        if (PauseScreen.isActiveAndEnabled)
         {
             HidePauseScreen();
         }
@@ -36,5 +37,15 @@ public class GameUI : MonoBehaviour
     public void HidePauseScreen()
     {
         PauseScreen.Hide();
+    }
+
+    public void ShowLevelUpScreen()
+    {
+        LevelUpScreen.Show();
+    }
+
+    public void HideLevelUpScreen()
+    {
+        LevelUpScreen.Hide();
     }
 }
