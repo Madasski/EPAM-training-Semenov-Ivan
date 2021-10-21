@@ -10,14 +10,17 @@ namespace Madasski
         // private float _power;
 
         public event Action<float> HealthUpgraded;
+        public event Action<int> PowerUpgraded;
+        public event Action<int> SpeedUpgraded;
         
-        public float Speed;
+        public int Speed;
         public float Health;
-        public float Power;
+        public int Power;
 
-        public void UpgradeSpeed(float amount)
+        public void UpgradeSpeed(int amount)
         {
             Speed += amount;
+            SpeedUpgraded?.Invoke(Speed);
         }
 
         public void UpgradeHealth(float amount)
@@ -26,9 +29,10 @@ namespace Madasski
             HealthUpgraded?.Invoke(Health);
         }
 
-        public void UpgradePower(float amount)
+        public void UpgradePower(int amount)
         {
             Power += amount;
+            PowerUpgraded?.Invoke(Power);
         }
     }
 }

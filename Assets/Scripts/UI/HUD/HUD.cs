@@ -5,6 +5,7 @@ public class HUD : MonoBehaviour
 {
     public AmmoDisplayUI AmmoDisplayUI;
     public HealthDisplayUI HealthDisplayUI;
+    public StatDisplay StatDisplay;
 
     private PlayerCharacter _playerCharacter;
 
@@ -15,6 +16,9 @@ public class HUD : MonoBehaviour
             _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
+            _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
+            _playerCharacter.Stats.SpeedUpgraded += OnPlayerSpeedUpgraded;
+            _playerCharacter.Stats.PowerUpgraded += OnPlayerPowerUpgraded;
         }
     }
 
@@ -25,7 +29,25 @@ public class HUD : MonoBehaviour
             _playerCharacter.WeaponManager.WeaponChanged -= ChangedWeapon;
             _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
+            _playerCharacter.ExperienceManager.LevelGained -= OnPlayerLevelGained;
+            _playerCharacter.Stats.SpeedUpgraded -= OnPlayerSpeedUpgraded;
+            _playerCharacter.Stats.PowerUpgraded -= OnPlayerPowerUpgraded;
         }
+    }
+
+    private void OnPlayerSpeedUpgraded(int newAmount)
+    {
+        StatDisplay.UpdateSpeed(newAmount);
+    }
+
+    private void OnPlayerPowerUpgraded(int newAmount)
+    {
+        StatDisplay.UpdatePower(newAmount);
+    }
+
+    private void OnPlayerLevelGained()
+    {
+        StatDisplay.IncreaseLevel();
     }
 
     private void ChangedWeapon(Weapon newWeapon)
@@ -58,5 +80,8 @@ public class HUD : MonoBehaviour
         _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
         _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
         _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
+        _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
+        _playerCharacter.Stats.SpeedUpgraded += OnPlayerSpeedUpgraded;
+        _playerCharacter.Stats.PowerUpgraded += OnPlayerPowerUpgraded;
     }
 }
