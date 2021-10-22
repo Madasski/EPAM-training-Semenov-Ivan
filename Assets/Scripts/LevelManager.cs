@@ -1,6 +1,10 @@
 using System;
+<<<<<<< Updated upstream
 using Core;
 using Madasski;
+=======
+using Madasski.Core;
+>>>>>>> Stashed changes
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,6 +37,23 @@ public class LevelManager : MonoBehaviour
         {
             OnLevelPausePress?.Invoke();
         }
+
+        //debug
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            var gameData = new GameData();
+            SaveLoad.SaveGame(gameData);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            var gameData = SaveLoad.LoadGame();
+            Load(gameData);
+        }
+    }
+
+    private void Load(GameData gameData)
+    {
     }
 
     private void Init()
