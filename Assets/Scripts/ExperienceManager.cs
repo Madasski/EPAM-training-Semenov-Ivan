@@ -30,8 +30,6 @@ public class ExperienceManager : ISaveLoad
 
     public void Save(GameData gameData)
     {
-        Debug.Log(_experience);
-        Debug.Log(_level);
         gameData.PlayerExperience = _experience;
     }
 
@@ -40,7 +38,5 @@ public class ExperienceManager : ISaveLoad
         _experience = 0;
         _level = 1;
         GainExperience(gameData.PlayerExperience);
-        Debug.Log(_experience);
-        Debug.Log(_level);
     }
 }
