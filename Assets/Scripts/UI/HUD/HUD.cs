@@ -17,8 +17,8 @@ public class HUD : MonoBehaviour
             _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
             _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
-            _playerCharacter.Stats.SpeedUpgraded += OnPlayerSpeedUpgraded;
-            _playerCharacter.Stats.PowerUpgraded += OnPlayerPowerUpgraded;
+            _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
+            _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
         }
     }
 
@@ -30,17 +30,17 @@ public class HUD : MonoBehaviour
             _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
             _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
             _playerCharacter.ExperienceManager.LevelGained -= OnPlayerLevelGained;
-            _playerCharacter.Stats.SpeedUpgraded -= OnPlayerSpeedUpgraded;
-            _playerCharacter.Stats.PowerUpgraded -= OnPlayerPowerUpgraded;
+            _playerCharacter.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
+            _playerCharacter.Stats.PowerUpdated -= OnPlayerPowerUpdated;
         }
     }
 
-    private void OnPlayerSpeedUpgraded(int newAmount)
+    private void OnPlayerSpeedUpdated(int newAmount)
     {
         StatDisplay.UpdateSpeed(newAmount);
     }
 
-    private void OnPlayerPowerUpgraded(int newAmount)
+    private void OnPlayerPowerUpdated(int newAmount)
     {
         StatDisplay.UpdatePower(newAmount);
     }
@@ -81,7 +81,7 @@ public class HUD : MonoBehaviour
         _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
         _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
         _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
-        _playerCharacter.Stats.SpeedUpgraded += OnPlayerSpeedUpgraded;
-        _playerCharacter.Stats.PowerUpgraded += OnPlayerPowerUpgraded;
+        _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
+        _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
     }
 }

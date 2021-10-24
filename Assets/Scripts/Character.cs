@@ -1,21 +1,13 @@
 using System;
-using Game.Weapons;
-using Madasski;
+using Madasski.Stats;
 using UnityEngine;
-
-// [Serializable]
-// public class MovementSettings
-// {
-//     public float Speed;
-// }
 
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Character : MonoBehaviour
 {
     public event Action<Character> Died;
 
-    // public MovementSettings MovementSettings;
-    public CharacterStats InitialStats;
+    // public CharacterStats InitialStats;
     public Transform LookTarget;
 
     protected IInput _input;
@@ -23,12 +15,14 @@ public abstract class Character : MonoBehaviour
     private Mover _mover;
     private WeaponManager _weaponManager;
     private Health _health;
-    private CharacterStats _stats;
 
     public Rigidbody Rigidbody => _rigidbody;
     public WeaponManager WeaponManager => _weaponManager;
     public Health Health => _health;
-    public CharacterStats Stats => _stats;
+
+    public CharacterStatsController Stats;
+
+    // public CharacterStats Stats { get; private set; }
 
     protected virtual void Awake()
     {
@@ -36,21 +30,20 @@ public abstract class Character : MonoBehaviour
         _weaponManager = GetComponent<WeaponManager>();
         _health = GetComponent<Health>();
         _mover = new Mover(this);
-        _stats = InitialStats;
-
-        _health.SetMaxHealth(_stats.Health);
+        Stats = new CharacterStatsController();
     }
 
     protected virtual void OnEnable()
     {
-        _stats.HealthUpgraded += _health.SetMaxHealth;
+        _health.SetMaxHealth(Stats.Health);
+        Stats.HealthUpdated += _health.SetMaxHealth;
         _health.OnHealthReachedZero += Die;
         Died = delegate(Character character) { };
     }
 
     protected virtual void OnDisable()
     {
-        _stats.HealthUpgraded -= _health.SetMaxHealth;
+        Stats.HealthUpdated -= _health.SetMaxHealth;
         _health.OnHealthReachedZero -= Die;
         Died = delegate(Character character) { };
     }
@@ -61,7 +54,7 @@ public abstract class Character : MonoBehaviour
 
         if (_input.UseWeaponInput)
         {
-            _weaponManager.UseCurrentWeapon(_stats.Power);
+            _weaponManager.UseCurrentWeapon(Stats.Power);
         }
 
         if (_input.ReloadInput)

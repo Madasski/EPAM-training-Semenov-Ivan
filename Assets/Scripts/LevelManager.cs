@@ -1,9 +1,8 @@
 using System;
-using Core;
+using Core.Saving;
 using Madasski;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
@@ -33,6 +32,31 @@ public class LevelManager : MonoBehaviour
         {
             OnLevelPausePress?.Invoke();
         }
+
+        //debug
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Save();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            Load();
+        }
+    }
+
+    private void Save()
+    {
+        var gameData = new GameData();
+        _player.Save(gameData);
+        SaveLoad.SaveGameData(gameData);
+    }
+
+    private void Load()
+    {
+        var gameData = SaveLoad.LoadGameData();
+        Debug.Log(gameData.CharacterStats.Health);
+        _player.Load(gameData);
     }
 
     private void Init()
