@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelUpScreen : MonoBehaviour, IScreen
 {
     public PlayerCharacter PlayerCharacter;
-    
+
     public void Show()
     {
         PauseManager.Pause();
@@ -19,19 +19,19 @@ public class LevelUpScreen : MonoBehaviour, IScreen
 
     public void OnPowerLevelUpPress()
     {
-        PlayerCharacter.Stats.UpgradePower(5);
+        PlayerCharacter.Stats.Power += 50;
         Hide();
     }
 
     public void OnHealthLevelUpPress()
     {
-        PlayerCharacter.Stats.UpgradeHealth(50);
+        PlayerCharacter.Stats.Health += 50;
         Hide();
     }
 
     public void OnSpeedLevelUpPress()
     {
-        PlayerCharacter.Stats.UpgradeSpeed(50);
+        PlayerCharacter.Stats.Speed += 50;
         Hide();
     }
 }

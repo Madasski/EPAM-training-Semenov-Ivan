@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Core.Saving;
 
-public class PlayerCharacter : Character
+public class PlayerCharacter : Character, ISaveLoad
 {
     private ExperienceManager _experienceManager = new ExperienceManager();
 
@@ -9,6 +9,7 @@ public class PlayerCharacter : Character
     protected override void Awake()
     {
         base.Awake();
+        Stats.Init(GameConfig.InitialPlayerStats);
 
         _input = new PlayerInput();
         _experienceManager = new ExperienceManager();
@@ -37,10 +38,13 @@ public class PlayerCharacter : Character
         Destroy(gameObject);
     }
 
-    // private void OnLevelUp()
-    // {
-    //     Debug.Log("Level up");
-    //     Health.Restore();
-    //     Debug.Log("Health restored");
-    // }
+    public void Save(GameData gameData)
+    {
+        Stats.Save(gameData);
+    }
+
+    public void Load(GameData gameData)
+    {
+        Stats.Load(gameData);
+    }
 }

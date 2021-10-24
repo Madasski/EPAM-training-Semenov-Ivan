@@ -1,13 +1,8 @@
 using System;
-<<<<<<< Updated upstream
-using Core;
+using Core.Saving;
 using Madasski;
-=======
-using Madasski.Core;
->>>>>>> Stashed changes
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
@@ -41,19 +36,28 @@ public class LevelManager : MonoBehaviour
         //debug
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            var gameData = new GameData();
-            SaveLoad.SaveGame(gameData);
+            Save();
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
-            var gameData = SaveLoad.LoadGame();
-            Load(gameData);
+            Load();
         }
     }
 
-    private void Load(GameData gameData)
+    private void Save()
     {
+        var gameData = new GameData();
+        _player.Save(gameData);
+        Debug.Log(gameData.CharacterStats.Health);
+        SaveLoad.SaveGameData(gameData);
+    }
+
+    private void Load()
+    {
+        var gameData = SaveLoad.LoadGameData();
+        Debug.Log(gameData.CharacterStats.Health);
+        _player.Load(gameData);
     }
 
     private void Init()

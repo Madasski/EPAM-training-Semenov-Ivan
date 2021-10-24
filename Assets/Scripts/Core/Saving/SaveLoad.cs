@@ -1,13 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Madasski.Stats;
+using UnityEngine;
 
-namespace Madasski.Core
+namespace Core.Saving
 {
     public static class SaveLoad
     {
-        private static string _savePath = "/GameSave.save";
+        private static string _savePath = Application.dataPath + "/GameSave.save";
 
-        public static void SaveGame(GameData gameData)
+        public static void SaveGameData(GameData gameData)
         {
             var bf = new BinaryFormatter();
             var file = File.Create(_savePath);
@@ -15,7 +18,7 @@ namespace Madasski.Core
             file.Close();
         }
 
-        public static GameData LoadGame()
+        public static GameData LoadGameData()
         {
             GameData gameData = new GameData();
             if (File.Exists(_savePath))
@@ -30,8 +33,9 @@ namespace Madasski.Core
         }
     }
 
+    [Serializable]
     public class GameData
     {
-        public Stats
+        public CharacterStats CharacterStats = new CharacterStats();
     }
 }

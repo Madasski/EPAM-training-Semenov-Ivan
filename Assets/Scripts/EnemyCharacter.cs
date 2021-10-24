@@ -32,6 +32,7 @@ public class EnemyCharacter : Character
     protected override void Awake()
     {
         base.Awake();
+        Stats.Init(GameConfig.EnemyStats);
         _input = new AIInput(this);
     }
 
