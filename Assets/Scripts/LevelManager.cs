@@ -49,7 +49,6 @@ public class LevelManager : MonoBehaviour
     {
         var gameData = new GameData();
         _player.Save(gameData);
-        Debug.Log(gameData.CharacterStats.Health);
         SaveLoad.SaveGameData(gameData);
     }
 

@@ -1,7 +1,8 @@
 ﻿using System;
+using Core.Saving;
 using UnityEngine;
 
-public class ExperienceManager
+public class ExperienceManager : ISaveLoad
 {
     public event Action LevelGained;
 
@@ -25,5 +26,21 @@ public class ExperienceManager
         _level++;
         _experience -= ExperiencePerLevel;
         LevelGained?.Invoke();
+    }
+
+    public void Save(GameData gameData)
+    {
+        Debug.Log(_experience);
+        Debug.Log(_level);
+        gameData.PlayerExperience = _experience;
+    }
+
+    public void Load(GameData gameData)
+    {
+        _experience = 0;
+        _level = 1;
+        GainExperience(gameData.PlayerExperience);
+        Debug.Log(_experience);
+        Debug.Log(_level);
     }
 }

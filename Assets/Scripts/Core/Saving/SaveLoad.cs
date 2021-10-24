@@ -36,6 +36,7 @@ namespace Core.Saving
     [Serializable]
     public class GameData
     {
-        public CharacterStats CharacterStats = new CharacterStats();
+        public CharacterStats CharacterStats = GameConfig.InitialPlayerStats;
+        public int PlayerExperience = 0;
     }
 }
