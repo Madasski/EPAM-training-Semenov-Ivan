@@ -55,7 +55,6 @@ public class LevelManager : MonoBehaviour
     private void Load()
     {
         var gameData = SaveLoad.LoadGameData();
-        Debug.Log(gameData.CharacterStats.Health);
         _player.Load(gameData);
     }
 
