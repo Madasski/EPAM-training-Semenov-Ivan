@@ -12,7 +12,6 @@ namespace Madasski.Skills
 
             var hits = Physics.SphereCastAll(position, radius, position);
 
-            Debug.Log(hits.Length);
             if (hits.Length > 0)
             {
                 foreach (var hit in hits)
