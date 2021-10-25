@@ -1,4 +1,5 @@
 using System;
+using Madasski.Skills;
 using Madasski.Stats;
 using UnityEngine;
 
@@ -19,10 +20,9 @@ public abstract class Character : MonoBehaviour
     public Rigidbody Rigidbody => _rigidbody;
     public WeaponManager WeaponManager => _weaponManager;
     public Health Health => _health;
+    public Mover Mover => _mover;
 
     public CharacterStatsController Stats;
-
-    // public CharacterStats Stats { get; private set; }
 
     protected virtual void Awake()
     {
@@ -66,6 +66,7 @@ public abstract class Character : MonoBehaviour
         {
             _weaponManager.ChangeWeapon(_input.ChangeWeaponInput);
         }
+
     }
 
     protected virtual void FixedUpdate()

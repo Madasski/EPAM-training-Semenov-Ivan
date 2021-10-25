@@ -1,4 +1,4 @@
-using Madasski;
+using Madasski.Skills;
 using Madasski.Stats;
 
 public static class GameConfig
@@ -15,5 +15,12 @@ public static class GameConfig
         Health = 20,
         Speed = 200,
         Power = 0
+    };
+
+    public static readonly ISkill[] PlayerSkills =
+    {
+        new DashSkill(),
+        new HealSkill(), 
+        new DamageAroundSkill() 
     };
 }

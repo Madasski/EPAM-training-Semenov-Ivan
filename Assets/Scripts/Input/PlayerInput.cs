@@ -21,6 +21,7 @@ public class PlayerInput : IInput
     }
 
     public bool UseWeaponInput => _attackInput;
+    public bool[] UseSkillInput { get; } = new bool[3];
     public bool ReloadInput => _reloadInput;
     public int ChangeWeaponInput => _changeWeaponInput;
 
@@ -29,6 +30,12 @@ public class PlayerInput : IInput
         _movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         _attackInput = Input.GetButtonDown("Fire1") || Input.GetButton("Fire1");
         _reloadInput = Input.GetKeyDown(KeyCode.R);
+
+
+        UseSkillInput[0] = Input.GetKeyDown(KeyCode.Q);
+        UseSkillInput[1] = Input.GetKeyDown(KeyCode.E) || Input.GetKey(KeyCode.E);
+        UseSkillInput[2] = Input.GetKeyDown(KeyCode.F);
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

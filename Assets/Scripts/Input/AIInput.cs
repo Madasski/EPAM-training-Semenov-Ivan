@@ -6,6 +6,7 @@ public class AIInput : IInput
     private Vector2 _movementInput;
     private bool _useWeaponInput;
 
+    public bool[] UseSkillInput { get; }
     public bool ReloadInput { get; }
 
     public int ChangeWeaponInput => 0;
