@@ -35,4 +35,11 @@ public class Health : MonoBehaviour, IDamageable
         _currentHealth = _maxHealth;
         OnHealthChange?.Invoke(_currentHealth, _maxHealth);
     }
+
+    public void RestoreGradually(float healthPerSecond)
+    {
+        if (_currentHealth >= _maxHealth) return;
+        _currentHealth += healthPerSecond * Time.deltaTime;
+        OnHealthChange?.Invoke(_currentHealth, _maxHealth);
+    }
 }

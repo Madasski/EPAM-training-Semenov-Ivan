@@ -1,8 +1,11 @@
 ﻿using Core.Saving;
+using Madasski.Skills;
 
 public class PlayerCharacter : Character, ISaveLoad
 {
-    private ExperienceManager _experienceManager = new ExperienceManager();
+    private readonly ExperienceManager _experienceManager = new ExperienceManager();
+    private SkillController _skillController;
+
 
     public ExperienceManager ExperienceManager => _experienceManager;
 
@@ -10,26 +13,33 @@ public class PlayerCharacter : Character, ISaveLoad
     {
         base.Awake();
         Stats.Init(GameConfig.InitialPlayerStats);
+        _skillController = new SkillController(this);
 
         _input = new PlayerInput();
-        _experienceManager = new ExperienceManager();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        // _experienceManager.LevelGained += OnLevelUp;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        // _experienceManager.LevelGained -= OnLevelUp;
     }
 
     protected override void Update()
     {
         base.Update();
+
+        for (var skillNumber = 0; skillNumber < 3; skillNumber++)
+        {
+            if (_input.UseSkillInput[skillNumber] == true)
+            {
+                _skillController.UseSkill(skillNumber);
+                return;
+            }
+        }
     }
 
     protected override void Die()
