@@ -171,6 +171,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139461938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139461940}
+  - component: {fileID: 139461939}
+  m_Layer: 0
+  m_Name: SkillLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &139461939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139461938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90f527582b649be94e17404da44973b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allSkills:
+  - _skillType: 0
+    _icon: {fileID: 21300000, guid: 40e4a47892df1094f8e2a5eb80552c60, type: 3}
+    _skillSO: {fileID: 11400000, guid: e4f2b4fa92be9fa44be0dc080ab78a9e, type: 2}
+  - _skillType: 1
+    _icon: {fileID: 21300000, guid: 5ff8b70ff65676a49b86c522a2fdb0b9, type: 3}
+    _skillSO: {fileID: 11400000, guid: 9a78fb425ec4e4541a99ee07349f3622, type: 2}
+  - _skillType: 2
+    _icon: {fileID: 21300000, guid: 144ecc0304320674fa34ed3b7f397169, type: 3}
+    _skillSO: {fileID: 11400000, guid: bbece84b07111eb4d9d72409ca233d3a, type: 2}
+--- !u!4 &139461940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139461938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590725396
 GameObject:
   m_ObjectHideFlags: 0

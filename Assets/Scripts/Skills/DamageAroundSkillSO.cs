@@ -2,15 +2,16 @@
 
 namespace Madasski.Skills
 {
-    public class DamageAroundSkill : ISkill
+    [CreateAssetMenu(fileName = "DamageAround", menuName = "Skills/New DamageAround Skill")]
+    public class DamageAroundSkillSO : SkillSO
     {
-        public void Use(Character source = null, Character target = null)
+        [SerializeField] private float _radius = 3f;
+        [SerializeField] private float _damage = 300f;
+
+        public override void Use(Character source = null, Character target = null)
         {
             var position = source.transform.position;
-            var radius = 3f;
-            var damage = 300f;
-
-            var hits = Physics.SphereCastAll(position, radius, position);
+            var hits = Physics.SphereCastAll(position, _radius, position);
 
             if (hits.Length > 0)
             {
@@ -20,7 +21,7 @@ namespace Madasski.Skills
 
                     if (hit.collider.gameObject.TryGetComponent<Health>(out var health))
                     {
-                        health.TakeDamage(damage);
+                        health.TakeDamage(_damage);
                     }
                 }
             }

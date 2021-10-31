@@ -17,10 +17,10 @@ public static class GameConfig
         Power = 0
     };
 
-    public static readonly ISkill[] PlayerSkills =
+    public static readonly SkillType[] PlayerSkills =
     {
-        new DashSkill(),
-        new HealSkill(), 
-        new DamageAroundSkill() 
+        SkillType.Dash,
+        SkillType.HealSelf,
+        SkillType.DamageAround
     };
 }

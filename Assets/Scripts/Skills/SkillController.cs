@@ -1,8 +1,11 @@
-﻿namespace Madasski.Skills
+﻿using Core.Services;
+
+namespace Madasski.Skills
 {
     public class SkillController
     {
-        private ISkill[] _availableSkills;
+        // private ISkill[] _availableSkills;
+        private SkillType[] _availableSkills;
         private readonly Character _owner;
 
         public SkillController(Character owner)
@@ -13,8 +16,8 @@
 
         public void UseSkill(int index)
         {
-            _availableSkills[index].Use(_owner);
+            var skill = SkillLibrary.Instance.GetSkillByType(_availableSkills[index]);
+            skill?.Use(_owner);
         }
     }
 }
-
