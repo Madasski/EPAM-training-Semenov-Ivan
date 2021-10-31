@@ -157,6 +157,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 2813740614080801262, guid: 3d557c73608a8f3428cd2b676ae2df01, type: 3}
   EnemySpawnerPrefab: {fileID: 8199084557806380365, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
   CameraPrefab: {fileID: 3427989875252466812, guid: 5d80f94a1c66e63488bae58f4bae5f63, type: 3}
+  SkillLibraryPrefab: {fileID: 6651303935023541333, guid: 9ee9a644dd529e8429f78cd7e589ad2f, type: 3}
 --- !u!4 &22142539
 Transform:
   m_ObjectHideFlags: 0
