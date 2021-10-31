@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace Core.Services
 {
-    public class SkillLibrary : MonoBehaviour
+    public class SkillLibrary : MonoBehaviour, IService
     {
         [SerializeField] private List<SkillData> _allSkills;
-        public static SkillLibrary Instance;
 
         private void Awake()
         {
-            Instance = this;
+            ServiceLocator.Instance.Register(this);
         }
 
         public ISkill GetSkillByType(SkillType skillType)

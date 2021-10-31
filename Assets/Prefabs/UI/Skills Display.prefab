@@ -75,5 +75,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd4cc2021aa4ed0af04853a4e335c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllSkills: []
-  SkillViewPrefab: {fileID: 0}
+  _skillViewPrefab: {fileID: 8249553707818314923, guid: 9ad1b5b7399d883468b6ad02b11dc4bd, type: 3}

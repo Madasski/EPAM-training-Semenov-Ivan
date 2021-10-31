@@ -8,6 +8,8 @@ namespace Madasski.Skills
         private SkillType[] _availableSkills;
         private readonly Character _owner;
 
+        public SkillType[] AvailableSkills => _availableSkills;
+
         public SkillController(Character owner)
         {
             _availableSkills = GameConfig.PlayerSkills;
@@ -16,7 +18,7 @@ namespace Madasski.Skills
 
         public void UseSkill(int index)
         {
-            var skill = SkillLibrary.Instance.GetSkillByType(_availableSkills[index]);
+            var skill = ServiceLocator.Instance.Get<SkillLibrary>().GetSkillByType(_availableSkills[index]);
             skill?.Use(_owner);
         }
     }

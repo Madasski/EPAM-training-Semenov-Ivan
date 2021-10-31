@@ -1,5 +1,6 @@
 using System;
 using Core.Saving;
+using Core.Services;
 using Madasski;
 using UI;
 using UnityEngine;
@@ -14,12 +15,14 @@ public class LevelManager : MonoBehaviour
     public PlayerCharacter PlayerPrefab;
     public EnemySpawner EnemySpawnerPrefab;
     public CameraFollow CameraPrefab;
+    public SkillLibrary SkillLibraryPrefab;
 
     private GameUI _ui;
     private PlayerCharacter _player;
     private EnemySpawner _enemySpawner;
     private CameraFollow _cameraFollow;
     private GameFlow _gameFlow;
+    private SkillLibrary _skillLibrary;
 
     private void Awake()
     {
@@ -60,6 +63,8 @@ public class LevelManager : MonoBehaviour
 
     private void Init()
     {
+        _skillLibrary = Instantiate(SkillLibraryPrefab);
+
         _player = Instantiate(PlayerPrefab);
         _cameraFollow = Instantiate(CameraPrefab);
         _enemySpawner = Instantiate(EnemySpawnerPrefab);

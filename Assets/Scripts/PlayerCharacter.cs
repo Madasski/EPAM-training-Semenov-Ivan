@@ -1,13 +1,14 @@
 ﻿using Core.Saving;
+using Core.Services;
 using Madasski.Skills;
 
-public class PlayerCharacter : Character, ISaveLoad
+public class PlayerCharacter : Character, ISaveLoad, IService
 {
     private readonly ExperienceManager _experienceManager = new ExperienceManager();
     private SkillController _skillController;
 
-
     public ExperienceManager ExperienceManager => _experienceManager;
+    public SkillController SkillController => _skillController;
 
     protected override void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerCharacter : Character, ISaveLoad
         _skillController = new SkillController(this);
 
         _input = new PlayerInput();
+        ServiceLocator.Instance.Register(this);
     }
 
     protected override void OnEnable()

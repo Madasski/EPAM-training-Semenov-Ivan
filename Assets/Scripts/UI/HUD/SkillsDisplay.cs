@@ -1,26 +1,24 @@
-﻿using Madasski.Skills;
+﻿using Core.Services;
+using Madasski.Skills;
 using UnityEngine;
 
 namespace Madasski.UI.HUD
 {
     public class SkillsDisplay : MonoBehaviour
     {
-        public SkillSO[] AllSkills;
-        public SkillView SkillViewPrefab;
-
-        // private List<SkillView> _skillViews;
+        [SerializeField] private SkillView _skillViewPrefab;
 
         private void Awake()
         {
-            //var player = ServiceLocator.Get<PlayerCharacter>();
-            //var playerSkillController = player.GetComponent<SkillController>();
-            //var playerSkills = playerSkillController.AvailableSkills;
+            var player = ServiceLocator.Instance.Get<PlayerCharacter>();
+            var playerSkillController = player.SkillController;
+            var playerSkills = playerSkillController.AvailableSkills;
 
-            // foreach (var skillSO in AllSkills)
-            // {
-            //     var skillView = Instantiate(SkillViewPrefab, transform);
-            //     skillView.Icon.sprite = SkillLibrary.Instance.GetSkillIconByType(skillSO.)
-            // }
+            foreach (var skillType in playerSkills)
+            {
+                var skillView = Instantiate(_skillViewPrefab, transform);
+                skillView.Icon.sprite = ServiceLocator.Instance.Get<SkillLibrary>().GetSkillIconByType(skillType);
+            }
         }
     }
 }
