@@ -77,8 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lifespan: 2
   _explosionPrefab: {fileID: 198357973136645638, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
-  _initialSpeed: 5
-  _radius: 3
+  _initialSpeed: 3
+  _radius: 1
   _damage: 120
 --- !u!1001 &8828652301295543821
 PrefabInstance:

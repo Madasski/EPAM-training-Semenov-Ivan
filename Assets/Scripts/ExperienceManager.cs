@@ -6,7 +6,7 @@ public class ExperienceManager : ISaveLoad
 {
     public event Action LevelGained;
 
-    private const int ExperiencePerLevel = 12;
+    private const int ExperiencePerLevel = 150;
     private int _experience = 0;
     private int _level = 1;
 
