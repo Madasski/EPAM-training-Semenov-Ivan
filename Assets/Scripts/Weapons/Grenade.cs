@@ -4,6 +4,7 @@ namespace Game.Weapons
 {
     public class Grenade : Projectile
     {
+        [SerializeField] private ParticleSystem _explosionPrefab;
         [SerializeField] private float _initialSpeed;
         [SerializeField] private float _radius = 3f;
         [SerializeField] private float _damage = 120;
@@ -21,6 +22,7 @@ namespace Game.Weapons
 
         protected override void Die()
         {
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Explode();
             base.Die();
         }
