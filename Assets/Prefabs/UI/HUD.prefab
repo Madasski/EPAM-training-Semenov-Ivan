@@ -216,7 +216,9 @@ MonoBehaviour:
 
     1 - knife
 
-    2 - pistol'
+    2 - pistol
+
+    3 - grenade launcher'
 --- !u!1 &3884012547161606280
 GameObject:
   m_ObjectHideFlags: 0

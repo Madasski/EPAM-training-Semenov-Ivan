@@ -57,9 +57,10 @@ namespace Madasski.Core
             _pools.Add(gameObject, objectsQueue);
         }
 
-        public T Spawn<T>(T prefab) where T : MonoBehaviour => Spawn(prefab.gameObject).GetComponent<T>();
+        public T Spawn<T>(T prefab, Quaternion rotation) where T : MonoBehaviour => Spawn(prefab.gameObject, rotation).GetComponent<T>();
+        public T Spawn<T>(T prefab) where T : MonoBehaviour => Spawn(prefab.gameObject, Quaternion.identity).GetComponent<T>();
 
-        public GameObject Spawn(GameObject prefab)
+        public GameObject Spawn(GameObject prefab, Quaternion rotation)
         {
             if (!_pools.ContainsKey(prefab))
             {
@@ -70,6 +71,7 @@ namespace Madasski.Core
             if (_pools[prefab].Count > 0)
             {
                 obj = _pools[prefab].Dequeue();
+                obj.transform.rotation = rotation;
                 obj.SetActive(true);
             }
             else

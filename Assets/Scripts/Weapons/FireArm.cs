@@ -27,9 +27,9 @@ namespace Game.Weapons
         protected override void Use(float additionalDamage = 0)
         {
             if (_ammoLeft <= 0) return;
-            var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab);
+            var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab, transform.rotation);
             projectile.transform.position = ShootingPoint.position;
-            projectile.transform.rotation = transform.rotation;
+            // projectile.transform.rotation = transform.rotation;
             _ammoLeft--;
         }
 

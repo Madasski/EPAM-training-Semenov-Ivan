@@ -124,6 +124,7 @@ MonoBehaviour:
   Weapons:
   - {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
   - {fileID: 524911538746153119, guid: 8dbdce9971460304da6fc3c83ccbb69d, type: 3}
+  - {fileID: 524911538746153119, guid: e9449f199a286d849b04b99ac3ca092c, type: 3}
 --- !u!114 &2813740614080801262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,10 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dafb15958204edc89c23cee47c6cba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialStats:
-    Speed: 350
-    Health: 100
-    Power: 0
   LookTarget: {fileID: 0}
 --- !u!1001 &2573043436354844966
 PrefabInstance:
