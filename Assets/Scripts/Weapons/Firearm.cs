@@ -9,6 +9,7 @@ namespace Game.Weapons
         public Transform ShootingPoint;
         public int MagazineSize;
 
+        [SerializeField] private GameObject _shotEffectPrefab;
         private int _ammoLeft;
 
         public int AmmoLeft => _ammoLeft;
@@ -29,7 +30,7 @@ namespace Game.Weapons
             if (_ammoLeft <= 0) return;
             var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab, transform.rotation);
             projectile.transform.position = ShootingPoint.position;
-            // projectile.transform.rotation = transform.rotation;
+            Instantiate(_shotEffectPrefab, ShootingPoint.position, transform.rotation);
             _ammoLeft--;
         }
 

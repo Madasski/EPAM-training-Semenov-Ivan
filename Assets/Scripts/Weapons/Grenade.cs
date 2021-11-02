@@ -17,6 +17,10 @@ namespace Game.Weapons
         protected override void OnEnable()
         {
             base.OnEnable();
+        }
+
+        private void Start()
+        {
             _rigidbody.AddForce(transform.forward * _initialSpeed, ForceMode.Impulse);
         }
 

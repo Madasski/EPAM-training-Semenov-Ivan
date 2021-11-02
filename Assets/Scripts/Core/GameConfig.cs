@@ -12,7 +12,7 @@ public static class GameConfig
 
     public static readonly CharacterStats EnemyStats = new CharacterStats()
     {
-        Health = 20,
+        Health = 100,
         Speed = 200,
         Power = 0
     };

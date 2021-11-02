@@ -38,5 +38,17 @@ namespace Core.Services
 
             return null;
         }
+
+        public GameObject GetSkillEffectByType(SkillType skillType)
+        {
+            foreach (var skillData in _allSkills)
+            {
+                if (skillData.SkillType == skillType)
+                {
+                    return skillData.Effect;
+                }
+            }
+            return null;
+        }
     }
 }

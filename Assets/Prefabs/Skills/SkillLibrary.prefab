@@ -47,9 +47,12 @@ MonoBehaviour:
   - _skillType: 0
     _icon: {fileID: 21300000, guid: 40e4a47892df1094f8e2a5eb80552c60, type: 3}
     _skillSO: {fileID: 11400000, guid: e4f2b4fa92be9fa44be0dc080ab78a9e, type: 2}
+    _effect: {fileID: 1654736843778140, guid: 0bc8b2292f77ff541b965540b484c793, type: 3}
   - _skillType: 1
     _icon: {fileID: 21300000, guid: 5ff8b70ff65676a49b86c522a2fdb0b9, type: 3}
     _skillSO: {fileID: 11400000, guid: 9a78fb425ec4e4541a99ee07349f3622, type: 2}
+    _effect: {fileID: 1654736843778140, guid: 2a6297c3dacd9674fa58941c1491b12c, type: 3}
   - _skillType: 2
     _icon: {fileID: 21300000, guid: 144ecc0304320674fa34ed3b7f397169, type: 3}
     _skillSO: {fileID: 11400000, guid: bbece84b07111eb4d9d72409ca233d3a, type: 2}
+    _effect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}

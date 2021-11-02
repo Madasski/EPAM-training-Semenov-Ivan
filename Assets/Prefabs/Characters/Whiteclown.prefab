@@ -51,7 +51,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &3552609746902915959
 BoxCollider:
@@ -105,10 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5de049ba504d9b8c882606764d8927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialStats:
-    Speed: 180
-    Health: 15
-    Power: 0
   LookTarget: {fileID: 0}
   DetectionRange: 7
   AttackRange: 4

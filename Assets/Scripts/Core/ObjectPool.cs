@@ -71,7 +71,6 @@ namespace Madasski.Core
             if (_pools[prefab].Count > 0)
             {
                 obj = _pools[prefab].Dequeue();
-                obj.transform.rotation = rotation;
                 obj.SetActive(true);
             }
             else
@@ -79,6 +78,7 @@ namespace Madasski.Core
                 obj = Instantiate(prefab);
             }
 
+            obj.transform.rotation = rotation;
             _spawnedObjects.Add(obj, prefab);
             return obj;
         }

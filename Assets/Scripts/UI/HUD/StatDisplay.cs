@@ -14,7 +14,7 @@ public class StatDisplay : MonoBehaviour
     {
         PowerText.text = "POWER:0";
         LevelText.text = "LEVEL:1";
-        SpeedText.text = "SPEED:";
+        SpeedText.text = "SPEED:350";
     }
 
     public void UpdatePower(int newPower)

@@ -50,6 +50,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 2960075580870249777, guid: ac06009ed21efca4fbaae75cd5534e51, type: 3}
   ShootingPoint: {fileID: 4148521218554557147}
   MagazineSize: 7
+  _shotEffectPrefab: {fileID: 1845955007268882, guid: 2e774ea1c15b0044d905105fbf115c9c, type: 3}
 --- !u!1 &8395785845924756884
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 090939113bc86284e928d4f3b8365e60, type: 3}
-  FireRate: 0.04
+  FireRate: 0.2
   ProjectilePrefab: {fileID: 2960075580870249777, guid: 6054a92306b87054b96b5648776f1996, type: 3}
   ShootingPoint: {fileID: 4148521218554557147}
-  MagazineSize: 150
+  MagazineSize: 21
+  _shotEffectPrefab: {fileID: 1845955007268882, guid: 2e774ea1c15b0044d905105fbf115c9c, type: 3}
 --- !u!1 &8395785845924756884
 GameObject:
   m_ObjectHideFlags: 0
