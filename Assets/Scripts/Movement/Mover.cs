@@ -9,6 +9,8 @@ public class Mover
         _character = character;
     }
 
+    public Vector3 Velocity => _character.Rigidbody.velocity;
+
     public void Move(Vector2 moveInput)
     {
         _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.Stats.Speed;
