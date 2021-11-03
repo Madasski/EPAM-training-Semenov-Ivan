@@ -7,7 +7,7 @@ public class EnemyCharacter : Character
     public float AttackRange;
     public int experienceForKill;
 
-    private PlayerCharacter _player;
+    [SerializeField] private PlayerCharacter _player;
 
     public PlayerCharacter Player => _player;
 
