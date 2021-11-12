@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9216593595297926014}
   - component: {fileID: 3552609746902915959}
   - component: {fileID: 1212595356723910055}
-  - component: {fileID: 8681589579322508541}
   - component: {fileID: 5655487584494236122}
   m_Layer: 0
   m_Name: Whiteclown
@@ -78,21 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879dfa8359741ee8401283d231c5e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8681589579322508541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5029080109048085121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66646dc81bbb9f042abad6aa33e82549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponPosition: {fileID: 3186032916628614195}
-  Weapons:
-  - {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
 --- !u!114 &5655487584494236122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +93,7 @@ MonoBehaviour:
   DetectionRange: 7
   AttackRange: 4
   experienceForKill: 5
+  _player: {fileID: 0}
 --- !u!1 &7939985113618190514
 GameObject:
   m_ObjectHideFlags: 0

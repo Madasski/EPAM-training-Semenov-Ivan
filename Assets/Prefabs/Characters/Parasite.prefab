@@ -4904,9 +4904,8 @@ GameObject:
   - component: {fileID: 6031440898782260375}
   - component: {fileID: 2096838216346729630}
   - component: {fileID: 4359503736257868366}
-  - component: {fileID: 6066105947459298068}
-  - component: {fileID: 7072977431553594931}
   - component: {fileID: 9137745725826315745}
+  - component: {fileID: 3470311799086421572}
   m_Layer: 0
   m_Name: Parasite
   m_TagString: Untagged
@@ -4972,37 +4971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879dfa8359741ee8401283d231c5e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6066105947459298068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7610785640165760360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66646dc81bbb9f042abad6aa33e82549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponPosition: {fileID: 27866637531859930}
-  Weapons:
-  - {fileID: -3442597153027598002, guid: d259f8b7a80dd2243b62bbbe58994885, type: 3}
---- !u!114 &7072977431553594931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7610785640165760360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5de049ba504d9b8c882606764d8927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LookTarget: {fileID: 0}
-  DetectionRange: 5
-  AttackRange: 1
-  experienceForKill: 1
 --- !u!114 &9137745725826315745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5016,6 +4984,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 6694056552574565253}
+--- !u!114 &3470311799086421572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7610785640165760360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b98379f4e1c4b7eb90fef51aa89f2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LookTarget: {fileID: 0}
+  DetectionRange: 0
+  AttackRange: 0
+  experienceForKill: 0
+  _player: {fileID: 0}
+  _animator: {fileID: 308572459558346116}
 --- !u!1001 &6134695086643027989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5096,5 +5082,10 @@ PrefabInstance:
 --- !u!4 &5956126852929832958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d822ef0250ce570479382a9e65006a63, type: 3}
+  m_PrefabInstance: {fileID: 6134695086643027989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &308572459558346116 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d822ef0250ce570479382a9e65006a63, type: 3}
   m_PrefabInstance: {fileID: 6134695086643027989}
   m_PrefabAsset: {fileID: 0}

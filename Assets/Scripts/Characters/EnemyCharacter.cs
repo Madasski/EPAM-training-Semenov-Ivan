@@ -33,7 +33,6 @@ public class EnemyCharacter : Character
     {
         base.Awake();
         Stats.Init(GameConfig.EnemyStats);
-        _input = new AIInput(this);
     }
 
     public void SetPlayer(PlayerCharacter playerCharacter)
@@ -47,14 +46,9 @@ public class EnemyCharacter : Character
         ObjectPool.Instance.ReturnObjectToPool(this);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (_player)
             LookTarget = _player.transform;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
     }
 }

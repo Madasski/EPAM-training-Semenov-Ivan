@@ -1,4 +1,6 @@
-﻿namespace Core.FSM
+﻿using UnityEngine;
+
+namespace Core.FSM
 {
     public class FiniteStateMachine
     {
@@ -12,6 +14,7 @@
             }
 
             _currentState = newState;
+            Debug.Log(newState.ToString());
             _currentState.OnEnter();
         }
 
@@ -20,6 +23,14 @@
             if (_currentState != null)
             {
                 _currentState.UpdateState();
+            }
+        }
+
+        public void FixedUpdateState()
+        {
+            if (_currentState != null)
+            {
+                _currentState.FixedUpdateState();
             }
         }
     }

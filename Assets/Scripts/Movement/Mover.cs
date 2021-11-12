@@ -15,7 +15,7 @@ public class Mover
     {
         _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.Stats.Speed;
     }
-
+    
     public void DashAtLookDirection(float distance)
     {
         _character.Rigidbody.MovePosition(_character.Rigidbody.position + _character.transform.forward * distance);
