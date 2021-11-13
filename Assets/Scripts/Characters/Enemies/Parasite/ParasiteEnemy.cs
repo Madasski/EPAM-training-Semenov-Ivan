@@ -56,11 +56,11 @@ namespace Characters.Enemies
     public class ParasiteAnimator
     {
         private Animator _animator;
-        private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Running = Animator.StringToHash("Running");
         private static readonly int JumpCharging = Animator.StringToHash("JumpCharging");
         private static readonly int JumpAir = Animator.StringToHash("JumpAir");
+        private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Biting = Animator.StringToHash("Biting");
 
         public ParasiteAnimator(Animator animator)
@@ -68,11 +68,16 @@ namespace Characters.Enemies
             _animator = animator;
         }
 
-        public void EnterBitingState()
+        public void EnterIdleState()
         {
-            _animator.SetTrigger(Biting);
+            _animator.SetTrigger(Idle);
         }
-        
+
+        public void EnterRunningState()
+        {
+            _animator.SetTrigger(Running);
+        }
+
         public void EnterJumpAirState()
         {
             _animator.SetTrigger(JumpAir);
@@ -83,19 +88,14 @@ namespace Characters.Enemies
             _animator.SetTrigger(JumpCharging);
         }
 
-        public void EnterIdleState()
-        {
-            _animator.SetTrigger(Idle);
-        }
-
         public void EnterAttackState()
         {
             _animator.SetTrigger(Attack);
         }
 
-        public void EnterRunningState()
+        public void EnterBitingState()
         {
-            _animator.SetTrigger(Running);
+            _animator.SetTrigger(Biting);
         }
     }
 }

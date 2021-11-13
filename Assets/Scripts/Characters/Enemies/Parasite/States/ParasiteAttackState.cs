@@ -15,7 +15,7 @@ namespace Characters.Enemies
         private State _state;
         private float _chargeTime = 1f;
         private Vector2 _jumpTargetPosition;
-        private float _damagePerSecond= 5f;
+        private float _damagePerSecond = 5f;
 
         public ParasiteAttackState(ParasiteEnemy parasite) : base(parasite)
         {
@@ -25,6 +25,7 @@ namespace Characters.Enemies
         {
             base.OnEnter();
             _state = State.JumpCharging;
+            _chargeTime = 1f;
             _parasite.ParasiteAnimator.EnterJumpChargingState();
         }
 
@@ -40,6 +41,7 @@ namespace Characters.Enemies
                     _state = State.Jumping;
                     _parasite.ParasiteAnimator.EnterJumpAirState();
                     _jumpTargetPosition = new Vector2(_parasite.Player.Rigidbody.position.x, _parasite.Player.Rigidbody.position.z);
+                    _parasite.Mover.RotateAt(_jumpTargetPosition);
                     _parasite.GetComponent<Collider>().isTrigger = true;
                 }
             }
@@ -70,9 +72,8 @@ namespace Characters.Enemies
                     }
 
                     _parasite.Mover.Move(moveDirection);
-                    _parasite.Mover.RotateAtTransform(_parasite.Player.transform);
 
-                    if (Vector2.Distance(new Vector2(_parasite.Rigidbody.position.x, _parasite.Rigidbody.position.y), _jumpTargetPosition) >= .1f)
+                    if (Vector2.Distance(new Vector2(_parasite.Rigidbody.position.x, _parasite.Rigidbody.position.z), _jumpTargetPosition) <= .1f)
                     {
                         _state = State.Land;
                     }
@@ -87,15 +88,15 @@ namespace Characters.Enemies
                     }
                     else
                     {
-                        _state = State.JumpCharging;
+                        _parasite.FiniteStateMachine.SetState(_parasite.State.Idle);
                     }
 
                     break;
 
                 case State.EatEnemy:
-                    _parasite.Player.Health.TakeDamage(_damagePerSecond*Time.deltaTime);
+                    _parasite.Player.Health.TakeDamage(_damagePerSecond * Time.deltaTime);
                     _parasite.Mover.Move(Vector2.zero);
-                    
+
                     break;
             }
         }

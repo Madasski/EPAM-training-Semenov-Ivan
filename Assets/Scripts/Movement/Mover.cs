@@ -40,7 +40,7 @@ public class Mover
         RotateAt(targetPosition);
     }
 
-    private void RotateAt(Vector3 targetPosition)
+    public void RotateAt(Vector3 targetPosition)
     {
         var directionToLook = targetPosition - _character.Rigidbody.position;
         var targetRotation = Mathf.Atan2(directionToLook.z, directionToLook.x) * Mathf.Rad2Deg - 90f;
