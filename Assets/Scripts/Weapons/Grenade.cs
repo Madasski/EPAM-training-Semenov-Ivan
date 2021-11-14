@@ -1,17 +1,21 @@
-﻿using UnityEngine;
+﻿using Core.Services;
+using UnityEngine;
 
 namespace Game.Weapons
 {
     public class Grenade : Projectile
     {
         [SerializeField] private ParticleSystem _explosionPrefab;
+        [SerializeField] private AudioClip _explosionSound;
         [SerializeField] private float _initialSpeed;
         [SerializeField] private float _radius = 3f;
         [SerializeField] private float _damage = 120;
+        private AudioManager _audioManager;
 
         protected override void Awake()
         {
             base.Awake();
+            _audioManager = ServiceLocator.Instance.Get<AudioManager>();
         }
 
         protected override void OnEnable()
@@ -33,6 +37,7 @@ namespace Game.Weapons
 
         private void Explode()
         {
+            _audioManager.PlaySound(_explosionSound);
             var hits = Physics.SphereCastAll(transform.position, _radius, transform.position);
 
             if (hits.Length > 0)

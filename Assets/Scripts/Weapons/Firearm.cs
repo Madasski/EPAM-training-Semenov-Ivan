@@ -1,16 +1,20 @@
-﻿using Madasski.Core;
+﻿using Core.Services;
+using Madasski.Core;
 using UnityEngine;
 
 namespace Game.Weapons
 {
     public class Firearm : Weapon
     {
+        [SerializeField] private AudioClip _shootSound;
+
         public Projectile ProjectilePrefab;
         public Transform ShootingPoint;
         public int MagazineSize;
 
         [SerializeField] private GameObject _shotEffectPrefab;
         private int _ammoLeft;
+        private AudioManager _audioManager;
 
         public int AmmoLeft => _ammoLeft;
 
@@ -18,6 +22,7 @@ namespace Game.Weapons
         {
             _ammoLeft = MagazineSize;
             ObjectPool.Instance.CreatePool(ProjectilePrefab);
+            _audioManager = ServiceLocator.Instance.Get<AudioManager>();
         }
 
         protected override void Update()
@@ -31,6 +36,7 @@ namespace Game.Weapons
             var projectile = ObjectPool.Instance.Spawn(ProjectilePrefab, transform.rotation);
             projectile.transform.position = ShootingPoint.position;
             Instantiate(_shotEffectPrefab, ShootingPoint.position, transform.rotation);
+            _audioManager.PlaySound(_shootSound);
             _ammoLeft--;
         }
 

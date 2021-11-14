@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public EnemySpawner EnemySpawnerPrefab;
     public CameraFollow CameraPrefab;
     public SkillLibrary SkillLibraryPrefab;
+    public AudioManager AudioManagerPrefab;
 
     private GameUI _ui;
     private PlayerCharacter _player;
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
     private CameraFollow _cameraFollow;
     private GameFlow _gameFlow;
     private SkillLibrary _skillLibrary;
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -64,6 +66,7 @@ public class LevelManager : MonoBehaviour
     private void Init()
     {
         _skillLibrary = Instantiate(SkillLibraryPrefab);
+        _audioManager = Instantiate(AudioManagerPrefab);
 
         _player = Instantiate(PlayerPrefab);
         _cameraFollow = Instantiate(CameraPrefab);
