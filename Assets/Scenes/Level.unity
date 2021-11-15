@@ -159,6 +159,7 @@ MonoBehaviour:
   CameraPrefab: {fileID: 3427989875252466812, guid: 5d80f94a1c66e63488bae58f4bae5f63, type: 3}
   SkillLibraryPrefab: {fileID: 6651303935023541333, guid: 9ee9a644dd529e8429f78cd7e589ad2f, type: 3}
   AudioManagerPrefab: {fileID: 2066980206081931137, guid: a1b852834ed7e034eb47be5aeb98fa7b, type: 3}
+  _menuMusic: {fileID: 8300000, guid: 156f5266e220f274dab91c1e84cccaaa, type: 3}
 --- !u!4 &22142539
 Transform:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 4e221c872f808064c896c0ebb3a5aff4, type: 3}
   FireRate: 1
+  _shootSound: {fileID: 8300000, guid: a014ca5a114fb784a8ca3c97eba1c076, type: 3}
   ProjectilePrefab: {fileID: 2960075580870249777, guid: ac06009ed21efca4fbaae75cd5534e51, type: 3}
   ShootingPoint: {fileID: 4148521218554557147}
   MagazineSize: 7

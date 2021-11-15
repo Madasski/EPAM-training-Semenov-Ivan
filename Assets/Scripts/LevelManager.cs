@@ -25,10 +25,16 @@ public class LevelManager : MonoBehaviour
     private GameFlow _gameFlow;
     private SkillLibrary _skillLibrary;
     private AudioManager _audioManager;
+    [SerializeField] private AudioClip _menuMusic;
 
     private void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        _audioManager.PlayMusic(_menuMusic);
     }
 
     private void Update()
