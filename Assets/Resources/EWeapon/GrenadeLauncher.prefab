@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5362448350118162056}
   - component: {fileID: 524911538746153119}
   m_Layer: 0
-  m_Name: Grenade launcher
+  m_Name: GrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

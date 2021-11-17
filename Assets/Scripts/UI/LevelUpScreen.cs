@@ -1,4 +1,5 @@
 using Core;
+using UI;
 using UnityEngine;
 
 public class LevelUpScreen : MonoBehaviour, IScreen

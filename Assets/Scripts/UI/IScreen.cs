@@ -1,5 +1,8 @@
-public interface IScreen
+namespace UI
 {
-    void Show();
-    void Hide();
+    public interface IScreen
+    {
+        void Show();
+        void Hide();
+    }
 }

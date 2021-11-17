@@ -1,24 +1,51 @@
+using Composition;
+using Core;
+using UI;
 using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public GameObject MenuScreen;
-    public GameObject SettingsScreen;
+    private MenuScreen _menuScreen;
+    private SettingsScreen _settingsScreen;
+    private IResourceManager _resourceManager;
 
     private void Awake()
+    {
+        _resourceManager = CompositionRoot.GetResourceManager();
+
+        var menuScreenPrefab = _resourceManager.GetPrefab<EScreens, MenuScreen>(EScreens.MainMenuScreen);
+        var settingsScreenPrefab = _resourceManager.GetPrefab<EScreens, SettingsScreen>(EScreens.SettingsScreen);
+
+        _menuScreen = Instantiate(menuScreenPrefab, transform);
+        _settingsScreen = Instantiate(settingsScreenPrefab, transform);
+    }
+
+    private void OnEnable()
+    {
+        _menuScreen.SettingsButtonClicked += ShowSettings;
+        _settingsScreen.BackToMenuButtonPressed += ShowMenu;
+    }
+
+    private void OnDisable()
+    {
+        _menuScreen.SettingsButtonClicked -= ShowSettings;
+        _settingsScreen.BackToMenuButtonPressed -= ShowMenu;
+    }
+
+    private void Start()
     {
         ShowMenu();
     }
 
-    public void ShowMenu()
+    private void ShowMenu()
     {
-        MenuScreen.SetActive(true);
-        SettingsScreen.SetActive(false);
+        _menuScreen.Show();
+        _settingsScreen.Hide();
     }
 
-    public void ShowSettings()
+    private void ShowSettings()
     {
-        MenuScreen.SetActive(false);
-        SettingsScreen.SetActive(true);
+        _menuScreen.Hide();
+        _settingsScreen.Show();
     }
 }

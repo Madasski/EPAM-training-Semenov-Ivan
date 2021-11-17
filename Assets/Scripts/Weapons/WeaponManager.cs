@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Composition;
+using Core;
 using Game.Weapons;
 using UnityEngine;
+using Weapons;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -9,9 +12,15 @@ public class WeaponManager : MonoBehaviour
     public event Action<int> OnAmmoLeftChange;
 
     public Transform WeaponPosition;
-    public List<Weapon> Weapons = new List<Weapon>(3);
+    public List<EWeapon> Weapons; //new List<Weapon>(3);
 
     private Weapon _currentWeapon;
+    private IResourceManager _resourceManager;
+
+    private void Awake()
+    {
+        _resourceManager = CompositionRoot.GetResourceManager();
+    }
 
     private void Start()
     {
@@ -42,7 +51,7 @@ public class WeaponManager : MonoBehaviour
 
         if (_currentWeapon != null) Destroy(_currentWeapon.gameObject);
 
-        var newWeaponPrefab = Weapons[weaponSlot - 1];
+        var newWeaponPrefab = _resourceManager.GetPrefab<EWeapon, Weapon>(Weapons[weaponSlot-1]); 
         _currentWeapon = Instantiate(newWeaponPrefab, WeaponPosition.position, WeaponPosition.rotation);
         _currentWeapon.transform.parent = transform;
 
