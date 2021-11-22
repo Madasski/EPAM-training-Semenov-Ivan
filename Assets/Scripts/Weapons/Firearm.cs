@@ -1,4 +1,5 @@
-﻿using Core.Services;
+﻿using Composition;
+using Core.Sound;
 using Madasski.Core;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace Game.Weapons
         {
             _ammoLeft = MagazineSize;
             ObjectPool.Instance.CreatePool(ProjectilePrefab);
-            _audioManager = ServiceLocator.Instance.Get<AudioManager>();
+            _audioManager = CompositionRoot.GetAudioManager();
         }
 
         protected override void Update()

@@ -1,4 +1,5 @@
-﻿using Core.Services;
+﻿using Composition;
+using Core.Sound;
 using UnityEngine;
 
 namespace Game.Weapons
@@ -15,7 +16,7 @@ namespace Game.Weapons
         protected override void Awake()
         {
             base.Awake();
-            _audioManager = ServiceLocator.Instance.Get<AudioManager>();
+            _audioManager = CompositionRoot.GetAudioManager();
         }
 
         protected override void OnEnable()

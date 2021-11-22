@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Sound;
 using UI;
 
 namespace Composition
@@ -7,6 +8,9 @@ namespace Composition
     {
         void Destroy();
         IUIRoot GetUIRoot();
+        AudioManager GetAudioManager();
+        CameraFollow GetPlayerCamera();
+        PlayerCharacter GetPlayerCharacter();
         IResourceManager GetResourceManager();
     }
 }

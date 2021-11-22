@@ -28,7 +28,9 @@ namespace Characters.Enemies
             _finiteStateMachine = new FiniteStateMachine();
             State.Idle = new ParasiteIdleState(this);
             State.Chase = new ParasiteChaseState(this);
-            State.Attack = new ParasiteAttackState(this);
+            State.JumpCharge = new ParasiteJumpChargeState(this);
+            State.Jump = new ParasiteJumpState(this);
+            State.Eat = new ParasiteEatState(this);
 
             _finiteStateMachine.SetState(State.Idle);
         }
@@ -49,7 +51,9 @@ namespace Characters.Enemies
         {
             public ParasiteIdleState Idle;
             public ParasiteChaseState Chase;
-            public ParasiteAttackState Attack;
+            public ParasiteJumpChargeState JumpCharge;
+            public ParasiteJumpState Jump;
+            public ParasiteEatState Eat;
         }
     }
 

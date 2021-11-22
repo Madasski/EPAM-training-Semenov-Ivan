@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,18 @@ public class EnemyHealthBarManager : MonoBehaviour
     public HealthBarUI HealthBarPrefab;
 
     private Dictionary<EnemyCharacter, HealthBarUI> _healthBarUis = new Dictionary<EnemyCharacter, HealthBarUI>();
+    private LevelManager _levelManager;
+
+    public void Init(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
+        _levelManager.EnemySpawned += DrawHealthBarForEnemy;
+    }
+
+    private void OnDisable()
+    {
+        _levelManager.EnemySpawned -= DrawHealthBarForEnemy;
+    }
 
     public void DrawHealthBarForEnemy(EnemyCharacter enemyCharacter)
     {

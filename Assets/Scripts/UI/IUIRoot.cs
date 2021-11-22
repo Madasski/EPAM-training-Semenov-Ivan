@@ -2,6 +2,8 @@
 {
     public interface IUIRoot
     {
-        public void InstantiateMainMenuUI();
+        void InstantiateMainMenuUI();
+        void InstantiateHUD();
+        void InstantiateDynamicUI(LevelManager levelManager);
     }
 }

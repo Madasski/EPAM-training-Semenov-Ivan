@@ -2,12 +2,13 @@
 using Core.Services;
 using Madasski.Skills;
 
-public class PlayerCharacter : Character, ISaveLoad, IService
+public class PlayerCharacter : Character, ISaveLoad //, IService
 {
     private readonly ExperienceManager _experienceManager = new ExperienceManager();
     private SkillController _skillController;
     private WeaponManager _weaponManager;
     private IInput _input;
+    private bool _isPinnedDown;
 
     public ExperienceManager ExperienceManager => _experienceManager;
     public SkillController SkillController => _skillController;
@@ -21,7 +22,7 @@ public class PlayerCharacter : Character, ISaveLoad, IService
         _skillController = new SkillController(this);
 
         _input = new PlayerInput();
-        ServiceLocator.Instance.Register(this);
+        // ServiceLocator.Instance.Register(this);
     }
 
     protected override void OnEnable()
@@ -36,9 +37,10 @@ public class PlayerCharacter : Character, ISaveLoad, IService
 
     protected override void Update()
     {
+        if (_isPinnedDown) return;
         base.Update();
         _input.Read();
-        
+
         if (_input.UseWeaponInput)
         {
             _weaponManager.UseCurrentWeapon(Stats.Power);
@@ -66,8 +68,10 @@ public class PlayerCharacter : Character, ISaveLoad, IService
 
     protected override void FixedUpdate()
     {
+        if (_isPinnedDown) return;
         base.FixedUpdate();
         _mover.Move(_input.MovementInput);
+        _mover.RotateAt(_input.HorizontalMouseWorldPosition);
     }
 
     protected override void Die()
@@ -86,5 +90,20 @@ public class PlayerCharacter : Character, ISaveLoad, IService
     {
         Stats.Load(gameData);
         _experienceManager.Load(gameData);
+    }
+
+    public void Init()
+    {
+        //todo init with starting data
+    }
+
+    public void PinDown()
+    {
+        _isPinnedDown = true;
+    }
+
+    public void ReleaseFromPinDown()
+    {
+        _isPinnedDown = false;
     }
 }

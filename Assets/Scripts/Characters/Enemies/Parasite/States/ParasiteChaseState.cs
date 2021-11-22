@@ -31,7 +31,7 @@ namespace Characters.Enemies
 
             if (_parasite.IsPlayerInAttackRange)
             {
-                _parasite.FiniteStateMachine.SetState(_parasite.State.Attack);
+                _parasite.FiniteStateMachine.SetState(_parasite.State.JumpCharge);
             }
 
             if (_parasite.IsPlayerInDetectionRange == false)

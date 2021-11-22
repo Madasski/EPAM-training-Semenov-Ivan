@@ -10,15 +10,15 @@ namespace Madasski.UI.HUD
 
         private void Awake()
         {
-            var player = ServiceLocator.Instance.Get<PlayerCharacter>();
-            var playerSkillController = player.SkillController;
-            var playerSkills = playerSkillController.AvailableSkills;
+            // var player = ServiceLocator.Instance.Get<PlayerCharacter>();
+            // var playerSkillController = player.SkillController;
+            // var playerSkills = playerSkillController.AvailableSkills;
 
-            foreach (var skillType in playerSkills)
-            {
-                var skillView = Instantiate(_skillViewPrefab, transform);
-                skillView.Icon.sprite = ServiceLocator.Instance.Get<SkillLibrary>().GetSkillIconByType(skillType);
-            }
+            // foreach (var skillType in playerSkills)
+            // {
+            //     var skillView = Instantiate(_skillViewPrefab, transform);
+            //     skillView.Icon.sprite = ServiceLocator.Instance.Get<SkillLibrary>().GetSkillIconByType(skillType);
+            // }
         }
     }
 }

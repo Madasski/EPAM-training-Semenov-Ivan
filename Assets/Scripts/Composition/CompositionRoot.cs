@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Sound;
 using UI;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Composition
 {
     public class CompositionRoot : MonoBehaviour
     {
-        private static IComposition s_composition = new ReleaseComposition();
+        private static readonly IComposition s_composition = new ReleaseComposition();
 
         private void OnDestroy()
         {
@@ -21,6 +22,21 @@ namespace Composition
         public static IResourceManager GetResourceManager()
         {
             return s_composition.GetResourceManager();
+        }
+
+        public static CameraFollow GetPlayerCamera()
+        {
+            return s_composition.GetPlayerCamera();
+        }
+
+        public static PlayerCharacter GetPlayerCharacter()
+        {
+            return s_composition.GetPlayerCharacter();
+        }
+
+        public static AudioManager GetAudioManager()
+        {
+            return s_composition.GetAudioManager();
         }
     }
 }

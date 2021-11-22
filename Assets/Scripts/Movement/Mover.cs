@@ -15,7 +15,7 @@ public class Mover
     {
         _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.Stats.Speed;
     }
-    
+
     public void DashAtLookDirection(float distance)
     {
         _character.Rigidbody.MovePosition(_character.Rigidbody.position + _character.transform.forward * distance);
@@ -40,10 +40,15 @@ public class Mover
         RotateAt(targetPosition);
     }
 
-    public void RotateAt(Vector3 targetPosition)
+    private void RotateAt(Vector3 targetPosition)
     {
-        var directionToLook = targetPosition - _character.Rigidbody.position;
-        var targetRotation = Mathf.Atan2(directionToLook.z, directionToLook.x) * Mathf.Rad2Deg - 90f;
+        RotateAt(new Vector2(targetPosition.x,targetPosition.z));
+    }
+
+    public void RotateAt(Vector2 targetPosition)
+    {
+        var directionToLook = targetPosition - new Vector2(_character.Rigidbody.position.x, _character.Rigidbody.position.z);
+        var targetRotation = Mathf.Atan2(directionToLook.y, directionToLook.x) * Mathf.Rad2Deg - 90f;
         _character.Rigidbody.rotation = Quaternion.Euler(new Vector3(0, -targetRotation, 0));
     }
 }

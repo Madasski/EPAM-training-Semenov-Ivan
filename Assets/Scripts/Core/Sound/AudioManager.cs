@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-namespace Core.Services
+namespace Core.Sound
 {
-    public class AudioManager : MonoBehaviour, IService
+    public class AudioManager : MonoBehaviour
     {
         private AudioSource _sfxSource;
         private AudioSource _musicSource;
 
         private void Awake()
         {
-            ServiceLocator.Instance.Register(this);
             _sfxSource = gameObject.AddComponent<AudioSource>();
             _musicSource = gameObject.AddComponent<AudioSource>();
+            gameObject.AddComponent<AudioListener>();
         }
 
         public void PlaySound(AudioClip audioClip)

@@ -1,3 +1,4 @@
+using Composition;
 using Game.Weapons;
 using UnityEngine;
 
@@ -9,30 +10,46 @@ public class HUD : MonoBehaviour
 
     private PlayerCharacter _playerCharacter;
 
+    private void Awake()
+    {
+        _playerCharacter = CompositionRoot.GetPlayerCharacter();
+    }
+
     private void OnEnable()
     {
         if (_playerCharacter)
         {
-            _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
-            _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
-            _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
-            _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
-            _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
-            _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
+            SubscribeToPlayerChanges();
         }
     }
+
 
     private void OnDisable()
     {
         if (_playerCharacter)
         {
-            _playerCharacter.WeaponManager.WeaponChanged -= ChangedWeapon;
-            _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
-            _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
-            _playerCharacter.ExperienceManager.LevelGained -= OnPlayerLevelGained;
-            _playerCharacter.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
-            _playerCharacter.Stats.PowerUpdated -= OnPlayerPowerUpdated;
+            UnsubscribeFromPlayerChanges();
         }
+    }
+
+    private void SubscribeToPlayerChanges()
+    {
+        _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
+        _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
+        _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
+        _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
+        _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
+        _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
+    }
+
+    private void UnsubscribeFromPlayerChanges()
+    {
+        _playerCharacter.WeaponManager.WeaponChanged -= ChangedWeapon;
+        _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
+        _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
+        _playerCharacter.ExperienceManager.LevelGained -= OnPlayerLevelGained;
+        _playerCharacter.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
+        _playerCharacter.Stats.PowerUpdated -= OnPlayerPowerUpdated;
     }
 
     private void OnPlayerSpeedUpdated(int newAmount)
@@ -77,11 +94,6 @@ public class HUD : MonoBehaviour
     public void SetPlayer(PlayerCharacter playerCharacter)
     {
         _playerCharacter = playerCharacter;
-        _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
-        _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
-        _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
-        _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
-        _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
-        _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
+        SubscribeToPlayerChanges();
     }
 }

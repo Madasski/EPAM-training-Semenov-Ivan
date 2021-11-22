@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &22142537
+--- !u!1 &793281497
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,48 +131,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 22142539}
-  - component: {fileID: 22142538}
+  - component: {fileID: 793281499}
+  - component: {fileID: 793281498}
   m_Layer: 0
-  m_Name: LevelLoader
+  m_Name: Starter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &22142538
+--- !u!114 &793281498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22142537}
+  m_GameObject: {fileID: 793281497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a769d962b8e28b4d8282f84ff7139c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d352f2490b75ef488b2473ca8eda92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 3792339676432153157, guid: c41da5f5cc8887e4e9d64dadbcff342b, type: 3}
-  LevelPrefab: {fileID: 400592974345905348, guid: 1bc88498bfa73754486800818c2ca7c7, type: 3}
-  PlayerPrefab: {fileID: 2813740614080801262, guid: 3d557c73608a8f3428cd2b676ae2df01, type: 3}
-  EnemySpawnerPrefab: {fileID: 8199084557806380365, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
-  CameraPrefab: {fileID: 3427989875252466812, guid: 5d80f94a1c66e63488bae58f4bae5f63, type: 3}
-  SkillLibraryPrefab: {fileID: 6651303935023541333, guid: 9ee9a644dd529e8429f78cd7e589ad2f, type: 3}
-  AudioManagerPrefab: {fileID: 2066980206081931137, guid: a1b852834ed7e034eb47be5aeb98fa7b, type: 3}
-  _menuMusic: {fileID: 8300000, guid: 156f5266e220f274dab91c1e84cccaaa, type: 3}
---- !u!4 &22142539
+--- !u!4 &793281499
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22142537}
+  m_GameObject: {fileID: 793281497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1711674311
 GameObject:
@@ -215,5 +207,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

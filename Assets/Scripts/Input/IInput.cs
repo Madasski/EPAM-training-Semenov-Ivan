@@ -7,6 +7,7 @@ public interface IInput
     public bool[] UseSkillInput { get; }
     public bool ReloadInput { get; }
     public int ChangeWeaponInput { get; }
+    public Vector2 HorizontalMouseWorldPosition { get; }
 
     public void Read();
 }

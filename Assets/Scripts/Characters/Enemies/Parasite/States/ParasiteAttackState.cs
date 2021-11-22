@@ -4,7 +4,7 @@ namespace Characters.Enemies
 {
     public class ParasiteAttackState : ParasiteState
     {
-        public enum State
+        private enum State
         {
             JumpCharging,
             Jumping,

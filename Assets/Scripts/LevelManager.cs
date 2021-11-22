@@ -1,40 +1,51 @@
 using System;
-using Core.Saving;
-using Core.Services;
-using Madasski;
-using UI;
+using Composition;
+using Core;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager //: MonoBehaviour
 {
+    public event Action LevelStarted;
     public event Action OnLevelEnd;
     public event Action OnLevelPausePress;
+    public event Action<EnemyCharacter> EnemySpawned;
+    public event Action<EnemyCharacter> EnemyDied;
 
-    public GameUI UIPrefab;
-    public GameObject LevelPrefab;
-    public PlayerCharacter PlayerPrefab;
-    public EnemySpawner EnemySpawnerPrefab;
-    public CameraFollow CameraPrefab;
-    public SkillLibrary SkillLibraryPrefab;
-    public AudioManager AudioManagerPrefab;
+    // public GameUI UIPrefab;
+    // public GameObject LevelPrefab;
+    // public PlayerCharacter PlayerPrefab;
+    //
+    // public EnemySpawner EnemySpawnerPrefab;
 
-    private GameUI _ui;
-    private PlayerCharacter _player;
-    private EnemySpawner _enemySpawner;
-    private CameraFollow _cameraFollow;
-    private GameFlow _gameFlow;
-    private SkillLibrary _skillLibrary;
-    private AudioManager _audioManager;
-    [SerializeField] private AudioClip _menuMusic;
+    // public CameraFollow CameraPrefab;
+    // public SkillLibrary SkillLibraryPrefab;
+    // public AudioManager AudioManagerPrefab;
 
-    private void Awake()
+    // private GameUI _ui;
+    // private PlayerCharacter _player;
+
+    // private EnemySpawner _enemySpawner;
+
+    // private CameraFollow _cameraFollow;
+    // private GameFlow _gameFlow;
+
+    // private SkillLibrary _skillLibrary;
+    // private AudioManager _audioManager;
+    // [SerializeField] private AudioClip _menuMusic;
+
+    private IResourceManager _resourceManager;
+    private PlayerCharacter _playerCharacter;
+    private Level _currentLevel;
+
+    public LevelManager()
     {
-        Init();
+        _resourceManager = CompositionRoot.GetResourceManager();
+        _playerCharacter = CompositionRoot.GetPlayerCharacter();
     }
 
     private void Start()
     {
-        _audioManager.PlayMusic(_menuMusic);
+        // _audioManager.PlayMusic(_menuMusic);
     }
 
     private void Update()
@@ -47,57 +58,83 @@ public class LevelManager : MonoBehaviour
         //debug
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            Save();
+            // Save();
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
-            Load();
+            // Load();
         }
     }
 
-    private void Save()
-    {
-        var gameData = new GameData();
-        _player.Save(gameData);
-        SaveLoad.SaveGameData(gameData);
-    }
+    // private void Save()
+    // {
+    //     var gameData = new GameData();
+    //     _player.Save(gameData);
+    //     SaveLoad.SaveGameData(gameData);
+    // }
 
-    private void Load()
-    {
-        var gameData = SaveLoad.LoadGameData();
-        _player.Load(gameData);
-    }
+    // private void Load()
+    // {
+    //     var gameData = SaveLoad.LoadGameData();
+    //     _player.Load(gameData);
+    // }
 
     private void Init()
     {
-        _skillLibrary = Instantiate(SkillLibraryPrefab);
-        _audioManager = Instantiate(AudioManagerPrefab);
+        // _skillLibrary = Instantiate(SkillLibraryPrefab);
 
-        _player = Instantiate(PlayerPrefab);
-        _cameraFollow = Instantiate(CameraPrefab);
-        _enemySpawner = Instantiate(EnemySpawnerPrefab);
-        _ui = Instantiate(UIPrefab);
-        Instantiate(LevelPrefab);
-        _gameFlow = new GameFlow(_player, _enemySpawner);
+        // _gameFlow = new GameFlow(_player, _enemySpawner);
 
-        _cameraFollow.SetTarget(_player.transform);
-        _enemySpawner.SetPlayer(_player);
+        // _ui.LevelUpScreen.PlayerCharacter = _player;
+        // OnLevelEnd += _ui.ShowLevelEndScreen;
+        // OnLevelPausePress += _ui.TogglePauseScreen;
+        // _player.ExperienceManager.LevelGained += _ui.ShowLevelUpScreen;
+        //
+        // _enemySpawner.EnemySpawned += _ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
+        //
+        // _player.LookTarget = _ui.GetComponentInChildren<CrosshairUI>().transform;
+        // _player.Died += EndLevel;
+    }
 
-        _ui.GetComponentInChildren<HUD>().SetPlayer(_player);
-        _ui.LevelUpScreen.PlayerCharacter = _player;
-        OnLevelEnd += _ui.ShowLevelEndScreen;
-        OnLevelPausePress += _ui.TogglePauseScreen;
-        _player.ExperienceManager.LevelGained += _ui.ShowLevelUpScreen;
+    public void StartLevel()
+    {
+        SpawnPlayer();
+        SpawnEnvironment();
 
-        _enemySpawner.EnemySpawned += _ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
+        LevelStarted?.Invoke();
+    }
 
-        _player.LookTarget = _ui.GetComponentInChildren<CrosshairUI>().transform;
-        _player.Died += EndLevel;
+    private void SpawnEnvironment()
+    {
+        var levelPrefab = _resourceManager.GetPrefab<ELevels, Level>(ELevels.Level01);
+        _currentLevel = GameObject.Instantiate(levelPrefab);
+
+        foreach (var spawner in _currentLevel.EnemySpawners)
+        {
+            //todo don't forget to unsubscribe later
+            spawner.EnemySpawned += OnEnemySpawned;
+            spawner.EnemyDied += OnEnemyDied;
+        }
+    }
+
+    private void SpawnPlayer()
+    {
+        _playerCharacter.Init();
     }
 
     private void EndLevel(Character player)
     {
         OnLevelEnd?.Invoke();
+    }
+
+    private void OnEnemySpawned(EnemyCharacter enemyCharacter)
+    {
+        EnemySpawned?.Invoke(enemyCharacter);
+    }
+
+    private void OnEnemyDied(EnemyCharacter enemyCharacter)
+    {
+        EnemyDied?.Invoke(enemyCharacter);
     }
 }
