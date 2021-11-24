@@ -5,9 +5,11 @@ namespace Core
 {
     public interface IResourceManager
     {
-        TPrefab GetPrefab<TType, TPrefab>(TType type) where TPrefab : Object;
         UIRoot GetUIRootPrefab();
-        PlayerCharacter GetPlayerCharacterPrefab();
         CameraFollow GetCameraPrefab();
+        MainMenuUI GetMainMenuUIPrefab();
+        HUD GetHUDPrefab();
+        PlayerCharacter GetPlayerCharacterPrefab();
+        TPrefab GetPrefab<TType, TPrefab>(TType type) where TPrefab : Object;
     }
 }

@@ -22,6 +22,18 @@ namespace Core
             return uiRootPrefab;
         }
 
+        public HUD GetHUDPrefab()
+        {
+            var hudPrefab = Resources.Load<HUD>("HUD");
+            return hudPrefab;
+        }
+
+        public MainMenuUI GetMainMenuUIPrefab()
+        {
+            var mainMenuUIPrefab = Resources.Load<MainMenuUI>("MainMenuUI");
+            return mainMenuUIPrefab;
+        }
+
         public PlayerCharacter GetPlayerCharacterPrefab()
         {
             var playerPrefab = Resources.Load<PlayerCharacter>("Player");

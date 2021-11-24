@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    public AmmoDisplayUI AmmoDisplayUI;
-    public HealthDisplayUI HealthDisplayUI;
-    public StatDisplay StatDisplay;
-
+    [SerializeField] private AmmoDisplayUI _ammoDisplayUI;
+    [SerializeField] private HealthDisplayUI _healthDisplayUI;
+    [SerializeField] private StatDisplay _statDisplay;
     private PlayerCharacter _playerCharacter;
+
+    // public AmmoDisplayUI AmmoDisplayUI => _ammoDisplayUI;
+    // public HealthDisplayUI HealthDisplayUI => _healthDisplayUI;
+    // public StatDisplay StatDisplay => _statDisplay;
 
     private void Awake()
     {
@@ -17,12 +20,8 @@ public class HUD : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_playerCharacter)
-        {
-            SubscribeToPlayerChanges();
-        }
+        SubscribeToPlayerChanges();
     }
-
 
     private void OnDisable()
     {
@@ -54,46 +53,40 @@ public class HUD : MonoBehaviour
 
     private void OnPlayerSpeedUpdated(int newAmount)
     {
-        StatDisplay.UpdateSpeed(newAmount);
+        _statDisplay.UpdateSpeed(newAmount);
     }
 
     private void OnPlayerPowerUpdated(int newAmount)
     {
-        StatDisplay.UpdatePower(newAmount);
+        _statDisplay.UpdatePower(newAmount);
     }
 
     private void OnPlayerLevelGained()
     {
-        StatDisplay.IncreaseLevel();
+        _statDisplay.IncreaseLevel();
     }
 
     private void ChangedWeapon(Weapon newWeapon)
     {
-        AmmoDisplayUI.WeaponIcon.sprite = newWeapon.Icon;
+        _ammoDisplayUI.WeaponIcon.sprite = newWeapon.Icon;
 
         if (newWeapon is Firearm firearm)
         {
-            AmmoDisplayUI.UpdateAmmoCounter(firearm.AmmoLeft, firearm.MagazineSize);
+            _ammoDisplayUI.UpdateAmmoCounter(firearm.AmmoLeft, firearm.MagazineSize);
         }
         else
         {
-            AmmoDisplayUI.UpdateAmmoCounter(-1, -1);
+            _ammoDisplayUI.UpdateAmmoCounter(-1, -1);
         }
     }
 
     private void OnChangeAmmoLeft(int ammoLeft)
     {
-        AmmoDisplayUI.UpdateAmmoCounter(ammoLeft);
+        _ammoDisplayUI.UpdateAmmoCounter(ammoLeft);
     }
 
     private void OnPlayerHealthChange(float newHealth, float maxHealth)
     {
-        HealthDisplayUI.UpdateHealth(newHealth, maxHealth);
-    }
-
-    public void SetPlayer(PlayerCharacter playerCharacter)
-    {
-        _playerCharacter = playerCharacter;
-        SubscribeToPlayerChanges();
+        _healthDisplayUI.UpdateHealth(newHealth, maxHealth);
     }
 }

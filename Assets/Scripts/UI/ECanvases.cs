@@ -1,9 +1,9 @@
 ﻿namespace UI
 {
-    public enum ECanvases
-    {
-        MainMenuUI,
-        HUD,
-        DynamicUI
-    }
+    // public enum ECanvases
+    // {
+    //     MainMenuUI,
+    //     HUD,
+    //     DynamicUI
+    // }
 }

@@ -1,9 +1,10 @@
-﻿namespace UI
+﻿using UnityEngine;
+
+namespace UI
 {
     public interface IUIRoot
     {
-        void InstantiateMainMenuUI();
-        void InstantiateHUD();
-        void InstantiateDynamicUI(LevelManager levelManager);
+        public RectTransform DynamicCanvas { get; }
+        public RectTransform StaticCanvas { get; }
     }
 }
