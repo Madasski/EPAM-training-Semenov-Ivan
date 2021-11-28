@@ -4,8 +4,8 @@ namespace UI
 {
     public class DynamicUI : MonoBehaviour
     {
-        [SerializeField] private EnemyHealthBarManager _enemyHealthBarManager;
+        [SerializeField] private EnemyHealthBarManager enemyHealthBarManager;
 
-        public EnemyHealthBarManager EnemyHealthBarManager => _enemyHealthBarManager;
+        public EnemyHealthBarManager EnemyHealthBarManager => enemyHealthBarManager;
     }
 }

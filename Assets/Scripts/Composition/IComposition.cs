@@ -12,5 +12,9 @@ namespace Composition
         CameraFollow GetPlayerCamera();
         PlayerCharacter GetPlayerCharacter();
         IResourceManager GetResourceManager();
+        IViewFactory GetViewFactory();
+
+        IMainMenu GetMainMenu();
+        ISettingsMenu GetSettingsMenu();
     }
 }

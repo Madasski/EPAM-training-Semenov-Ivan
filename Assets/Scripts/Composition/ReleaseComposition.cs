@@ -8,21 +8,52 @@ namespace Composition
     public class ReleaseComposition : IComposition
     {
         private IUIRoot _uiRoot;
+        private ViewFactory _viewFactory;
         private CameraFollow _playerCamera;
         private AudioManager _audioManager;
         private PlayerCharacter _playerCharacter;
         private IResourceManager _resourceManager;
+
+        private IMainMenu _mainMenu;
+        private ISettingsMenu _settingsMenu;
 
         public void Destroy()
         {
             _uiRoot = null;
         }
 
+        public IMainMenu GetMainMenu()
+        {
+            if (_mainMenu == null)
+            {
+                // _mainMenu = new MainMenu();
+                var go = new GameObject("MainMenu");
+                var result = go.AddComponent<MainMenu>();
+                _mainMenu = result;
+            }
+
+            return _mainMenu;
+        }
+
+        public ISettingsMenu GetSettingsMenu()
+        {
+            if (_settingsMenu == null)
+            {
+                var go = new GameObject("SettingsMenu");
+                var result = go.AddComponent<SettingsMenu>();
+                _settingsMenu = result;
+            }
+
+            return _settingsMenu;
+        }
+
         public IUIRoot GetUIRoot()
         {
             if (_uiRoot == null)
             {
-                _uiRoot = GameObject.Instantiate(GetResourceManager().GetUIRootPrefab());
+                var resourceManager = GetResourceManager();
+
+                _uiRoot = resourceManager.CreatePrefabInstance<EComponents, IUIRoot>(EComponents.UIRoot);
             }
 
             return _uiRoot;
@@ -42,7 +73,8 @@ namespace Composition
         {
             if (_playerCamera == null)
             {
-                _playerCamera = GameObject.Instantiate(GetResourceManager().GetCameraPrefab());
+                var resourceManager = GetResourceManager();
+                _playerCamera = resourceManager.CreatePrefabInstance<EComponents, CameraFollow>(EComponents.PlayerCamera);
             }
 
             return _playerCamera;
@@ -52,7 +84,7 @@ namespace Composition
         {
             if (_playerCharacter == null)
             {
-                _playerCharacter = GameObject.Instantiate(GetResourceManager().GetPlayerCharacterPrefab());
+                // _playerCharacter = GameObject.Instantiate(GetResourceManager().GetPlayerCharacterPrefab());
             }
 
             return _playerCharacter;
@@ -66,6 +98,19 @@ namespace Composition
             }
 
             return _resourceManager;
+        }
+
+        public IViewFactory GetViewFactory()
+        {
+            if (_viewFactory == null)
+            {
+                var uiRoot = GetUIRoot();
+                var resourceManager = GetResourceManager();
+
+                _viewFactory = new ViewFactory(uiRoot, resourceManager);
+            }
+
+            return _viewFactory;
         }
     }
 }

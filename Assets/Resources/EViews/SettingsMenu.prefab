@@ -404,9 +404,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8731052959849465536}
-  - component: {fileID: 2760366656417926369}
+  - component: {fileID: 3434004687078570859}
   m_Layer: 5
-  m_Name: SettingsScreen
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2760366656417926369
+--- !u!114 &3434004687078570859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,8 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80641e9ad7073540a82b8124e48a8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BloodToggle: {fileID: 6854962083303128764}
-  _backToMenuButton: {fileID: 5543156531739403855}
+  _backButton: {fileID: 5543156531739403855}
   _applyButton: {fileID: 1718583723179058834}
 --- !u!1 &8438817888450415754
 GameObject:
@@ -535,7 +534,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3069524592553520438, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_Name
-      value: BackToMenuButton
+      value: BackButton
       objectReference: {fileID: 0}
     - target: {fileID: 4953016521584492328, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_Text
@@ -680,7 +679,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3069524592553520438, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_Name
-      value: ApplySettingsButton
+      value: ApplyButton
       objectReference: {fileID: 0}
     - target: {fileID: 4953016521584492328, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_Text
@@ -697,7 +696,7 @@ PrefabInstance:
     - target: {fileID: 5610533348861724202, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2760366656417926369}
+      objectReference: {fileID: 0}
     - target: {fileID: 5610533348861724202, guid: 69da9194bb844844580ef0cd82608b32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

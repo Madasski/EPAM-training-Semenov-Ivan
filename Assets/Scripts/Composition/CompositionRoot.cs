@@ -8,6 +8,7 @@ namespace Composition
     public class CompositionRoot : MonoBehaviour
     {
         private static readonly IComposition s_composition = new ReleaseComposition();
+        // private static readonly IComposition s_composition = new ReleaseComposition();
 
         private void OnDestroy()
         {
@@ -37,6 +38,21 @@ namespace Composition
         public static AudioManager GetAudioManager()
         {
             return s_composition.GetAudioManager();
+        }
+
+        public static IViewFactory GetViewFactory()
+        {
+            return s_composition.GetViewFactory();
+        }
+
+        public static IMainMenu GetMainMenu()
+        {
+            return s_composition.GetMainMenu();
+        }
+
+        public static ISettingsMenu GetSettingsMenu()
+        {
+            return s_composition.GetSettingsMenu();
         }
     }
 }

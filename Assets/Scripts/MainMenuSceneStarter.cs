@@ -1,21 +1,17 @@
 using Composition;
-using Core;
-using UI;
 using UnityEngine;
 
 public class MainMenuSceneStarter : MonoBehaviour
 {
-    private IUIRoot _uiRoot;
-    private IResourceManager _resourceManager;
+    private IMainMenu _mainMenu;
 
     private void Awake()
     {
-        _uiRoot = CompositionRoot.GetUIRoot();
-        _resourceManager = CompositionRoot.GetResourceManager();
+        _mainMenu = CompositionRoot.GetMainMenu();
+    }
 
-        var mainMenuUIPrefab = _resourceManager.GetMainMenuUIPrefab();
-        Instantiate(mainMenuUIPrefab, _uiRoot.StaticCanvas);
-
-        // _uiRoot.InstantiateMainMenuUI();
+    private void Start()
+    {
+        _mainMenu.Show();
     }
 }
