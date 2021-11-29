@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using Composition;
+using UI;
 using UnityEngine;
 
 public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
 {
-    private Dictionary<Health, HealthBarUI> _healthBarUis = new Dictionary<Health, HealthBarUI>();
+    private Dictionary<Health, IHealthBarView> _healthBarUIs = new Dictionary<Health, IHealthBarView>();
 
     private ILevelManager _levelManager;
+    private IViewFactory _viewFactory;
 
     private void Awake()
     {
         _levelManager = CompositionRoot.GetLevelManager();
+        _viewFactory = CompositionRoot.GetViewFactory();
     }
 
     private void OnEnable()
@@ -30,11 +33,12 @@ public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
 
     public void DrawHealthBar(Health health)
     {
+        var view = _viewFactory.CreateHealthBarView();
         // var healthBar = Instantiate(HealthBarPrefab, transform);
-        // healthBar.SetTarget(health);
-        //
+        view.SetTarget(health);
+
         // health.OnHealthReachedZero += RemoveHealthBar;
-        // _healthBarUis.Add(health, healthBar);
+        _healthBarUIs.Add(health, view);
     }
 
     private void RemoveHealthBarForEnemy(EnemyCharacter enemy)

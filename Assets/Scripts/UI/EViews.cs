@@ -4,6 +4,7 @@
     {
         MainMenu,
         SettingsMenu,
-        HUD
+        HUD,
+        HealthBar
     }
 }

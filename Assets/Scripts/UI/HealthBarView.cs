@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarUI : MonoBehaviour
+public class HealthBarView : SimpleView, IHealthBarView
 {
     public Image LeftSprite;
     public Image MiddleSprite;
@@ -58,7 +58,7 @@ public class HealthBarUI : MonoBehaviour
         LeftSprite.fillAmount = percent;
 
         if (backSpriteChangingCoroutine != null) StopCoroutine(backSpriteChangingCoroutine);
-        
+
         backSpriteChangingCoroutine = StartCoroutine(BackSpriteChanging(percent));
     }
 
@@ -71,7 +71,7 @@ public class HealthBarUI : MonoBehaviour
         {
             currentPercent = BackRightSprite.fillAmount + BackMiddleSprite.fillAmount + BackLeftSprite.fillAmount;
             percentToDraw = Mathf.MoveTowards(currentPercent, targetPercent, .02f);
-            
+
             BackRightSprite.fillAmount = percentToDraw - 2f;
             BackMiddleSprite.fillAmount = percentToDraw - 1f;
             BackLeftSprite.fillAmount = percentToDraw;
