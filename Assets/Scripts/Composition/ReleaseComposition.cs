@@ -23,6 +23,7 @@ namespace Composition
         public void Destroy()
         {
             _uiRoot = null;
+            _viewFactory = null;
             _levelManager = null;
         }
 
