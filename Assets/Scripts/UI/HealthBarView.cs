@@ -41,6 +41,12 @@ public class HealthBarView : SimpleView, IHealthBarView
         FollowTarget();
     }
 
+    public void RemoveItself()
+    {
+        
+        Destroy(gameObject);
+    }
+
     private void OnDisable()
     {
         if (_target)

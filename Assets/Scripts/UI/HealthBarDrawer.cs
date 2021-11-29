@@ -19,11 +19,13 @@ public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
     private void OnEnable()
     {
         _levelManager.EnemySpawned += DrawHealthBarForEnemy;
+        _levelManager.EnemyDied += RemoveHealthBarForEnemy;
     }
 
     private void OnDisable()
     {
         _levelManager.EnemySpawned -= DrawHealthBarForEnemy;
+        _levelManager.EnemyDied -= RemoveHealthBarForEnemy;
     }
 
     private void DrawHealthBarForEnemy(EnemyCharacter enemy)
@@ -34,10 +36,8 @@ public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
     public void DrawHealthBar(Health health)
     {
         var view = _viewFactory.CreateHealthBarView();
-        // var healthBar = Instantiate(HealthBarPrefab, transform);
         view.SetTarget(health);
 
-        // health.OnHealthReachedZero += RemoveHealthBar;
         _healthBarUIs.Add(health, view);
     }
 
@@ -48,12 +48,8 @@ public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
 
     public void RemoveHealthBar(Health health)
     {
-        // health.OnHealthReachedZero -= RemoveHealthBar;
-        // _healthBarUis.Add(health, healthBar);
-        // if (_healthBarUis.TryGetValue(enemyCharacter, out var healthBar))
-        // {
-        //     _healthBarUis.Remove(enemyCharacter);
-        //     Destroy(healthBar.gameObject);
-        // }
+        var view = _healthBarUIs[health];
+        _healthBarUIs.Remove(health);
+        view.RemoveItself();
     }
 }
