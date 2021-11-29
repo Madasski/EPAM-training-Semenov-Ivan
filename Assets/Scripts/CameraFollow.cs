@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour, ICameraFollow
 {
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _offset;

@@ -25,7 +25,7 @@ namespace Composition
             return s_composition.GetResourceManager();
         }
 
-        public static CameraFollow GetPlayerCamera()
+        public static ICameraFollow GetPlayerCamera()
         {
             return s_composition.GetPlayerCamera();
         }
@@ -53,6 +53,11 @@ namespace Composition
         public static ISettingsMenu GetSettingsMenu()
         {
             return s_composition.GetSettingsMenu();
+        }
+
+        public static IHUD GetHUD()
+        {
+            return s_composition.GetHUD();
         }
     }
 }

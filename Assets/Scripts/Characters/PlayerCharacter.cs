@@ -2,7 +2,7 @@
 using Core.Services;
 using Madasski.Skills;
 
-public class PlayerCharacter : Character, ISaveLoad //, IService
+public class PlayerCharacter : Character, ISaveLoad 
 {
     private readonly ExperienceManager _experienceManager = new ExperienceManager();
     private SkillController _skillController;

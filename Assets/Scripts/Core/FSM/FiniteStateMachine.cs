@@ -14,7 +14,7 @@ namespace Core.FSM
             }
 
             _currentState = newState;
-            Debug.Log(newState.ToString());
+            // Debug.Log(newState.ToString());
             _currentState.OnEnter();
         }
 

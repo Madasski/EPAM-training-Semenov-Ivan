@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class DynamicUI : MonoBehaviour
     {
-        [SerializeField] private EnemyHealthBarManager enemyHealthBarManager;
+        [FormerlySerializedAs("enemyHealthBarManager")] [SerializeField] private HealthBarDrawer healthBarDrawer;
 
-        public EnemyHealthBarManager EnemyHealthBarManager => enemyHealthBarManager;
+        public HealthBarDrawer HealthBarDrawer => healthBarDrawer;
     }
 }

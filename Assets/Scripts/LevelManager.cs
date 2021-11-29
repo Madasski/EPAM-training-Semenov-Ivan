@@ -3,7 +3,7 @@ using Composition;
 using Core;
 using UnityEngine;
 
-public class LevelManager //: MonoBehaviour
+public class LevelManager : ILevelManager
 {
     public event Action LevelStarted;
     public event Action OnLevelEnd;

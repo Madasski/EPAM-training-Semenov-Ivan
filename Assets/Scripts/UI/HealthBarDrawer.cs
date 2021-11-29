@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-public class EnemyHealthBarManager : MonoBehaviour
+public class HealthBarDrawer : IHealthBarDrawer
 {
-    public HealthBarUI HealthBarPrefab;
-
-    private Dictionary<Health, HealthBarUI> _healthBarUis = new Dictionary<Health, HealthBarUI>();
+    // public HealthBarUI HealthBarPrefab;
+    //
+    // private Dictionary<Health, HealthBarUI> _healthBarUis = new Dictionary<Health, HealthBarUI>();
     // private LevelManager _levelManager;
 
     // public void Init(LevelManager levelManager)
@@ -21,11 +18,11 @@ public class EnemyHealthBarManager : MonoBehaviour
 
     public void DrawHealthBar(Health health)
     {
-        var healthBar = Instantiate(HealthBarPrefab, transform);
-        healthBar.SetTarget(health);
+        // var healthBar = Instantiate(HealthBarPrefab, transform);
+        // healthBar.SetTarget(health);
 
         // health.OnHealthReachedZero += RemoveHealthBar;
-        _healthBarUis.Add(health, healthBar);
+        // _healthBarUis.Add(health, healthBar);
     }
 
     // private void RemoveHealthBar(Character character)
@@ -33,7 +30,7 @@ public class EnemyHealthBarManager : MonoBehaviour
     //     if (character is EnemyCharacter enemyCharacter) RemoveHealthBar(enemyCharacter);
     // }
 
-    private void RemoveHealthBar(Health health)
+    public void RemoveHealthBar(Health health)
     {
         // health.OnHealthReachedZero -= RemoveHealthBar;
         // _healthBarUis.Add(health, healthBar);

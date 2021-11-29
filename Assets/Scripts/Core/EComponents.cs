@@ -3,6 +3,7 @@
     public enum EComponents
     {
         UIRoot,
-        PlayerCamera
+        PlayerCamera,
+        Player
     }
 }

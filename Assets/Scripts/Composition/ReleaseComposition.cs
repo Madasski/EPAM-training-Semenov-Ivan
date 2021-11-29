@@ -9,17 +9,31 @@ namespace Composition
     {
         private IUIRoot _uiRoot;
         private ViewFactory _viewFactory;
-        private CameraFollow _playerCamera;
+        private ICameraFollow _playerCamera;
         private AudioManager _audioManager;
         private PlayerCharacter _playerCharacter;
         private IResourceManager _resourceManager;
 
+        private IHUD _hud;
         private IMainMenu _mainMenu;
         private ISettingsMenu _settingsMenu;
 
         public void Destroy()
         {
             _uiRoot = null;
+        }
+
+        public IHUD GetHUD()
+        {
+            if (_hud == null)
+            {
+                // _mainMenu = new MainMenu();
+                var go = new GameObject("HUD");
+                var result = go.AddComponent<HUD>();
+                _hud = result;
+            }
+
+            return _hud;
         }
 
         public IMainMenu GetMainMenu()
@@ -69,12 +83,12 @@ namespace Composition
             return _audioManager;
         }
 
-        public CameraFollow GetPlayerCamera()
+        public ICameraFollow GetPlayerCamera()
         {
             if (_playerCamera == null)
             {
                 var resourceManager = GetResourceManager();
-                _playerCamera = resourceManager.CreatePrefabInstance<EComponents, CameraFollow>(EComponents.PlayerCamera);
+                _playerCamera = resourceManager.CreatePrefabInstance<EComponents, ICameraFollow>(EComponents.PlayerCamera);
             }
 
             return _playerCamera;
@@ -84,7 +98,8 @@ namespace Composition
         {
             if (_playerCharacter == null)
             {
-                // _playerCharacter = GameObject.Instantiate(GetResourceManager().GetPlayerCharacterPrefab());
+                var resourceManager = GetResourceManager();
+                _playerCharacter = resourceManager.CreatePrefabInstance<EComponents, PlayerCharacter>(EComponents.Player);
             }
 
             return _playerCharacter;

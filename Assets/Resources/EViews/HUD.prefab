@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8884179593544414148}
-  - component: {fileID: 1727997664890892523}
+  - component: {fileID: 5580268099710901525}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1727997664890892523
+--- !u!114 &5580268099710901525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +47,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6101062958385799404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c719acc4be13034eb87711fd454ba83, type: 3}
+  m_Script: {fileID: 11500000, guid: 567ef30375f04b359a184a23a75b0262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoDisplayUI: {fileID: 7413049935697599956}
-  _healthDisplayUI: {fileID: 0}
+  _healthDisplayUI: {fileID: 3800676189679846384}
   _statDisplay: {fileID: 0}
 --- !u!1001 &3978574682934386292
 PrefabInstance:
@@ -155,6 +155,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 174948675356099340, guid: 8aef46fc8370c3e4986c7ae6e4ee7171, type: 3}
   m_PrefabInstance: {fileID: 3978574682934386292}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3800676189679846384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 254464665324461444, guid: 8aef46fc8370c3e4986c7ae6e4ee7171, type: 3}
+  m_PrefabInstance: {fileID: 3978574682934386292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de27e82a0b1a86f4c9bee6f87dc35961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9008779719618404842
 PrefabInstance:
   m_ObjectHideFlags: 0

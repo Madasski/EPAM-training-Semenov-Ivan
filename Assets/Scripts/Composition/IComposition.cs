@@ -9,11 +9,12 @@ namespace Composition
         void Destroy();
         IUIRoot GetUIRoot();
         AudioManager GetAudioManager();
-        CameraFollow GetPlayerCamera();
+        ICameraFollow GetPlayerCamera();
         PlayerCharacter GetPlayerCharacter();
         IResourceManager GetResourceManager();
         IViewFactory GetViewFactory();
 
+        IHUD GetHUD();
         IMainMenu GetMainMenu();
         ISettingsMenu GetSettingsMenu();
     }

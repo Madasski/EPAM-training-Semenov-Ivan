@@ -1,92 +1,99 @@
 using Composition;
 using Game.Weapons;
+using UI;
 using UnityEngine;
 
-public class HUD : MonoBehaviour
+public class HUD : MonoBehaviour, IHUD
 {
-    [SerializeField] private AmmoDisplayUI _ammoDisplayUI;
-    [SerializeField] private HealthDisplayUI _healthDisplayUI;
-    [SerializeField] private StatDisplay _statDisplay;
-    private PlayerCharacter _playerCharacter;
-
-    // public AmmoDisplayUI AmmoDisplayUI => _ammoDisplayUI;
-    // public HealthDisplayUI HealthDisplayUI => _healthDisplayUI;
-    // public StatDisplay StatDisplay => _statDisplay;
+    private IHUDView _view;
+    private PlayerCharacter _player;
 
     private void Awake()
     {
-        _playerCharacter = CompositionRoot.GetPlayerCharacter();
+        var viewFactory = CompositionRoot.GetViewFactory();
+        _view = viewFactory.CreateHUD();
+    }
+
+    public void SetPlayer(PlayerCharacter playerCharacter)
+    {
+        _player = playerCharacter;
+        UnsubscribeFromPlayerChanges();
+        SubscribeToPlayerChanges();
     }
 
     private void OnEnable()
     {
-        SubscribeToPlayerChanges();
+        if (_player != null)
+        {
+            SubscribeToPlayerChanges();
+        }
     }
 
     private void OnDisable()
     {
-        if (_playerCharacter)
+        if (_player != null)
         {
             UnsubscribeFromPlayerChanges();
         }
     }
 
+
     private void SubscribeToPlayerChanges()
     {
-        _playerCharacter.WeaponManager.WeaponChanged += ChangedWeapon;
-        _playerCharacter.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
-        _playerCharacter.Health.OnHealthChange += OnPlayerHealthChange;
-        _playerCharacter.ExperienceManager.LevelGained += OnPlayerLevelGained;
-        _playerCharacter.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
-        _playerCharacter.Stats.PowerUpdated += OnPlayerPowerUpdated;
+        _player.WeaponManager.WeaponChanged += OnChangeWeapon;
+        _player.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
+        _player.Health.OnHealthChange += OnPlayerHealthChange;
+        // _player.ExperienceManager.LevelGained += OnPlayerLevelGained;
+        // _player.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
+        // _player.Stats.PowerUpdated += OnPlayerPowerUpdated;
     }
 
     private void UnsubscribeFromPlayerChanges()
     {
-        _playerCharacter.WeaponManager.WeaponChanged -= ChangedWeapon;
-        _playerCharacter.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
-        _playerCharacter.Health.OnHealthChange -= OnPlayerHealthChange;
-        _playerCharacter.ExperienceManager.LevelGained -= OnPlayerLevelGained;
-        _playerCharacter.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
-        _playerCharacter.Stats.PowerUpdated -= OnPlayerPowerUpdated;
+        _player.WeaponManager.WeaponChanged -= OnChangeWeapon;
+        _player.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
+        _player.Health.OnHealthChange -= OnPlayerHealthChange;
+        // _player.ExperienceManager.LevelGained -= OnPlayerLevelGained;
+        // _player.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
+        // _player.Stats.PowerUpdated -= OnPlayerPowerUpdated;
     }
 
     private void OnPlayerSpeedUpdated(int newAmount)
     {
-        _statDisplay.UpdateSpeed(newAmount);
+        // _statDisplay.UpdateSpeed(newAmount);
     }
 
     private void OnPlayerPowerUpdated(int newAmount)
     {
-        _statDisplay.UpdatePower(newAmount);
+        // _statDisplay.UpdatePower(newAmount);
     }
 
     private void OnPlayerLevelGained()
     {
-        _statDisplay.IncreaseLevel();
+        // _statDisplay.IncreaseLevel();
     }
 
-    private void ChangedWeapon(Weapon newWeapon)
+    private void OnChangeWeapon(Weapon newWeapon)
     {
-        _ammoDisplayUI.WeaponIcon.sprite = newWeapon.Icon;
+        _view.SetWeapon(newWeapon.Icon);
 
         if (newWeapon is Firearm firearm)
         {
-            _ammoDisplayUI.UpdateAmmoCounter(firearm.AmmoLeft, firearm.MagazineSize);
+            _view.SetAmmo(firearm.AmmoLeft, firearm.MagazineSize);
         }
         else
         {
-            _ammoDisplayUI.UpdateAmmoCounter(-1, -1);
+            _view.SetAmmo(-1, -1);
         }
     }
 
     private void OnChangeAmmoLeft(int ammoLeft)
     {
-        _ammoDisplayUI.UpdateAmmoCounter(ammoLeft);
+        _view.SetAmmoLeft(ammoLeft);
     }
 
     private void OnPlayerHealthChange(float newHealth, float maxHealth)
     {
-        _healthDisplayUI.UpdateHealth(newHealth, maxHealth);
+        _view.SetHealth(newHealth, maxHealth);
     }
 }

@@ -13,6 +13,14 @@ namespace UI
             _resourceManager = resourceManager;
         }
 
+        public IHUDView CreateHUD()
+        {
+            var view = _resourceManager.CreatePrefabInstance<EViews, IHUDView>(EViews.HUD);
+            view.SetParent(_uiRoot.StaticCanvas);
+
+            return view;
+        }
+
         public IMainMenuView CreateMainMenu()
         {
             var view = _resourceManager.CreatePrefabInstance<EViews, IMainMenuView>(EViews.MainMenu);

@@ -3,6 +3,7 @@
     public enum EViews
     {
         MainMenu,
-        SettingsMenu
+        SettingsMenu,
+        HUD
     }
 }
