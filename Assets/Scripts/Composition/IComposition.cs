@@ -8,14 +8,16 @@ namespace Composition
     {
         void Destroy();
         IUIRoot GetUIRoot();
+        IViewFactory GetViewFactory();
         AudioManager GetAudioManager();
+        ILevelManager GetLevelManager();
         ICameraFollow GetPlayerCamera();
         PlayerCharacter GetPlayerCharacter();
         IResourceManager GetResourceManager();
-        IViewFactory GetViewFactory();
 
         IHUD GetHUD();
         IMainMenu GetMainMenu();
         ISettingsMenu GetSettingsMenu();
+        IHealthBarDrawer GetHealthBarDrawer();
     }
 }

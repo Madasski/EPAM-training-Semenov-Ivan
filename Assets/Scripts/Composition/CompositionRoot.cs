@@ -59,5 +59,15 @@ namespace Composition
         {
             return s_composition.GetHUD();
         }
+
+        public static ILevelManager GetLevelManager()
+        {
+            return s_composition.GetLevelManager();
+        }
+
+        public static IHealthBarDrawer GetHealthBarDrawer()
+        {
+            return s_composition.GetHealthBarDrawer();
+        }
     }
 }

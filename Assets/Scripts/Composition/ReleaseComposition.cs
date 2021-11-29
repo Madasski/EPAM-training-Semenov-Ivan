@@ -9,6 +9,7 @@ namespace Composition
     {
         private IUIRoot _uiRoot;
         private ViewFactory _viewFactory;
+        private LevelManager _levelManager;
         private ICameraFollow _playerCamera;
         private AudioManager _audioManager;
         private PlayerCharacter _playerCharacter;
@@ -17,17 +18,18 @@ namespace Composition
         private IHUD _hud;
         private IMainMenu _mainMenu;
         private ISettingsMenu _settingsMenu;
+        private IHealthBarDrawer _healthBarDrawer;
 
         public void Destroy()
         {
             _uiRoot = null;
+            _levelManager = null;
         }
 
         public IHUD GetHUD()
         {
             if (_hud == null)
             {
-                // _mainMenu = new MainMenu();
                 var go = new GameObject("HUD");
                 var result = go.AddComponent<HUD>();
                 _hud = result;
@@ -40,7 +42,6 @@ namespace Composition
         {
             if (_mainMenu == null)
             {
-                // _mainMenu = new MainMenu();
                 var go = new GameObject("MainMenu");
                 var result = go.AddComponent<MainMenu>();
                 _mainMenu = result;
@@ -59,6 +60,18 @@ namespace Composition
             }
 
             return _settingsMenu;
+        }
+
+        public IHealthBarDrawer GetHealthBarDrawer()
+        {
+            if (_healthBarDrawer == null)
+            {
+                var go = new GameObject("HealthBarDrawer");
+                var result = go.AddComponent<HealthBarDrawer>();
+                _healthBarDrawer = result;
+            }
+
+            return _healthBarDrawer;
         }
 
         public IUIRoot GetUIRoot()
@@ -81,6 +94,16 @@ namespace Composition
             }
 
             return _audioManager;
+        }
+
+        public ILevelManager GetLevelManager()
+        {
+            if (_levelManager == null)
+            {
+                _levelManager = new LevelManager();
+            }
+
+            return _levelManager;
         }
 
         public ICameraFollow GetPlayerCamera()

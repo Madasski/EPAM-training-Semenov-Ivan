@@ -15,7 +15,7 @@ public class GameplaySceneStarter : MonoBehaviour
     private void Awake()
     {
         _resourceManager = CompositionRoot.GetResourceManager();
-        _levelManager = new LevelManager();
+        _levelManager = CompositionRoot.GetLevelManager();
         _camera = CompositionRoot.GetPlayerCamera();
         _player = CompositionRoot.GetPlayerCharacter();
 
@@ -24,22 +24,10 @@ public class GameplaySceneStarter : MonoBehaviour
         _hud = CompositionRoot.GetHUD();
         _hud.SetPlayer(_player);
 
-        _healthBarDrawer = new HealthBarDrawer();
+        _healthBarDrawer = CompositionRoot.GetHealthBarDrawer();
 
         // var healthBarManagerPrefab = _resourceManager.GetHealthBarManager();
         // Instantiate(healthBarManagerPrefab, _uiRoot.DynamicCanvas);
-    }
-
-    private void OnEnable()
-    {
-        _levelManager.EnemySpawned += character => _healthBarDrawer.DrawHealthBar(character.Health);
-        _levelManager.EnemyDied += character => _healthBarDrawer.RemoveHealthBar(character.Health);
-    }
-
-    private void OnDisable()
-    {
-        _levelManager.EnemySpawned -= character => _healthBarDrawer.DrawHealthBar(character.Health);
-        _levelManager.EnemyDied -= character => _healthBarDrawer.RemoveHealthBar(character.Health);
     }
 
     private void Start()

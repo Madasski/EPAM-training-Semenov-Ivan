@@ -1,34 +1,46 @@
-public class HealthBarDrawer : IHealthBarDrawer
-{
-    // public HealthBarUI HealthBarPrefab;
-    //
-    // private Dictionary<Health, HealthBarUI> _healthBarUis = new Dictionary<Health, HealthBarUI>();
-    // private LevelManager _levelManager;
+using System.Collections.Generic;
+using Composition;
+using UnityEngine;
 
-    // public void Init(LevelManager levelManager)
-    // {
-    //     _levelManager = levelManager;
-    // _levelManager.EnemySpawned += DrawHealthBar;
-    // }
+public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
+{
+    private Dictionary<Health, HealthBarUI> _healthBarUis = new Dictionary<Health, HealthBarUI>();
+
+    private ILevelManager _levelManager;
+
+    private void Awake()
+    {
+        _levelManager = CompositionRoot.GetLevelManager();
+    }
+
+    private void OnEnable()
+    {
+        _levelManager.EnemySpawned += DrawHealthBarForEnemy;
+    }
 
     private void OnDisable()
     {
-        // _levelManager.EnemySpawned -= DrawHealthBar;
+        _levelManager.EnemySpawned -= DrawHealthBarForEnemy;
+    }
+
+    private void DrawHealthBarForEnemy(EnemyCharacter enemy)
+    {
+        DrawHealthBar(enemy.Health);
     }
 
     public void DrawHealthBar(Health health)
     {
         // var healthBar = Instantiate(HealthBarPrefab, transform);
         // healthBar.SetTarget(health);
-
+        //
         // health.OnHealthReachedZero += RemoveHealthBar;
         // _healthBarUis.Add(health, healthBar);
     }
 
-    // private void RemoveHealthBar(Character character)
-    // {
-    //     if (character is EnemyCharacter enemyCharacter) RemoveHealthBar(enemyCharacter);
-    // }
+    private void RemoveHealthBarForEnemy(EnemyCharacter enemy)
+    {
+        RemoveHealthBar(enemy.Health);
+    }
 
     public void RemoveHealthBar(Health health)
     {
