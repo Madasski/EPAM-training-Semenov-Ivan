@@ -29,9 +29,9 @@ namespace UI
             return view;
         }
 
-        public IHealthBarView CreateHealthBarView()
+        public IHealthBarView CreateHealthBar()
         {
-            var view = _resourceManager.CreatePrefabInstance<EViews, IHealthBarView>(EViews.HealthBar);
+            var view = _resourceManager.CreatePrefabInstance<EWidgets, IHealthBarView>(EWidgets.HealthBar);
             view.SetParent(_uiRoot.DynamicCanvas);
 
             return view;

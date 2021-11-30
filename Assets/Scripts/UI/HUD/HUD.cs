@@ -14,6 +14,16 @@ public class HUD : MonoBehaviour, IHUD
         _view = viewFactory.CreateHUD();
     }
 
+    public void Show()
+    {
+        _view.Show();
+    }
+
+    public void Hide()
+    {
+        _view.Hide();
+    }
+
     public void SetPlayer(PlayerCharacter playerCharacter)
     {
         _player = playerCharacter;

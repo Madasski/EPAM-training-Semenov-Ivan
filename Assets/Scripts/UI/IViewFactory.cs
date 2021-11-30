@@ -4,8 +4,7 @@
     {
         IHUDView CreateHUD();
         IMainMenuView CreateMainMenu();
-        IHealthBarView CreateHealthBarView();
+        IHealthBarView CreateHealthBar();
         ISettingsMenuView CreateSettingsMenu();
-        // IGameHUDView CreateGameHUD();
     }
 }

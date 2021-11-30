@@ -12,50 +12,24 @@ public class HealthBarView : SimpleView, IHealthBarView
     public Image BackMiddleSprite;
     public Image BackRightSprite;
 
-    private Health _target;
-    private RectTransform _transform;
     private Coroutine backSpriteChangingCoroutine;
 
-    private void Awake()
+    public void UpdatePosition(Vector2 position)
     {
-        _transform = GetComponent<RectTransform>();
+        transform.position = position;
     }
 
-    private void Update()
+    public void DestroyItself()
     {
-        FollowTarget();
-    }
-
-    private void FollowTarget()
-    {
-        if (!_target) return;
-
-        var targetPos = Camera.main.WorldToScreenPoint(_target.transform.position + Vector3.forward * .5f);
-        _transform.position = targetPos;
-    }
-
-    public void SetTarget(Health targetHealth)
-    {
-        _target = targetHealth;
-        _target.OnHealthChange += ChangeHealth;
-        FollowTarget();
+        Destroy(gameObject);
     }
 
     public void RemoveItself()
     {
-        
         Destroy(gameObject);
     }
 
-    private void OnDisable()
-    {
-        if (_target)
-        {
-            _target.OnHealthChange -= ChangeHealth;
-        }
-    }
-
-    private void ChangeHealth(float newHealth, float maxHealth)
+    public void SetHealth(float newHealth, float maxHealth)
     {
         var percent = (float) newHealth / (float) maxHealth * 3f;
 

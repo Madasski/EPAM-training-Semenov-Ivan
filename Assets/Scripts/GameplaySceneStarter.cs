@@ -8,9 +8,9 @@ public class GameplaySceneStarter : MonoBehaviour
     private PlayerCharacter _player;
     private ILevelManager _levelManager;
     private IResourceManager _resourceManager;
+    private IHealthBarDrawer _healthBarDrawer;
 
     private IHUD _hud;
-    private IHealthBarDrawer _healthBarDrawer;
 
     private void Awake()
     {
@@ -25,9 +25,6 @@ public class GameplaySceneStarter : MonoBehaviour
         _hud.SetPlayer(_player);
 
         _healthBarDrawer = CompositionRoot.GetHealthBarDrawer();
-
-        // var healthBarManagerPrefab = _resourceManager.GetHealthBarManager();
-        // Instantiate(healthBarManagerPrefab, _uiRoot.DynamicCanvas);
     }
 
     private void Start()
