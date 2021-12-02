@@ -14,7 +14,6 @@ namespace Game.Weapons
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
-        
 
         protected virtual void OnEnable()
         {

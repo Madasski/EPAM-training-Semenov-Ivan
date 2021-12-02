@@ -40,7 +40,7 @@ namespace Characters.Enemies
                 {
                     _state = State.Jumping;
                     _parasite.ParasiteAnimator.EnterJumpAirState();
-                    _jumpTargetPosition = new Vector2(_parasite.Player.Rigidbody.position.x, _parasite.Player.Rigidbody.position.z);
+                    _jumpTargetPosition = new Vector2(_parasite.Player.Mover.Transform.position.x, _parasite.Player.Mover.Transform.position.z);
                     _parasite.Mover.RotateAt(_jumpTargetPosition);
                     _parasite.GetComponent<Collider>().isTrigger = true;
                 }
@@ -81,7 +81,7 @@ namespace Characters.Enemies
                     break;
 
                 case State.Land:
-                    if (Vector3.Distance(_parasite.Rigidbody.position, _parasite.Player.Rigidbody.position) <= .1f)
+                    if (Vector3.Distance(_parasite.Rigidbody.position, _parasite.Player.Mover.Transform.position) <= .1f)
                     {
                         _state = State.EatEnemy;
                         _parasite.ParasiteAnimator.EnterBitingState();

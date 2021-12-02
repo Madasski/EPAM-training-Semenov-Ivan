@@ -4908,7 +4908,7 @@ Rigidbody:
   m_GameObject: {fileID: 7610785640165760360}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -5046,6 +5046,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b403e074c44e0154dafd1b69ad861a2d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d822ef0250ce570479382a9e65006a63, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d822ef0250ce570479382a9e65006a63, type: 3}
 --- !u!4 &5956126852929832958 stripped

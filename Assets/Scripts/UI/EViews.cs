@@ -5,6 +5,8 @@
         MainMenu,
         SettingsMenu,
         HUD,
-        HealthBar
+        HealthBar,
+        PauseMenu,
+        LevelEndScreen
     }
 }

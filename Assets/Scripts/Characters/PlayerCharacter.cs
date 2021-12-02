@@ -1,28 +1,27 @@
-﻿using Core.Saving;
-using Core.Services;
+﻿using Composition;
+using Core.Saving;
 using Madasski.Skills;
 
-public class PlayerCharacter : Character, ISaveLoad 
+public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 {
     private readonly ExperienceManager _experienceManager = new ExperienceManager();
     private SkillController _skillController;
-    private WeaponManager _weaponManager;
+    private IWeaponManager _weaponManager;
     private IInput _input;
     private bool _isPinnedDown;
 
     public ExperienceManager ExperienceManager => _experienceManager;
     public SkillController SkillController => _skillController;
-    public WeaponManager WeaponManager => _weaponManager;
+    public IWeaponManager WeaponManager => _weaponManager;
 
     protected override void Awake()
     {
         base.Awake();
-        _weaponManager = GetComponent<WeaponManager>();
+        _weaponManager = GetComponent<IWeaponManager>();
         Stats.Init(GameConfig.InitialPlayerStats);
         _skillController = new SkillController(this);
 
-        _input = new PlayerInput();
-        // ServiceLocator.Instance.Register(this);
+        _input = CompositionRoot.GetUserInput();
     }
 
     protected override void OnEnable()
@@ -39,7 +38,6 @@ public class PlayerCharacter : Character, ISaveLoad
     {
         if (_isPinnedDown) return;
         base.Update();
-        _input.Read();
 
         if (_input.UseWeaponInput)
         {
@@ -77,7 +75,9 @@ public class PlayerCharacter : Character, ISaveLoad
     protected override void Die()
     {
         base.Die();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        // Destroy(gameObject);
+        // Debug.Log("Is Alive");
     }
 
     public void Save(GameData gameData)
@@ -94,6 +94,7 @@ public class PlayerCharacter : Character, ISaveLoad
 
     public void Init()
     {
+        gameObject.SetActive(true);
         //todo init with starting data
     }
 

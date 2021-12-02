@@ -38,7 +38,6 @@ namespace Characters.Enemies
         public override void FixedUpdateState()
         {
             base.FixedUpdateState();
-            _parasite.Mover.Move(Vector2.zero);
         }
     }
 }

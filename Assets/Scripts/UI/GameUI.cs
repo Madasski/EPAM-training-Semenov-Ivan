@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameUI : MonoBehaviour
 {
     public GameObject EndLevelScreen;
-    public PauseScreen PauseScreen;
+    [FormerlySerializedAs("PauseScreen")] public PauseMenu pauseMenu;
     public GameObject HUD;
     public LevelUpScreen LevelUpScreen;
 
@@ -19,7 +20,7 @@ public class GameUI : MonoBehaviour
 
     public void TogglePauseScreen()
     {
-        if (PauseScreen.isActiveAndEnabled)
+        if (pauseMenu.isActiveAndEnabled)
         {
             HidePauseScreen();
         }
@@ -31,12 +32,12 @@ public class GameUI : MonoBehaviour
 
     public void ShowPauseScreen()
     {
-        PauseScreen.Show();
+        pauseMenu.Show();
     }
 
     public void HidePauseScreen()
     {
-        PauseScreen.Hide();
+        pauseMenu.Hide();
     }
 
     public void ShowLevelUpScreen()

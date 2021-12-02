@@ -4,7 +4,7 @@ namespace Characters.Enemies
 {
     public class ParasiteJumpState : ParasiteState
     {
-        private Vector2 _jumpTargetHorizontalPosition;
+        private Vector2 _horizontalJumpTargetPosition;
 
         public ParasiteJumpState(ParasiteEnemy parasite) : base(parasite)
         {
@@ -14,19 +14,14 @@ namespace Characters.Enemies
         {
             base.OnEnter();
             _parasite.ParasiteAnimator.EnterJumpAirState();
-            _jumpTargetHorizontalPosition = new Vector2(_parasite.Player.Rigidbody.position.x, _parasite.Player.Rigidbody.position.z);
-            _parasite.GetComponent<Collider>().isTrigger = true;
+            _horizontalJumpTargetPosition = new Vector2(_parasite.Player.Mover.Transform.position.x, _parasite.Player.Mover.Transform.position.z);
+            // _parasite.GetComponent<Collider>().isTrigger = true;
         }
 
         public override void OnExit()
         {
             base.OnExit();
-            _parasite.GetComponent<Collider>().isTrigger = false;
-        }
-
-        public override void UpdateState()
-        {
-            base.UpdateState();
+            // _parasite.GetComponent<Collider>().isTrigger = false;
         }
 
         public override void FixedUpdateState()
@@ -35,10 +30,10 @@ namespace Characters.Enemies
 
             var parasiteHorizontalPosition = new Vector2(_parasite.Rigidbody.position.x, _parasite.Rigidbody.position.z);
 
-            if (Vector2.Distance(parasiteHorizontalPosition, _jumpTargetHorizontalPosition) <= .1f)
+            if (Vector2.Distance(parasiteHorizontalPosition, _horizontalJumpTargetPosition) <= .2f)
             {
-                var playerHorizontalPosition = new Vector2(_parasite.Player.Rigidbody.position.x, _parasite.Player.Rigidbody.position.z);
-                if (Vector2.Distance(playerHorizontalPosition, parasiteHorizontalPosition) < .2f)
+                var playerHorizontalPosition = new Vector2(_parasite.Player.Mover.Transform.position.x, _parasite.Player.Mover.Transform.position.z);
+                if (Vector2.Distance(playerHorizontalPosition, parasiteHorizontalPosition) < .7f)
                 {
                     _parasite.FiniteStateMachine.SetState(_parasite.State.Eat);
                 }
@@ -48,14 +43,15 @@ namespace Characters.Enemies
                 }
             }
 
-            var delta = _jumpTargetHorizontalPosition - parasiteHorizontalPosition;
+            var movementDelta = _horizontalJumpTargetPosition - parasiteHorizontalPosition;
 
-            if (delta.magnitude > 1)
+            if (movementDelta.magnitude > 1)
             {
-                delta.Normalize();
+                movementDelta.Normalize();
             }
 
-            _parasite.Mover.Move(delta);
+            _parasite.Mover.Move(movementDelta);
+            _parasite.Mover.RotateAt(_horizontalJumpTargetPosition);
         }
     }
 }

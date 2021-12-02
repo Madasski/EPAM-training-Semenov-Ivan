@@ -4,9 +4,9 @@ public interface ILevelManager
 {
     event Action LevelStarted;
     event Action OnLevelEnd;
-    event Action OnLevelPausePress;
-    event Action<EnemyCharacter> EnemySpawned;
-    event Action<EnemyCharacter> EnemyDied;
+    // event Action OnLevelPausePress;
+    event Action<IEnemyCharacter> EnemySpawned;
+    event Action<IEnemyCharacter> EnemyDied;
 
     void StartLevel();
 }

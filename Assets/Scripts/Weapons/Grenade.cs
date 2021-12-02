@@ -45,7 +45,7 @@ namespace Game.Weapons
             {
                 foreach (var hit in hits)
                 {
-                    if (hit.collider.gameObject.TryGetComponent<Health>(out var health))
+                    if (hit.collider.gameObject.TryGetComponent<IHealth>(out var health))
                     {
                         health.TakeDamage(_damage);
                     }

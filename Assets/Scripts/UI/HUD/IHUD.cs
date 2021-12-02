@@ -2,5 +2,5 @@
 
 public interface IHUD : IScreen
 {
-    void SetPlayer(PlayerCharacter playerCharacter);
+    void SetPlayer(IPlayerCharacter playerCharacter);
 }

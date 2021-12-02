@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Mover
+public class Mover : IMover
 {
     private Character _character;
 
@@ -9,6 +9,7 @@ public class Mover
         _character = character;
     }
 
+    public Transform Transform => _character.Rigidbody.transform;
     public Vector3 Velocity => _character.Rigidbody.velocity;
 
     public void Move(Vector2 moveInput)
@@ -42,7 +43,7 @@ public class Mover
 
     private void RotateAt(Vector3 targetPosition)
     {
-        RotateAt(new Vector2(targetPosition.x,targetPosition.z));
+        RotateAt(new Vector2(targetPosition.x, targetPosition.z));
     }
 
     public void RotateAt(Vector2 targetPosition)

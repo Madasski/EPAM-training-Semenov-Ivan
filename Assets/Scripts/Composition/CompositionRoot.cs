@@ -69,5 +69,20 @@ namespace Composition
         {
             return s_composition.GetHealthBarDrawer();
         }
+
+        public static IPauseMenu GetPauseMenu()
+        {
+            return s_composition.GetPauseMenu();
+        }
+
+        public static IInput GetUserInput()
+        {
+            return s_composition.GetUserInput();
+        }
+
+        public static ILevelEndScreen GetLevelEndScreen()
+        {
+            return s_composition.GetLevelEndScreen();
+        }
     }
 }

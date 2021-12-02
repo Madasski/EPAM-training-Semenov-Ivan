@@ -29,6 +29,14 @@ namespace UI
             return view;
         }
 
+        public IPauseMenuView CreatePauseMenu()
+        {
+            var view = _resourceManager.CreatePrefabInstance<EViews, IPauseMenuView>(EViews.PauseMenu);
+            view.SetParent(_uiRoot.StaticCanvas);
+
+            return view;
+        }
+
         public IHealthBarView CreateHealthBar()
         {
             var view = _resourceManager.CreatePrefabInstance<EWidgets, IHealthBarView>(EWidgets.HealthBar);
@@ -40,6 +48,14 @@ namespace UI
         public ISettingsMenuView CreateSettingsMenu()
         {
             var view = _resourceManager.CreatePrefabInstance<EViews, ISettingsMenuView>(EViews.SettingsMenu);
+            view.SetParent(_uiRoot.StaticCanvas);
+
+            return view;
+        }
+
+        public ILevelEndScreenView CreateLevelEndScreen()
+        {
+            var view = _resourceManager.CreatePrefabInstance<EViews, ILevelEndScreenView>(EViews.LevelEndScreen);
             view.SetParent(_uiRoot.StaticCanvas);
 
             return view;

@@ -14,6 +14,7 @@ namespace Characters.Enemies
         public override void OnEnter()
         {
             base.OnEnter();
+            _pinDuration = 4f;
             _parasite.ParasiteAnimator.EnterBitingState();
             _parasite.Player.PinDown();
         }

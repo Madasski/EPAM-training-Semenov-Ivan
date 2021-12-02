@@ -28,20 +28,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        // Spawn(EnemiesToSpawn[0],transform.position);
+        Spawn(EnemiesToSpawn[0],transform.position);
     }
 
     private void Update()
     {
-        if (!_player) return;
-        
-        _timeSinceLastSpawn += Time.deltaTime;
-        if (_timeSinceLastSpawn >= DelayBetweenSpawns)
-        {
-            var randomEnemy = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
-            Spawn(randomEnemy, transform.position);
-            _timeSinceLastSpawn = 0f;
-        }
+        // if (!_player) return;
+        //
+        // _timeSinceLastSpawn += Time.deltaTime;
+        // if (_timeSinceLastSpawn >= DelayBetweenSpawns)
+        // {
+        //     var randomEnemy = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
+        //     Spawn(randomEnemy, transform.position);
+        //     _timeSinceLastSpawn = 0f;
+        // }
     }
 
     private void Spawn(EnemyCharacter gameObjectToSpawn, Vector3 spawnPosition)

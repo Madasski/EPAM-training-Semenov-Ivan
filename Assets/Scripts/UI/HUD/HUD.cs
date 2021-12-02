@@ -6,7 +6,7 @@ using UnityEngine;
 public class HUD : MonoBehaviour, IHUD
 {
     private IHUDView _view;
-    private PlayerCharacter _player;
+    private IPlayerCharacter _player;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour, IHUD
         _view.Hide();
     }
 
-    public void SetPlayer(PlayerCharacter playerCharacter)
+    public void SetPlayer(IPlayerCharacter playerCharacter)
     {
         _player = playerCharacter;
         UnsubscribeFromPlayerChanges();

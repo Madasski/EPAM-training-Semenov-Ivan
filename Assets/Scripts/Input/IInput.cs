@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public interface IInput
 {
-    public Vector2 MovementInput { get; }
-    public bool UseWeaponInput { get; }
-    public bool[] UseSkillInput { get; }
-    public bool ReloadInput { get; }
-    public int ChangeWeaponInput { get; }
-    public Vector2 HorizontalMouseWorldPosition { get; }
+    event Action PausePressed;
 
-    public void Read();
+    Vector2 MovementInput { get; }
+    bool UseWeaponInput { get; }
+    bool[] UseSkillInput { get; }
+    bool ReloadInput { get; }
+    int ChangeWeaponInput { get; }
+    Vector2 HorizontalMouseWorldPosition { get; }
 }

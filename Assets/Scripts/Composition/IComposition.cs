@@ -8,6 +8,7 @@ namespace Composition
     {
         void Destroy();
         IUIRoot GetUIRoot();
+        IInput GetUserInput();
         IViewFactory GetViewFactory();
         AudioManager GetAudioManager();
         ILevelManager GetLevelManager();
@@ -17,7 +18,9 @@ namespace Composition
 
         IHUD GetHUD();
         IMainMenu GetMainMenu();
+        IPauseMenu GetPauseMenu();
         ISettingsMenu GetSettingsMenu();
+        ILevelEndScreen GetLevelEndScreen();
         IHealthBarDrawer GetHealthBarDrawer();
     }
 }

@@ -1,5 +1,5 @@
 ﻿public interface IHealthBar
 {
-    void SetTarget(Health targetHealth);
+    void SetTarget(IHealth targetHealth, IMover targetMover);
     void DestroyItself();
 }

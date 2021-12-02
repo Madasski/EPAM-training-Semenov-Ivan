@@ -4,7 +4,8 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour, IHealthBar
 {
     private IHealthBarView _view;
-    private Health _target;
+    private IHealth _targetHealth;
+    private IMover _targetMover;
 
     private void Awake()
     {
@@ -14,9 +15,9 @@ public class HealthBar : MonoBehaviour, IHealthBar
 
     private void Update()
     {
-        if (!_target) return;
+        if (_targetHealth == null) return;
 
-        var targetPos = Camera.main.WorldToScreenPoint(_target.transform.position + Vector3.forward * .5f);
+        var targetPos = Camera.main.WorldToScreenPoint(_targetMover.Transform.position + Vector3.forward * .5f);
         _view.UpdatePosition(targetPos);
     }
 
@@ -25,15 +26,16 @@ public class HealthBar : MonoBehaviour, IHealthBar
         _view.SetHealth(newHealth, maxHealth);
     }
 
-    public void SetTarget(Health targetHealth)
+    public void SetTarget(IHealth targetHealth, IMover targetMover)
     {
-        _target = targetHealth;
-        _target.OnHealthChange += SetHealth;
+        _targetHealth = targetHealth;
+        _targetMover = targetMover;
+        _targetHealth.OnHealthChange += SetHealth;
     }
 
     private void OnDestroy()
     {
-        _target.OnHealthChange -= SetHealth;
+        _targetHealth.OnHealthChange -= SetHealth;
     }
 
     public void DestroyItself()

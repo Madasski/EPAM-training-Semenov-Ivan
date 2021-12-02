@@ -3,19 +3,19 @@ using Madasski.Stats;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour, ICharacter
 {
     public event Action<Character> Died;
 
     public Transform LookTarget;
 
     private Rigidbody _rigidbody;
-    protected Mover _mover;
-    private Health _health;
+    protected IMover _mover;
+    private IHealth _health;
 
     public Rigidbody Rigidbody => _rigidbody;
-    public Health Health => _health;
-    public Mover Mover => _mover;
+    public IHealth Health => _health;
+    public IMover Mover => _mover;
 
     public CharacterStatsController Stats;
 
@@ -44,14 +44,10 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        // _input.Read();
     }
 
     protected virtual void FixedUpdate()
     {
-        // _mover.Move();
-        // if (!LookTarget) return;
-        // _mover.RotateAtTransform(LookTarget);
     }
 
     protected virtual void Die()

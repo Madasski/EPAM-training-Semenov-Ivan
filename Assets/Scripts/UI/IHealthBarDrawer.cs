@@ -1,5 +1,5 @@
 ﻿public interface IHealthBarDrawer
 {
-    void DrawHealthBar(Health health);
-    void RemoveHealthBar(Health health);
+    void DrawHealthBar(IHealth health, IMover mover);
+    void RemoveHealthBar(IHealth health);
 }

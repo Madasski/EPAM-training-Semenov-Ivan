@@ -1,22 +1,22 @@
 ﻿using Madasski.Core;
 using UnityEngine;
 
-public class EnemyCharacter : Character
+public class EnemyCharacter : Character, IEnemyCharacter
 {
     public float DetectionRange;
     public float AttackRange;
     public int experienceForKill;
 
-    [SerializeField] private PlayerCharacter _player;
+    private IPlayerCharacter _player;
 
-    public PlayerCharacter Player => _player;
+    public IPlayerCharacter Player => _player;
 
     public bool IsPlayerInDetectionRange
     {
         get
         {
-            if (!_player) return false;
-            return Vector3.Distance(transform.position, _player.transform.position) <= DetectionRange;
+            if (_player == null) return false;
+            return Vector3.Distance(transform.position, _player.Mover.Transform.position) <= DetectionRange;
         }
     }
 
@@ -24,8 +24,8 @@ public class EnemyCharacter : Character
     {
         get
         {
-            if (!_player) return false;
-            return Vector3.Distance(transform.position, _player.transform.position) <= AttackRange;
+            if (_player == null) return false;
+            return Vector3.Distance(transform.position, _player.Mover.Transform.position) <= AttackRange;
         }
     }
 
@@ -38,6 +38,12 @@ public class EnemyCharacter : Character
     public void SetPlayer(PlayerCharacter playerCharacter)
     {
         _player = playerCharacter;
+        _player.Died += OnPlayerDied;
+    }
+
+    protected virtual void OnPlayerDied(Character player)
+    {
+        _player.Died -= OnPlayerDied;
     }
 
     protected override void Die()
@@ -48,7 +54,7 @@ public class EnemyCharacter : Character
 
     protected virtual void Start()
     {
-        if (_player)
-            LookTarget = _player.transform;
+        if (_player != null)
+            LookTarget = _player.Mover.Transform;
     }
 }

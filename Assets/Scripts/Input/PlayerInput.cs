@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class PlayerInput : IInput
+public class PlayerInput : MonoBehaviour, IInput
 {
+    public event Action PausePressed;
+
     private Vector2 _movementInput;
     private bool _attackInput;
     private bool _reloadInput;
@@ -27,8 +30,14 @@ public class PlayerInput : IInput
     public int ChangeWeaponInput => _changeWeaponInput;
     public Vector2 HorizontalMouseWorldPosition => _horizontalMouseWorldWorldPosition;
 
-    public void Read()
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PausePressed?.Invoke();
+            return;
+        }
+
         _movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         _attackInput = Input.GetButtonDown("Fire1") || Input.GetButton("Fire1");
         _reloadInput = Input.GetKeyDown(KeyCode.R);
@@ -36,11 +45,9 @@ public class PlayerInput : IInput
 
         _horizontalMouseWorldWorldPosition = GetMouseWorldPosition();
 
-
         UseSkillInput[0] = Input.GetKeyDown(KeyCode.Q);
         UseSkillInput[1] = Input.GetKeyDown(KeyCode.E) || Input.GetKey(KeyCode.E);
         UseSkillInput[2] = Input.GetKeyDown(KeyCode.F);
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

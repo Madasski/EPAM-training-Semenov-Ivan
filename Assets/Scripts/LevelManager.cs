@@ -3,13 +3,14 @@ using Composition;
 using Core;
 using UnityEngine;
 
-public class LevelManager : ILevelManager
+public class LevelManager : MonoBehaviour, ILevelManager
 {
     public event Action LevelStarted;
     public event Action OnLevelEnd;
-    public event Action OnLevelPausePress;
-    public event Action<EnemyCharacter> EnemySpawned;
-    public event Action<EnemyCharacter> EnemyDied;
+
+    // public event Action OnLevelPausePress;
+    public event Action<IEnemyCharacter> EnemySpawned;
+    public event Action<IEnemyCharacter> EnemyDied;
 
     // public GameUI UIPrefab;
     // public GameObject LevelPrefab;
@@ -37,10 +38,20 @@ public class LevelManager : ILevelManager
     private PlayerCharacter _playerCharacter;
     private Level _currentLevel;
 
-    public LevelManager()
+    public void Awake()
     {
         _resourceManager = CompositionRoot.GetResourceManager();
         _playerCharacter = CompositionRoot.GetPlayerCharacter();
+    }
+
+    private void OnEnable()
+    {
+        _playerCharacter.Died += EndLevel;
+    }
+
+    private void OnDisable()
+    {
+        _playerCharacter.Died -= EndLevel;
     }
 
     private void Start()
@@ -50,11 +61,6 @@ public class LevelManager : ILevelManager
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnLevelPausePress?.Invoke();
-        }
-
         //debug
         if (Input.GetKeyDown(KeyCode.F5))
         {
@@ -108,7 +114,7 @@ public class LevelManager : ILevelManager
     private void SpawnEnvironment()
     {
         var levelPrefab = _resourceManager.GetPrefab<ELevels, Level>(ELevels.Level01);
-        _currentLevel = GameObject.Instantiate(levelPrefab);
+        _currentLevel = Instantiate(levelPrefab);
 
         foreach (var spawner in _currentLevel.EnemySpawners)
         {

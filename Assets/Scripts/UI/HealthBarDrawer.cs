@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
 {
-    private Dictionary<Health, IHealthBar> _healthBarUIs = new Dictionary<Health, IHealthBar>();
+    private Dictionary<IHealth, IHealthBar> _healthBarUIs = new Dictionary<IHealth, IHealthBar>();
 
     private ILevelManager _levelManager;
     private IViewFactory _viewFactory;
@@ -32,26 +32,26 @@ public class HealthBarDrawer : MonoBehaviour, IHealthBarDrawer
         _levelManager.EnemyDied -= RemoveHealthBarForEnemy;
     }
 
-    private void DrawHealthBarForEnemy(EnemyCharacter enemy)
+    private void DrawHealthBarForEnemy(IEnemyCharacter enemy)
     {
-        DrawHealthBar(enemy.Health);
+        DrawHealthBar(enemy.Health, enemy.Mover);
     }
 
-    public void DrawHealthBar(Health health)
+    public void DrawHealthBar(IHealth health, IMover mover)
     {
         var go = new GameObject("HealthBar", typeof(HealthBar));
         var healthBar = go.GetComponent<IHealthBar>();
-        healthBar.SetTarget(health);
+        healthBar.SetTarget(health, mover);
 
         _healthBarUIs.Add(health, healthBar);
     }
 
-    private void RemoveHealthBarForEnemy(EnemyCharacter enemy)
+    private void RemoveHealthBarForEnemy(IEnemyCharacter enemy)
     {
         RemoveHealthBar(enemy.Health);
     }
 
-    public void RemoveHealthBar(Health health)
+    public void RemoveHealthBar(IHealth health)
     {
         var healthBar = _healthBarUIs[health];
         _healthBarUIs.Remove(health);

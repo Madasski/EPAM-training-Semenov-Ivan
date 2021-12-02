@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-
-namespace Core.FSM
+﻿namespace Core.FSM
 {
     public class FiniteStateMachine
     {
         private IState _currentState;
+
+        public IState CurrentState => _currentState;
 
         public void SetState(IState newState)
         {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Characters.Enemies
+﻿namespace Characters.Enemies
 {
     public class ParasiteIdleState : ParasiteState
     {
@@ -17,6 +15,7 @@ namespace Characters.Enemies
         public override void UpdateState()
         {
             base.UpdateState();
+            
             if (_parasite.IsPlayerInDetectionRange)
             {
                 _parasite.FiniteStateMachine.SetState(_parasite.State.Chase);
@@ -26,7 +25,7 @@ namespace Characters.Enemies
         public override void FixedUpdateState()
         {
             base.FixedUpdateState();
-            _parasite.Mover.Move(Vector2.zero);
+            // _parasite.Mover.Move(Vector2.zero);
         }
     }
 }

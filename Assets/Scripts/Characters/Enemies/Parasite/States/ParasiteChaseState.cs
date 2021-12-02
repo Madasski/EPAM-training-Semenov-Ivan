@@ -20,8 +20,8 @@ namespace Characters.Enemies
         {
             base.UpdateState();
 
-            var moveX = _parasite.Player.Rigidbody.position.x - _parasite.Rigidbody.position.x;
-            var moveZ = _parasite.Player.Rigidbody.position.z - _parasite.Rigidbody.position.z;
+            var moveX = _parasite.Player.Mover.Transform.position.x - _parasite.Rigidbody.position.x;
+            var moveZ = _parasite.Player.Mover.Transform.position.z - _parasite.Rigidbody.position.z;
 
             _moveDirection = new Vector2(moveX, moveZ);
             if (_moveDirection.magnitude > 1)
@@ -44,7 +44,7 @@ namespace Characters.Enemies
         {
             base.FixedUpdateState();
             _parasite.Mover.Move(_moveDirection);
-            _parasite.Mover.RotateAtTransform(_parasite.Player.transform);
+            _parasite.Mover.RotateAtTransform(_parasite.Player.Mover.Transform);
         }
     }
 }

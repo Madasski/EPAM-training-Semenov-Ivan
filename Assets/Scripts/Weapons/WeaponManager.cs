@@ -6,7 +6,16 @@ using Game.Weapons;
 using UnityEngine;
 using Weapons;
 
-public class WeaponManager : MonoBehaviour
+public interface IWeaponManager
+{
+    event Action<Weapon> WeaponChanged;
+    event Action<int> OnAmmoLeftChange;
+    void UseCurrentWeapon(float power);
+    void ReloadCurrentWeapon();
+    void ChangeWeapon(int weaponSlot);
+}
+
+public class WeaponManager : MonoBehaviour, IWeaponManager
 {
     public event Action<Weapon> WeaponChanged;
     public event Action<int> OnAmmoLeftChange;

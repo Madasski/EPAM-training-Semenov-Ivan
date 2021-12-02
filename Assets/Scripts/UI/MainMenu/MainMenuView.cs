@@ -1,7 +1,5 @@
 using System;
-using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuView : SimpleView, IMainMenuView
@@ -37,16 +35,6 @@ public class MainMenuView : SimpleView, IMainMenuView
 
     private void OnExitClicked()
     {
-        // ExitClicked();
+        ExitClicked();
     }
-
-    // private void NewGame()
-    // {
-    //     SceneManager.LoadScene(Scenes.NewGame);
-    // }
-    //
-    // private void OnSettingsButtonClick()
-    // {
-    //     SettingsButtonClicked?.Invoke();
-    // }
 }

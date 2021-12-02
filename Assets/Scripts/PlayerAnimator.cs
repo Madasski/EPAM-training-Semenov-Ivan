@@ -16,7 +16,6 @@ namespace Madasski
 
         private void FixedUpdate()
         {
-            //TODO: remove hard code
             float horizontalSpeed = _playerCharacter.Mover.Velocity.magnitude/7f;
             _animator.SetFloat(_horizontalSpeed, horizontalSpeed);
         }

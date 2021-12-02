@@ -7,6 +7,7 @@ namespace Composition
 {
     public class ReleaseComposition : IComposition
     {
+        private IInput _input;
         private IUIRoot _uiRoot;
         private ViewFactory _viewFactory;
         private LevelManager _levelManager;
@@ -17,14 +18,26 @@ namespace Composition
 
         private IHUD _hud;
         private IMainMenu _mainMenu;
+        private IPauseMenu _pauseMenu;
         private ISettingsMenu _settingsMenu;
+        private ILevelEndScreen _levelEndScreen;
         private IHealthBarDrawer _healthBarDrawer;
 
         public void Destroy()
         {
+            _input = null;
             _uiRoot = null;
             _viewFactory = null;
+            _playerCamera = null;
+            _audioManager = null;
             _levelManager = null;
+
+            _hud = null;
+            _mainMenu = null;
+            _pauseMenu = null;
+            _settingsMenu = null;
+            _levelEndScreen = null;
+            _healthBarDrawer = null;
         }
 
         public IHUD GetHUD()
@@ -51,6 +64,18 @@ namespace Composition
             return _mainMenu;
         }
 
+        public IPauseMenu GetPauseMenu()
+        {
+            if (_pauseMenu == null)
+            {
+                var go = new GameObject("PauseMenu");
+                var result = go.AddComponent<PauseMenu>();
+                _pauseMenu = result;
+            }
+
+            return _pauseMenu;
+        }
+
         public ISettingsMenu GetSettingsMenu()
         {
             if (_settingsMenu == null)
@@ -61,6 +86,18 @@ namespace Composition
             }
 
             return _settingsMenu;
+        }
+
+        public ILevelEndScreen GetLevelEndScreen()
+        {
+            if (_levelEndScreen == null)
+            {
+                var go = new GameObject("LevelEndScreen");
+                var result = go.AddComponent<LevelEndScreen>();
+                _levelEndScreen = result;
+            }
+
+            return _levelEndScreen;
         }
 
         public IHealthBarDrawer GetHealthBarDrawer()
@@ -87,6 +124,18 @@ namespace Composition
             return _uiRoot;
         }
 
+        public IInput GetUserInput()
+        {
+            if (_input == null)
+            {
+                var go = new GameObject("UserInput");
+                var result = go.AddComponent<PlayerInput>();
+                _input = result;
+            }
+
+            return _input;
+        }
+
         public AudioManager GetAudioManager()
         {
             if (_audioManager == null)
@@ -101,7 +150,7 @@ namespace Composition
         {
             if (_levelManager == null)
             {
-                _levelManager = new LevelManager();
+                _levelManager = new GameObject("LevelManager").AddComponent<LevelManager>();
             }
 
             return _levelManager;

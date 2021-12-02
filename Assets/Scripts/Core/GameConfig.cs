@@ -5,7 +5,7 @@ public static class GameConfig
 {
     public static readonly CharacterStats InitialPlayerStats = new CharacterStats()
     {
-        Health = 100,
+        Health = 10,
         Speed = 350,
         Power = 0
     };

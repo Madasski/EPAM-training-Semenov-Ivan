@@ -5,7 +5,7 @@ namespace Characters.Enemies
 {
     public class ParasiteEnemy : EnemyCharacter
     {
-        public ParasiteEnemy.States State = new ParasiteEnemy.States();
+        public States State = new States();
 
         [SerializeField] private Animator _animator;
         private FiniteStateMachine _finiteStateMachine;
@@ -18,7 +18,20 @@ namespace Characters.Enemies
         {
             base.OnEnable();
 
+            // Player.Died += OnPlayerDied;
             _parasiteAnimator = new ParasiteAnimator(_animator);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            // Player.Died -= OnPlayerDied;
+        }
+
+        protected override void OnPlayerDied(Character player)
+        {
+            base.OnPlayerDied(player);
+            _finiteStateMachine.SetState(State.Idle);
         }
 
         protected override void Start()
@@ -38,6 +51,11 @@ namespace Characters.Enemies
         protected override void Update()
         {
             base.Update();
+            if (Player == null && _finiteStateMachine.CurrentState != State.Idle)
+            {
+                _finiteStateMachine.SetState(State.Idle);
+            }
+
             _finiteStateMachine.UpdateState();
         }
 
