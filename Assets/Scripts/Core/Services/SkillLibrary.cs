@@ -8,10 +8,6 @@ namespace Core.Services
     {
         [SerializeField] private List<SkillData> _allSkills;
 
-        private void Awake()
-        {
-        }
-
         public ISkill GetSkillByType(SkillType skillType)
         {
             foreach (var skillData in _allSkills)

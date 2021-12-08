@@ -89,18 +89,6 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
         gameObject.SetActive(false);
     }
 
-    // public void Save(GameData gameData)
-    // {
-    //     Stats.Save(gameData);
-    //     _experienceManager.Save(gameData);
-    // }
-    //
-    // public void Load(GameData gameData)
-    // {
-    //     Stats.Load(gameData);
-    //     _experienceManager.Load(gameData);
-    // }
-
     public void Init()
     {
         gameObject.SetActive(true);

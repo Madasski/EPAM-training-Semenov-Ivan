@@ -71,6 +71,11 @@ public class LevelManager : MonoBehaviour, ILevelManager
         LevelFailed?.Invoke();
     }
 
+    private void OnLevelCompleted()
+    {
+        LevelCompleted?.Invoke();
+    }
+
     private void OnEnemySpawned(EnemyCharacter enemyCharacter)
     {
         EnemySpawned?.Invoke(enemyCharacter);
@@ -80,7 +85,5 @@ public class LevelManager : MonoBehaviour, ILevelManager
     {
         EnemyDied?.Invoke(enemyCharacter);
         _playerCharacter.ExperienceManager.GainExperience(enemyCharacter.experienceForKill);
-        //degug
-        LevelCompleted?.Invoke();
     }
 }
