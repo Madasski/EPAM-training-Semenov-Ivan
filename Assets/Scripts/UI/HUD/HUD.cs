@@ -14,6 +14,13 @@ public class HUD : MonoBehaviour, IHUD
         _view = viewFactory.CreateHUD();
     }
 
+    private void Start()
+    {
+        SetPlayerSpeed(_player.StatsController.Speed);
+        SetPlayerPower(_player.StatsController.Power);
+        SetPlayerLevel(_player.ExperienceManager.CurrentLevel);
+    }
+
     public void Show()
     {
         _view.Show();
@@ -47,15 +54,14 @@ public class HUD : MonoBehaviour, IHUD
         }
     }
 
-
     private void SubscribeToPlayerChanges()
     {
         _player.WeaponManager.WeaponChanged += OnChangeWeapon;
         _player.WeaponManager.OnAmmoLeftChange += OnChangeAmmoLeft;
         _player.Health.OnHealthChange += OnPlayerHealthChange;
-        // _player.ExperienceManager.LevelGained += OnPlayerLevelGained;
-        // _player.Stats.SpeedUpdated += OnPlayerSpeedUpdated;
-        // _player.Stats.PowerUpdated += OnPlayerPowerUpdated;
+        _player.ExperienceManager.LevelGained += SetPlayerLevel;
+        _player.StatsController.SpeedUpdated += SetPlayerSpeed;
+        _player.StatsController.PowerUpdated += SetPlayerPower;
     }
 
     private void UnsubscribeFromPlayerChanges()
@@ -63,24 +69,24 @@ public class HUD : MonoBehaviour, IHUD
         _player.WeaponManager.WeaponChanged -= OnChangeWeapon;
         _player.WeaponManager.OnAmmoLeftChange -= OnChangeAmmoLeft;
         _player.Health.OnHealthChange -= OnPlayerHealthChange;
-        // _player.ExperienceManager.LevelGained -= OnPlayerLevelGained;
-        // _player.Stats.SpeedUpdated -= OnPlayerSpeedUpdated;
-        // _player.Stats.PowerUpdated -= OnPlayerPowerUpdated;
+        _player.ExperienceManager.LevelGained -= SetPlayerLevel;
+        _player.StatsController.SpeedUpdated -= SetPlayerSpeed;
+        _player.StatsController.PowerUpdated -= SetPlayerPower;
     }
 
-    private void OnPlayerSpeedUpdated(int newAmount)
+    private void SetPlayerSpeed(int newAmount)
     {
-        // _statDisplay.UpdateSpeed(newAmount);
+        _view.SetSpeed(newAmount);
     }
 
-    private void OnPlayerPowerUpdated(int newAmount)
+    private void SetPlayerPower(int newAmount)
     {
-        // _statDisplay.UpdatePower(newAmount);
+        _view.SetPower(newAmount);
     }
 
-    private void OnPlayerLevelGained()
+    private void SetPlayerLevel(int level)
     {
-        // _statDisplay.IncreaseLevel();
+        _view.SetLevel(level);
     }
 
     private void OnChangeWeapon(Weapon newWeapon)

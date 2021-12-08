@@ -22,7 +22,7 @@ namespace Madasski
 
         private void GiveExperienceToPlayer(int amount)
         {
-            _player.ExperienceManager.GainExperience(amount);
+            // _player.ExperienceManager.GainExperience(amount);
         }
     }
 }

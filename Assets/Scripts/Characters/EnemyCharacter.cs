@@ -1,4 +1,5 @@
 ﻿using Madasski.Core;
+using Madasski.Stats;
 using UnityEngine;
 
 public class EnemyCharacter : Character, IEnemyCharacter
@@ -32,16 +33,16 @@ public class EnemyCharacter : Character, IEnemyCharacter
     protected override void Awake()
     {
         base.Awake();
-        Stats.Init(GameConfig.EnemyStats);
+        StatsController = new CharacterStatsController(GameConfig.EnemyStats);
     }
 
-    public void SetPlayer(PlayerCharacter playerCharacter)
+    public void SetPlayer(IPlayerCharacter playerCharacter)
     {
         _player = playerCharacter;
         _player.Died += OnPlayerDied;
     }
 
-    protected virtual void OnPlayerDied(Character player)
+    protected virtual void OnPlayerDied(ICharacter player)
     {
         _player.Died -= OnPlayerDied;
     }

@@ -7,29 +7,21 @@ public class StatDisplay : MonoBehaviour
     public Text SpeedText;
     public Text LevelText;
 
-    //todo: display should not be responsible for tracking level
-    private int _currentLevel = 1;
+    //TODO: display should not be responsible for tracking level
+    // private int _currentLevel = 1;
 
-    private void Awake()
-    {
-        PowerText.text = "POWER:0";
-        LevelText.text = "LEVEL:1";
-        SpeedText.text = "SPEED:350";
-    }
-
-    public void UpdatePower(int newPower)
+    public void SetPower(int newPower)
     {
         PowerText.text = "POWER:" + newPower;
     }
 
-    public void UpdateSpeed(int newSpeed)
+    public void SetSpeed(int newSpeed)
     {
         SpeedText.text = "SPEED:" + newSpeed;
     }
 
-    public void IncreaseLevel()
+    public void SetLevel(int level)
     {
-        _currentLevel++;
-        LevelText.text = "LEVEL:" + _currentLevel;
+        LevelText.text = "LEVEL:" + level;
     }
 }

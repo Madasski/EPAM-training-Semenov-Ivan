@@ -16,7 +16,7 @@ namespace Madasski
 
         private void FixedUpdate()
         {
-            float horizontalSpeed = _playerCharacter.Mover.Velocity.magnitude/7f;
+            float horizontalSpeed = _playerCharacter.Mover.Velocity.magnitude / 7f;
             _animator.SetFloat(_horizontalSpeed, horizontalSpeed);
         }
     }

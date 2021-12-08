@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Character : MonoBehaviour, ICharacter
 {
-    public event Action<Character> Died;
+    public event Action<ICharacter> Died;
 
     public Transform LookTarget;
 
@@ -16,30 +16,28 @@ public abstract class Character : MonoBehaviour, ICharacter
     public Rigidbody Rigidbody => _rigidbody;
     public IHealth Health => _health;
     public IMover Mover => _mover;
-
-    public CharacterStatsController Stats;
+    public ICharacterStatsController StatsController { get; protected set; }
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _health = GetComponent<Health>();
         _mover = new Mover(this);
-        Stats = new CharacterStatsController();
     }
 
     protected virtual void OnEnable()
     {
-        _health.SetMaxHealth(Stats.Health);
-        Stats.HealthUpdated += _health.SetMaxHealth;
+        _health.SetMaxHealth(StatsController.Health);
+        StatsController.HealthUpdated += _health.SetMaxHealth;
         _health.OnHealthReachedZero += Die;
-        Died = delegate(Character character) { };
+        // Died = delegate(Character character) { };
     }
 
     protected virtual void OnDisable()
     {
-        Stats.HealthUpdated -= _health.SetMaxHealth;
+        StatsController.HealthUpdated -= _health.SetMaxHealth;
         _health.OnHealthReachedZero -= Die;
-        Died = delegate(Character character) { };
+        // Died = delegate(Character character) { };
     }
 
     protected virtual void Update()

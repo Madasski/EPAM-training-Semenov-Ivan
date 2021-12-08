@@ -14,7 +14,7 @@ public class Mover : IMover
 
     public void Move(Vector2 moveInput)
     {
-        _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.Stats.Speed;
+        _character.Rigidbody.velocity = new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * _character.StatsController.Speed;
     }
 
     public void DashAtLookDirection(float distance)

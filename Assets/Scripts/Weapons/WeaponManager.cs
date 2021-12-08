@@ -60,7 +60,7 @@ public class WeaponManager : MonoBehaviour, IWeaponManager
 
         if (_currentWeapon != null) Destroy(_currentWeapon.gameObject);
 
-        var newWeaponPrefab = _resourceManager.GetPrefab<EWeapon, Weapon>(Weapons[weaponSlot-1]); 
+        var newWeaponPrefab = _resourceManager.GetPrefab<EWeapon, Weapon>(Weapons[weaponSlot - 1]);
         _currentWeapon = Instantiate(newWeaponPrefab, WeaponPosition.position, WeaponPosition.rotation);
         _currentWeapon.transform.parent = transform;
 

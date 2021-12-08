@@ -15,7 +15,7 @@
         public override void UpdateState()
         {
             base.UpdateState();
-            
+
             if (_parasite.IsPlayerInDetectionRange)
             {
                 _parasite.FiniteStateMachine.SetState(_parasite.State.Chase);

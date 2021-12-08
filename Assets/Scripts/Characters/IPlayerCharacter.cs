@@ -3,4 +3,5 @@
     void PinDown();
     void ReleaseFromPinDown();
     IWeaponManager WeaponManager { get; }
+    IExperienceManager ExperienceManager { get; }
 }

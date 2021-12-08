@@ -8,5 +8,8 @@ namespace UI
         void SetHealth(float newHealth, float maxHealth);
         void SetWeapon(Sprite newWeaponIcon);
         void SetAmmoLeft(int ammoLeft);
+        void SetLevel(int level);
+        void SetSpeed(int newSpeed);
+        void SetPower(int newAmount);
     }
 }

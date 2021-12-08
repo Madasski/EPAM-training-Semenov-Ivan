@@ -6,8 +6,7 @@ namespace UI
     {
         [SerializeField] private AmmoDisplayUI _ammoDisplayUI;
         [SerializeField] private HealthDisplayUI _healthDisplayUI;
-
-        // [SerializeField] private StatDisplay _statDisplay;
+        [SerializeField] private StatDisplay _statDisplay;
 
         public void SetAmmoLeft(int ammoLeft)
         {
@@ -27,6 +26,21 @@ namespace UI
         public void SetWeapon(Sprite newWeaponIcon)
         {
             _ammoDisplayUI.WeaponIcon.sprite = newWeaponIcon;
+        }
+
+        public void SetLevel(int level)
+        {
+            _statDisplay.SetLevel(level);
+        }
+
+        public void SetSpeed(int newSpeed)
+        {
+            _statDisplay.SetSpeed(newSpeed);
+        }
+
+        public void SetPower(int newAmount)
+        {
+            _statDisplay.SetPower(newAmount);
         }
     }
 }

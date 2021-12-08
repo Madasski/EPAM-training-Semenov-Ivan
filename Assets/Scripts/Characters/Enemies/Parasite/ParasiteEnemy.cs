@@ -28,7 +28,7 @@ namespace Characters.Enemies
             // Player.Died -= OnPlayerDied;
         }
 
-        protected override void OnPlayerDied(Character player)
+        protected override void OnPlayerDied(ICharacter player)
         {
             base.OnPlayerDied(player);
             _finiteStateMachine.SetState(State.Idle);

@@ -1,38 +1,49 @@
 ﻿using Composition;
 using Core.Saving;
 using Madasski.Skills;
+using Madasski.Stats;
 
 public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 {
-    private readonly ExperienceManager _experienceManager = new ExperienceManager();
+    private readonly IExperienceManager _experienceManager = new ExperienceManager();
     private SkillController _skillController;
+
     private IWeaponManager _weaponManager;
+
+    private ISaveLoadManager _saveLoadManager;
     private IInput _input;
     private bool _isPinnedDown;
 
-    public ExperienceManager ExperienceManager => _experienceManager;
+    public IExperienceManager ExperienceManager => _experienceManager;
     public SkillController SkillController => _skillController;
     public IWeaponManager WeaponManager => _weaponManager;
 
     protected override void Awake()
     {
         base.Awake();
+        _saveLoadManager = CompositionRoot.GetSaveLoadManager();
         _weaponManager = GetComponent<IWeaponManager>();
-        Stats.Init(GameConfig.InitialPlayerStats);
+
+        var playerStats = _saveLoadManager.CurrentSaveData.CharacterStats;
+        var initialExperience = _saveLoadManager.CurrentSaveData.PlayerExperience;
+        var initialLevel = _saveLoadManager.CurrentSaveData.PlayerLevel;
+
+        ExperienceManager.Init(initialExperience, initialLevel);
+        StatsController = new CharacterStatsController(playerStats);
         _skillController = new SkillController(this);
 
         _input = CompositionRoot.GetUserInput();
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
+    // protected override void OnEnable()
+    // {
+    //     base.OnEnable();
+    // }
+    //
+    // protected override void OnDisable()
+    // {
+    //     base.OnDisable();
+    // }
 
     protected override void Update()
     {
@@ -41,7 +52,7 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 
         if (_input.UseWeaponInput)
         {
-            _weaponManager.UseCurrentWeapon(Stats.Power);
+            _weaponManager.UseCurrentWeapon(StatsController.Power);
         }
 
         if (_input.ReloadInput)
@@ -76,21 +87,19 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
     {
         base.Die();
         gameObject.SetActive(false);
-        // Destroy(gameObject);
-        // Debug.Log("Is Alive");
     }
 
-    public void Save(GameData gameData)
-    {
-        Stats.Save(gameData);
-        _experienceManager.Save(gameData);
-    }
-
-    public void Load(GameData gameData)
-    {
-        Stats.Load(gameData);
-        _experienceManager.Load(gameData);
-    }
+    // public void Save(GameData gameData)
+    // {
+    //     Stats.Save(gameData);
+    //     _experienceManager.Save(gameData);
+    // }
+    //
+    // public void Load(GameData gameData)
+    // {
+    //     Stats.Load(gameData);
+    //     _experienceManager.Load(gameData);
+    // }
 
     public void Init()
     {

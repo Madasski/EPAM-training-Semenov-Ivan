@@ -7,6 +7,7 @@
         HUD,
         HealthBar,
         PauseMenu,
-        LevelEndScreen
+        LevelEndScreen,
+        LevelUpScreen
     }
 }

@@ -53,6 +53,14 @@ namespace UI
             return view;
         }
 
+        public ILevelUpScreenView CreateLevelUpScreen()
+        {
+            var view = _resourceManager.CreatePrefabInstance<EViews, ILevelUpScreenView>(EViews.LevelUpScreen);
+            view.SetParent(_uiRoot.StaticCanvas);
+
+            return view;
+        }
+
         public ILevelEndScreenView CreateLevelEndScreen()
         {
             var view = _resourceManager.CreatePrefabInstance<EViews, ILevelEndScreenView>(EViews.LevelEndScreen);

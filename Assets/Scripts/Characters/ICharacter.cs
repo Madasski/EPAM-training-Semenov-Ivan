@@ -1,8 +1,10 @@
 ﻿using System;
+using Madasski.Stats;
 
 public interface ICharacter
 {
-    event Action<Character> Died;
+    event Action<ICharacter> Died;
     IHealth Health { get; }
     IMover Mover { get; }
+    ICharacterStatsController StatsController { get; }
 }

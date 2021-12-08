@@ -5,38 +5,17 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour, ILevelManager
 {
+    public event Action LevelFailed;
     public event Action LevelStarted;
-    public event Action OnLevelEnd;
+    public event Action LevelCompleted;
 
-    // public event Action OnLevelPausePress;
     public event Action<IEnemyCharacter> EnemySpawned;
     public event Action<IEnemyCharacter> EnemyDied;
-
-    // public GameUI UIPrefab;
-    // public GameObject LevelPrefab;
-    // public PlayerCharacter PlayerPrefab;
-    //
-    // public EnemySpawner EnemySpawnerPrefab;
-
-    // public CameraFollow CameraPrefab;
-    // public SkillLibrary SkillLibraryPrefab;
-    // public AudioManager AudioManagerPrefab;
-
-    // private GameUI _ui;
-    // private PlayerCharacter _player;
-
-    // private EnemySpawner _enemySpawner;
-
-    // private CameraFollow _cameraFollow;
-    // private GameFlow _gameFlow;
-
-    // private SkillLibrary _skillLibrary;
-    // private AudioManager _audioManager;
-    // [SerializeField] private AudioClip _menuMusic;
 
     private IResourceManager _resourceManager;
     private PlayerCharacter _playerCharacter;
     private Level _currentLevel;
+    private ELevels _currentLevelType;
 
     public void Awake()
     {
@@ -54,66 +33,24 @@ public class LevelManager : MonoBehaviour, ILevelManager
         _playerCharacter.Died -= EndLevel;
     }
 
-    private void Start()
+    public void StartLevel(ELevels level)
     {
-        // _audioManager.PlayMusic(_menuMusic);
-    }
+        _currentLevelType = level;
 
-    private void Update()
-    {
-        //debug
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            // Save();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            // Load();
-        }
-    }
-
-    // private void Save()
-    // {
-    //     var gameData = new GameData();
-    //     _player.Save(gameData);
-    //     SaveLoad.SaveGameData(gameData);
-    // }
-
-    // private void Load()
-    // {
-    //     var gameData = SaveLoad.LoadGameData();
-    //     _player.Load(gameData);
-    // }
-
-    private void Init()
-    {
-        // _skillLibrary = Instantiate(SkillLibraryPrefab);
-
-        // _gameFlow = new GameFlow(_player, _enemySpawner);
-
-        // _ui.LevelUpScreen.PlayerCharacter = _player;
-        // OnLevelEnd += _ui.ShowLevelEndScreen;
-        // OnLevelPausePress += _ui.TogglePauseScreen;
-        // _player.ExperienceManager.LevelGained += _ui.ShowLevelUpScreen;
-        //
-        // _enemySpawner.EnemySpawned += _ui.GetComponentInChildren<EnemyHealthBarManager>().DrawHealthBarForEnemy;
-        //
-        // _player.LookTarget = _ui.GetComponentInChildren<CrosshairUI>().transform;
-        // _player.Died += EndLevel;
-    }
-
-    public void StartLevel()
-    {
         SpawnPlayer();
-        SpawnEnvironment();
+        SpawnEnvironment(level);
 
         LevelStarted?.Invoke();
     }
 
-    private void SpawnEnvironment()
+    public ELevels GetCurrentLevel()
     {
-        var levelPrefab = _resourceManager.GetPrefab<ELevels, Level>(ELevels.Level01);
+        return _currentLevelType;
+    }
+
+    private void SpawnEnvironment(ELevels level)
+    {
+        var levelPrefab = _resourceManager.GetPrefab<ELevels, Level>(level);
         _currentLevel = Instantiate(levelPrefab);
 
         foreach (var spawner in _currentLevel.EnemySpawners)
@@ -129,9 +66,9 @@ public class LevelManager : MonoBehaviour, ILevelManager
         _playerCharacter.Init();
     }
 
-    private void EndLevel(Character player)
+    private void EndLevel(ICharacter player)
     {
-        OnLevelEnd?.Invoke();
+        LevelFailed?.Invoke();
     }
 
     private void OnEnemySpawned(EnemyCharacter enemyCharacter)
@@ -142,5 +79,8 @@ public class LevelManager : MonoBehaviour, ILevelManager
     private void OnEnemyDied(EnemyCharacter enemyCharacter)
     {
         EnemyDied?.Invoke(enemyCharacter);
+        _playerCharacter.ExperienceManager.GainExperience(enemyCharacter.experienceForKill);
+        //degug
+        LevelCompleted?.Invoke();
     }
 }

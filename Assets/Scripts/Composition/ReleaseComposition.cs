@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Saving;
 using Core.Sound;
 using UI;
 using UnityEngine;
@@ -14,12 +15,14 @@ namespace Composition
         private ICameraFollow _playerCamera;
         private AudioManager _audioManager;
         private PlayerCharacter _playerCharacter;
+        private ISaveLoadManager _saveLoadManager;
         private IResourceManager _resourceManager;
 
         private IHUD _hud;
         private IMainMenu _mainMenu;
         private IPauseMenu _pauseMenu;
         private ISettingsMenu _settingsMenu;
+        private ILevelUpScreen _levelUpScreen;
         private ILevelEndScreen _levelEndScreen;
         private IHealthBarDrawer _healthBarDrawer;
 
@@ -36,6 +39,7 @@ namespace Composition
             _mainMenu = null;
             _pauseMenu = null;
             _settingsMenu = null;
+            _levelUpScreen = null;
             _levelEndScreen = null;
             _healthBarDrawer = null;
         }
@@ -86,6 +90,18 @@ namespace Composition
             }
 
             return _settingsMenu;
+        }
+
+        public ILevelUpScreen GetLevelUpScreen()
+        {
+            if (_levelUpScreen == null)
+            {
+                var go = new GameObject("LevelUpScreen");
+                var result = go.AddComponent<LevelUpScreen>();
+                _levelUpScreen = result;
+            }
+
+            return _levelUpScreen;
         }
 
         public ILevelEndScreen GetLevelEndScreen()
@@ -176,6 +192,16 @@ namespace Composition
             }
 
             return _playerCharacter;
+        }
+
+        public ISaveLoadManager GetSaveLoadManager()
+        {
+            if (_saveLoadManager == null)
+            {
+                _saveLoadManager = new SaveLoadManager();
+            }
+
+            return _saveLoadManager;
         }
 
         public IResourceManager GetResourceManager()

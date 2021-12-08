@@ -25,5 +25,4 @@ public class LevelEndScreenView : SimpleView, ILevelEndScreenView
     {
         RestartClicked.Invoke();
     }
-
 }

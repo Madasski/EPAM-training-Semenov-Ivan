@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Saving;
 using Core.Sound;
 using UI;
 using UnityEngine;
@@ -8,7 +9,6 @@ namespace Composition
     public class CompositionRoot : MonoBehaviour
     {
         private static readonly IComposition s_composition = new ReleaseComposition();
-        // private static readonly IComposition s_composition = new ReleaseComposition();
 
         private void OnDestroy()
         {
@@ -83,6 +83,16 @@ namespace Composition
         public static ILevelEndScreen GetLevelEndScreen()
         {
             return s_composition.GetLevelEndScreen();
+        }
+
+        public static ILevelUpScreen GetLevelUpScreen()
+        {
+            return s_composition.GetLevelUpScreen();
+        }
+
+        public static ISaveLoadManager GetSaveLoadManager()
+        {
+            return s_composition.GetSaveLoadManager();
         }
     }
 }

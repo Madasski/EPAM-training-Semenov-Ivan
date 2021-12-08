@@ -4968,8 +4968,7 @@ MonoBehaviour:
   LookTarget: {fileID: 0}
   DetectionRange: 6
   AttackRange: 2
-  experienceForKill: 0
-  _player: {fileID: 0}
+  experienceForKill: 25
   _animator: {fileID: 308572459558346116}
 --- !u!1001 &6134695086643027989
 PrefabInstance:

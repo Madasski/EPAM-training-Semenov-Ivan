@@ -7,6 +7,7 @@
         IPauseMenuView CreatePauseMenu();
         IHealthBarView CreateHealthBar();
         ISettingsMenuView CreateSettingsMenu();
+        ILevelUpScreenView CreateLevelUpScreen();
         ILevelEndScreenView CreateLevelEndScreen();
     }
 }

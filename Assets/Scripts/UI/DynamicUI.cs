@@ -5,7 +5,8 @@ namespace UI
 {
     public class DynamicUI : MonoBehaviour
     {
-        [FormerlySerializedAs("enemyHealthBarManager")] [SerializeField] private HealthBarDrawer healthBarDrawer;
+        [FormerlySerializedAs("enemyHealthBarManager")] [SerializeField]
+        private HealthBarDrawer healthBarDrawer;
 
         public HealthBarDrawer HealthBarDrawer => healthBarDrawer;
     }

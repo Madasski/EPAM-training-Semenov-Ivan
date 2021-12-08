@@ -17,7 +17,6 @@ namespace Characters.Enemies
 
         public virtual void FixedUpdateState()
         {
-            
         }
 
         public virtual void OnEnter()

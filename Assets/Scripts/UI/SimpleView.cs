@@ -14,6 +14,6 @@ public class SimpleView : MonoBehaviour, IView
 
     public void SetParent(Transform parent)
     {
-        transform.SetParent(parent,false);
+        transform.SetParent(parent, false);
     }
 }
