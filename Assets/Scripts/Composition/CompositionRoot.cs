@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Saving;
+using Core.Services;
 using Core.Sound;
 using UI;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace Composition
             return s_composition.GetPlayerCamera();
         }
 
-        public static PlayerCharacter GetPlayerCharacter()
+        public static IPlayerCharacter GetPlayerCharacter()
         {
             return s_composition.GetPlayerCharacter();
         }
@@ -93,6 +94,11 @@ namespace Composition
         public static ISaveLoadManager GetSaveLoadManager()
         {
             return s_composition.GetSaveLoadManager();
+        }
+
+        public static ISkillLibrary GetSkillLibrary()
+        {
+            return s_composition.GetSkillLibrary();
         }
     }
 }

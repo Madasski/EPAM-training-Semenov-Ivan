@@ -4,7 +4,14 @@ using UnityEngine;
 
 namespace Core.Services
 {
-    public class SkillLibrary : MonoBehaviour
+    public interface ISkillLibrary
+    {
+        ISkill GetSkillByType(SkillType skillType);
+        Sprite GetSkillIconByType(SkillType skillType);
+        GameObject GetSkillEffectByType(SkillType skillType);
+    }
+
+    public class SkillLibrary : MonoBehaviour, ISkillLibrary
     {
         [SerializeField] private List<SkillData> _allSkills;
 

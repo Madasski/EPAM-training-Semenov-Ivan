@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour, ILevelManager
     public event Action<IEnemyCharacter> EnemyDied;
 
     private IResourceManager _resourceManager;
-    private PlayerCharacter _playerCharacter;
+    private IPlayerCharacter _playerCharacter;
     private Level _currentLevel;
     private ELevels _currentLevelType;
 

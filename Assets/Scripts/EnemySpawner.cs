@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     public List<EnemyCharacter> EnemiesToSpawn;
     public float DelayBetweenSpawns;
 
-    private PlayerCharacter _player;
+    private IPlayerCharacter _player;
     private float _timeSinceLastSpawn = 0f;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!_player) return;
+        if (_player == null) return;
 
         _timeSinceLastSpawn += Time.deltaTime;
         if (_timeSinceLastSpawn >= DelayBetweenSpawns)
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var spawnedObject = ObjectPool.Instance.Spawn(gameObjectToSpawn);
         spawnedObject.transform.position = spawnPosition;
-        if (_player)
+        if (_player != null)
             spawnedObject.SetPlayer(_player);
         spawnedObject.Died += OnEnemyDied;
         EnemySpawned?.Invoke(spawnedObject);

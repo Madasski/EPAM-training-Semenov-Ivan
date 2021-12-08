@@ -4,6 +4,7 @@
     {
         UIRoot,
         PlayerCamera,
-        Player
+        Player,
+        SkillLibrary
     }
 }

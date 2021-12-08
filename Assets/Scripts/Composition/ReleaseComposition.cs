@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Saving;
+using Core.Services;
 using Core.Sound;
 using UI;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Composition
         private IInput _input;
         private IUIRoot _uiRoot;
         private ViewFactory _viewFactory;
+        private ISkillLibrary _skillLibrary;
         private LevelManager _levelManager;
         private ICameraFollow _playerCamera;
         private AudioManager _audioManager;
@@ -152,6 +154,19 @@ namespace Composition
             return _input;
         }
 
+        public ISkillLibrary GetSkillLibrary()
+        {
+            if (_skillLibrary == null)
+            {
+                var resourceManager = GetResourceManager();
+
+                _skillLibrary = resourceManager.CreatePrefabInstance<EComponents, SkillLibrary>(EComponents.SkillLibrary);
+            }
+
+            return _skillLibrary;
+            
+        }
+
         public AudioManager GetAudioManager()
         {
             if (_audioManager == null)
@@ -183,7 +198,7 @@ namespace Composition
             return _playerCamera;
         }
 
-        public PlayerCharacter GetPlayerCharacter()
+        public IPlayerCharacter GetPlayerCharacter()
         {
             if (_playerCharacter == null)
             {

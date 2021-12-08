@@ -5,24 +5,19 @@ using Madasski.Stats;
 
 public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 {
-    private readonly IExperienceManager _experienceManager = new ExperienceManager();
-    private SkillController _skillController;
-
-    private IWeaponManager _weaponManager;
-
     private ISaveLoadManager _saveLoadManager;
     private IInput _input;
     private bool _isPinnedDown;
 
-    public IExperienceManager ExperienceManager => _experienceManager;
-    public SkillController SkillController => _skillController;
-    public IWeaponManager WeaponManager => _weaponManager;
+    public IWeaponManager WeaponManager { get; private set; }
+    public SkillController SkillController { get; private set; }
+    public IExperienceManager ExperienceManager { get; } = new ExperienceManager();
 
     protected override void Awake()
     {
         base.Awake();
         _saveLoadManager = CompositionRoot.GetSaveLoadManager();
-        _weaponManager = GetComponent<IWeaponManager>();
+        WeaponManager = GetComponent<IWeaponManager>();
 
         var playerStats = _saveLoadManager.CurrentSaveData.CharacterStats;
         var initialExperience = _saveLoadManager.CurrentSaveData.PlayerExperience;
@@ -30,20 +25,10 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 
         ExperienceManager.Init(initialExperience, initialLevel);
         StatsController = new CharacterStatsController(playerStats);
-        _skillController = new SkillController(this);
+        SkillController = new SkillController(this);
 
         _input = CompositionRoot.GetUserInput();
     }
-
-    // protected override void OnEnable()
-    // {
-    //     base.OnEnable();
-    // }
-    //
-    // protected override void OnDisable()
-    // {
-    //     base.OnDisable();
-    // }
 
     protected override void Update()
     {
@@ -52,24 +37,24 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
 
         if (_input.UseWeaponInput)
         {
-            _weaponManager.UseCurrentWeapon(StatsController.Power);
+            WeaponManager.UseCurrentWeapon(StatsController.Power);
         }
 
         if (_input.ReloadInput)
         {
-            _weaponManager.ReloadCurrentWeapon();
+            WeaponManager.ReloadCurrentWeapon();
         }
 
         if (_input.ChangeWeaponInput != 0)
         {
-            _weaponManager.ChangeWeapon(_input.ChangeWeaponInput);
+            WeaponManager.ChangeWeapon(_input.ChangeWeaponInput);
         }
 
         for (var skillNumber = 0; skillNumber < 3; skillNumber++)
         {
             if (_input.UseSkillInput[skillNumber] == true)
             {
-                _skillController.UseSkill(skillNumber);
+                SkillController.UseSkill(skillNumber);
                 return;
             }
         }

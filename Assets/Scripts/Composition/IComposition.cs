@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Saving;
+using Core.Services;
 using Core.Sound;
 using UI;
 
@@ -11,10 +12,11 @@ namespace Composition
         IUIRoot GetUIRoot();
         IInput GetUserInput();
         IViewFactory GetViewFactory();
+        ISkillLibrary GetSkillLibrary();
         AudioManager GetAudioManager();
         ILevelManager GetLevelManager();
         ICameraFollow GetPlayerCamera();
-        PlayerCharacter GetPlayerCharacter();
+        IPlayerCharacter GetPlayerCharacter();
         ISaveLoadManager GetSaveLoadManager();
         IResourceManager GetResourceManager();
 
