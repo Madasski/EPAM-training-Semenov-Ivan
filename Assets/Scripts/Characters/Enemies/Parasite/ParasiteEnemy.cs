@@ -8,18 +8,16 @@ namespace Characters.Enemies
         public States State = new States();
 
         [SerializeField] private Animator _animator;
-        private FiniteStateMachine _finiteStateMachine;
-        private ParasiteAnimator _parasiteAnimator;
 
-        public FiniteStateMachine FiniteStateMachine => _finiteStateMachine;
-        public ParasiteAnimator ParasiteAnimator => _parasiteAnimator;
+        public FiniteStateMachine FiniteStateMachine { get; private set; }
+        public ParasiteAnimator ParasiteAnimator { get; private set; }
 
         protected override void OnEnable()
         {
             base.OnEnable();
 
             // Player.Died += OnPlayerDied;
-            _parasiteAnimator = new ParasiteAnimator(_animator);
+            ParasiteAnimator = new ParasiteAnimator(_animator);
         }
 
         protected override void OnDisable()
@@ -31,38 +29,38 @@ namespace Characters.Enemies
         protected override void OnPlayerDied(ICharacter player)
         {
             base.OnPlayerDied(player);
-            _finiteStateMachine.SetState(State.Idle);
+            FiniteStateMachine.SetState(State.Idle);
         }
 
         protected override void Start()
         {
             base.Start();
 
-            _finiteStateMachine = new FiniteStateMachine();
+            FiniteStateMachine = new FiniteStateMachine();
             State.Idle = new ParasiteIdleState(this);
             State.Chase = new ParasiteChaseState(this);
             State.JumpCharge = new ParasiteJumpChargeState(this);
             State.Jump = new ParasiteJumpState(this);
             State.Eat = new ParasiteEatState(this);
 
-            _finiteStateMachine.SetState(State.Idle);
+            FiniteStateMachine.SetState(State.Idle);
         }
 
         protected override void Update()
         {
             base.Update();
-            if (Player == null && _finiteStateMachine.CurrentState != State.Idle)
+            if (Player == null && FiniteStateMachine.CurrentState != State.Idle)
             {
-                _finiteStateMachine.SetState(State.Idle);
+                FiniteStateMachine.SetState(State.Idle);
             }
 
-            _finiteStateMachine.UpdateState();
+            FiniteStateMachine.UpdateState();
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            _finiteStateMachine.FixedUpdateState();
+            FiniteStateMachine.FixedUpdateState();
         }
 
         public class States

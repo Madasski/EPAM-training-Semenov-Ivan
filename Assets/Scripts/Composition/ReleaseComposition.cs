@@ -164,7 +164,6 @@ namespace Composition
             }
 
             return _skillLibrary;
-            
         }
 
         public AudioManager GetAudioManager()

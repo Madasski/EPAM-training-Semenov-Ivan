@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemiesToSpawn:
-  - {fileID: 3470311799086421572, guid: 7d9925102c0936943be9654d01615319, type: 3}
+  - {fileID: 3146425006583733030, guid: 4abaa08b3fd40b64188e2cc4dd93796a, type: 3}
   DelayBetweenSpawns: 1
