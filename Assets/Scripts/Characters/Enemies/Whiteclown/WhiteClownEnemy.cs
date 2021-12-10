@@ -68,19 +68,16 @@ public class WhiteClownAnimator
 
     public void EnterIdleState()
     {
-        Debug.Log("Idle");
         _animator.SetTrigger(Idle);
     }
 
     public void EnterChaseState()
     {
-        Debug.Log("Chase");
         _animator.SetTrigger(Chase);
     }
 
     public void EnterShootState()
     {
-        Debug.Log("Shoot");
         _animator.SetTrigger(Shoot);
     }
 }
