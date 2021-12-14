@@ -20,7 +20,6 @@ namespace Madasski.Core
 
                     if (_instance == null)
                     {
-                        Debug.Log("There is no instance of ObjectPool in the scene... creating new");
                         _pools = new Dictionary<GameObject, Queue<GameObject>>();
                         _spawnedObjects = new Dictionary<GameObject, GameObject>();
                         var objectPool = new GameObject();

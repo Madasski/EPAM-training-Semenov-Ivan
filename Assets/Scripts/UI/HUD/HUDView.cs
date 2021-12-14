@@ -7,6 +7,7 @@ namespace UI
         [SerializeField] private AmmoDisplayUI _ammoDisplayUI;
         [SerializeField] private HealthDisplayUI _healthDisplayUI;
         [SerializeField] private StatDisplay _statDisplay;
+        [SerializeField] private ObjectivesDisplay _objectivesDisplay;
 
         public void SetAmmoLeft(int ammoLeft)
         {
@@ -41,6 +42,11 @@ namespace UI
         public void SetPower(int newAmount)
         {
             _statDisplay.SetPower(newAmount);
+        }
+
+        public void AddObjective(IObjective objective)
+        {
+            _objectivesDisplay.AddObjective(objective);
         }
     }
 }

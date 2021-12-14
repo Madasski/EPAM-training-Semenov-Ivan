@@ -1,4 +1,5 @@
 ﻿public enum EWidgets
 {
-    HealthBar
+    HealthBar,
+    Objective
 }

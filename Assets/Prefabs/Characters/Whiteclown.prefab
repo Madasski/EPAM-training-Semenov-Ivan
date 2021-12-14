@@ -123,6 +123,7 @@ MonoBehaviour:
   DetectionRange: 6
   AttackRange: 4
   experienceForKill: 12
+  _type: 1
   FireballPrefab: {fileID: 1915705149739409329, guid: 2170e80cbf86c6341a9c537c4ecf77e4, type: 3}
   FireballSpawnPosition: {fileID: 4193365074424581844}
   _animator: {fileID: 5946598367101745180}

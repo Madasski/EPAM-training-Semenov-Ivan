@@ -4,7 +4,7 @@ public class ExperienceManager : IExperienceManager
 {
     public event Action<int> LevelGained;
 
-    private const int ExperiencePerLevel = 15;
+    private const int ExperiencePerLevel = 55;
     private int _experience = 0;
     private int _level = 1;
 
@@ -34,16 +34,4 @@ public class ExperienceManager : IExperienceManager
         _experience -= ExperiencePerLevel;
         LevelGained?.Invoke(_level);
     }
-
-    // public void Save(GameData gameData)
-    // {
-    //     gameData.PlayerExperience = _experience;
-    // }
-    //
-    // public void Load(GameData gameData)
-    // {
-    //     _experience = 0;
-    //     _level = 1;
-    //     GainExperience(gameData.PlayerExperience);
-    // }
 }

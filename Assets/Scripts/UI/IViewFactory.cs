@@ -4,6 +4,7 @@
     {
         IHUDView CreateHUD();
         IMainMenuView CreateMainMenu();
+        ObjectiveView CreateObjective();
         IPauseMenuView CreatePauseMenu();
         IHealthBarView CreateHealthBar();
         ISettingsMenuView CreateSettingsMenu();

@@ -12,6 +12,7 @@ public class PlayerCharacter : Character, IPlayerCharacter //, ISaveLoad
     public IWeaponManager WeaponManager { get; private set; }
     public SkillController SkillController { get; private set; }
     public IExperienceManager ExperienceManager { get; } = new ExperienceManager();
+    public bool IsPinnedDown => _isPinnedDown;
 
     protected override void Awake()
     {

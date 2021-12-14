@@ -2,6 +2,7 @@ using Composition;
 using Core;
 using Core.Saving;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplaySceneStarter : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class GameplaySceneStarter : MonoBehaviour
         _levelManager = CompositionRoot.GetLevelManager();
         _saveLoadManager = CompositionRoot.GetSaveLoadManager();
         _resourceManager = CompositionRoot.GetResourceManager();
-        // var experienceManager = _player.ExperienceManager;
 
         _hud = CompositionRoot.GetHUD();
         _pauseMenu = CompositionRoot.GetPauseMenu();
@@ -34,6 +34,7 @@ public class GameplaySceneStarter : MonoBehaviour
 
         _camera.SetTarget(_player.Mover.Transform);
         _hud.SetPlayer(_player);
+        _hud.SetObjectiveManager(_levelManager.ObjectiveManager);
 
         _hud.Show();
         _pauseMenu.Hide();
@@ -76,5 +77,7 @@ public class GameplaySceneStarter : MonoBehaviour
         };
 
         _saveLoadManager.SaveGameData(gameData);
+
+        SceneManager.LoadScene(Scenes.NewGame);
     }
 }

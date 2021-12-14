@@ -19,6 +19,8 @@ namespace Core.Saving
             var file = File.Create(_savePath);
             bf.Serialize(file, gameData);
             file.Close();
+
+            _currentGameData = gameData;
         }
 
         public GameData LoadGameData()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Composition;
 using Game.Weapons;
 using UI;
@@ -7,6 +8,7 @@ public class HUD : MonoBehaviour, IHUD
 {
     private IHUDView _view;
     private IPlayerCharacter _player;
+    private IObjectiveManager _objectiveManager;
 
     private void Awake()
     {
@@ -36,6 +38,20 @@ public class HUD : MonoBehaviour, IHUD
         _player = playerCharacter;
         UnsubscribeFromPlayerChanges();
         SubscribeToPlayerChanges();
+    }
+
+    public void SetObjectiveManager(IObjectiveManager objectiveManager)
+    {
+        _objectiveManager = objectiveManager;
+        _objectiveManager.ObjectivesUpdated += SetObjectives;
+    }
+
+    private void SetObjectives(List<IObjective> objectives)
+    {
+        foreach (var objective in objectives)
+        {
+            _view.AddObjective(objective);
+        }
     }
 
     private void OnEnable()

@@ -29,6 +29,13 @@ namespace UI
             return view;
         }
 
+        public ObjectiveView CreateObjective()
+        {
+            var view = _resourceManager.CreatePrefabInstance<EWidgets, ObjectiveView>(EWidgets.Objective);
+
+            return view;
+        }
+
         public IPauseMenuView CreatePauseMenu()
         {
             var view = _resourceManager.CreatePrefabInstance<EViews, IPauseMenuView>(EViews.PauseMenu);

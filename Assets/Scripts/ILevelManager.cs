@@ -9,6 +9,8 @@ public interface ILevelManager
     event Action<IEnemyCharacter> EnemySpawned;
     event Action<IEnemyCharacter> EnemyDied;
 
+    IObjectiveManager ObjectiveManager { get; }
+
     void StartLevel(ELevels level);
     ELevels GetCurrentLevel();
 }

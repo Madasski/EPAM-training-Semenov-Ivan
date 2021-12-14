@@ -9,28 +9,34 @@ public class LevelManager : MonoBehaviour, ILevelManager
     public event Action LevelStarted;
     public event Action LevelCompleted;
 
-    public event Action<IEnemyCharacter> EnemySpawned;
     public event Action<IEnemyCharacter> EnemyDied;
+    public event Action<IEnemyCharacter> EnemySpawned;
 
-    private IResourceManager _resourceManager;
-    private IPlayerCharacter _playerCharacter;
     private Level _currentLevel;
     private ELevels _currentLevelType;
+    private IResourceManager _resourceManager;
+    private IPlayerCharacter _playerCharacter;
+    private IObjectiveManager _objectiveManager;
+
+    public IObjectiveManager ObjectiveManager => _objectiveManager;
 
     public void Awake()
     {
         _resourceManager = CompositionRoot.GetResourceManager();
         _playerCharacter = CompositionRoot.GetPlayerCharacter();
+        _objectiveManager = new ObjectiveManager();
     }
 
     private void OnEnable()
     {
         _playerCharacter.Died += EndLevel;
+        _objectiveManager.AllObjectivesCompleted += OnLevelCompleted;
     }
 
     private void OnDisable()
     {
         _playerCharacter.Died -= EndLevel;
+        _objectiveManager.AllObjectivesCompleted -= OnLevelCompleted;
     }
 
     public void StartLevel(ELevels level)
@@ -39,6 +45,7 @@ public class LevelManager : MonoBehaviour, ILevelManager
 
         SpawnPlayer();
         SpawnEnvironment(level);
+        _objectiveManager.Init(_currentLevel.Objectives);
 
         LevelStarted?.Invoke();
     }
@@ -55,7 +62,6 @@ public class LevelManager : MonoBehaviour, ILevelManager
 
         foreach (var spawner in _currentLevel.EnemySpawners)
         {
-            //todo don't forget to unsubscribe later
             spawner.EnemySpawned += OnEnemySpawned;
             spawner.EnemyDied += OnEnemyDied;
         }

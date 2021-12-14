@@ -17,7 +17,7 @@ public class WhiteClownChaseState : WhiteClownState
     public override void UpdateState()
     {
         base.UpdateState();
-        
+
         var moveX = _clown.Player.Mover.Transform.position.x - _clown.Rigidbody.position.x;
         var moveZ = _clown.Player.Mover.Transform.position.z - _clown.Rigidbody.position.z;
 

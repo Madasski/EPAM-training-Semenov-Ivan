@@ -49,6 +49,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySpawners:
   - {fileID: 6501973801972536066}
+  _killObjectives:
+  - _isMain: 0
+    _enemyType: 0
+    _numberToKill: 2
+  - _isMain: 0
+    _enemyType: 1
+    _numberToKill: 1
 --- !u!1 &3597584553986287032
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +230,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6853144672794455463}
     m_Modifications:
+    - target: {fileID: 8199084557806380365, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
+      propertyPath: EnemiesToSpawn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199084557806380365, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
+      propertyPath: EnemiesToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 3470311799086421572, guid: 7d9925102c0936943be9654d01615319, type: 3}
     - target: {fileID: 8199084557806380366, guid: 94f0e9ea173374741bc9fea9ef7d5b06, type: 3}
       propertyPath: m_RootOrder
       value: 0

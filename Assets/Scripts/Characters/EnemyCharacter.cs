@@ -8,9 +8,11 @@ public class EnemyCharacter : Character, IEnemyCharacter
     public float AttackRange;
     public int experienceForKill;
 
+    [SerializeField] private EEnemies _type;
     private IPlayerCharacter _player;
 
     public IPlayerCharacter Player => _player;
+    public EEnemies Type => _type;
 
     public bool IsPlayerInDetectionRange
     {

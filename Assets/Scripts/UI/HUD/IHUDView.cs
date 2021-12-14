@@ -11,5 +11,6 @@ namespace UI
         void SetLevel(int level);
         void SetSpeed(int newSpeed);
         void SetPower(int newAmount);
+        void AddObjective(IObjective objective);
     }
 }
