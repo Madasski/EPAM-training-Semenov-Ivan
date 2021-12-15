@@ -56,6 +56,7 @@ MonoBehaviour:
   - _isMain: 0
     _enemyType: 1
     _numberToKill: 1
+  _levelMusic: {fileID: 8300000, guid: 67059d11f77abf84390305f1c65c3108, type: 3}
 --- !u!1 &3597584553986287032
 GameObject:
   m_ObjectHideFlags: 0

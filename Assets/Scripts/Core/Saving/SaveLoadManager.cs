@@ -42,6 +42,10 @@ namespace Core.Saving
         }
     }
 
+    
+    
+    
+    
     [Serializable]
     public class GameData
     {

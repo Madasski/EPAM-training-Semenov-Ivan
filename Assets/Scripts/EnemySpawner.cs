@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        Spawn(EnemiesToSpawn[0], transform.position);
+        Spawn(EnemiesToSpawn[1], transform.position);
     }
 
     private void Update()

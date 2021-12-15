@@ -1,13 +1,19 @@
 using Composition;
+using Core.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SimpleButton : MonoBehaviour
 {
+    [SerializeField] private AudioClip _clickSound;
+    
     private Button _button;
+    private AudioManager _audioManager;
 
     private void Awake()
     {
+        _audioManager = CompositionRoot.GetAudioManager();
+        
         _button = GetComponent<Button>();
     }
 
@@ -23,6 +29,6 @@ public class SimpleButton : MonoBehaviour
 
     private void OnClick()
     {
-        //todo: play click sound
+        _audioManager.PlaySound(_clickSound);
     }
 }
